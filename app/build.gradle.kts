@@ -1,6 +1,7 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -40,6 +41,7 @@ android {
 }
 
 dependencies {
+    implementation ("androidx.fragment:fragment-ktx:1.3.0")
 
     implementation("androidx.navigation:navigation-fragment-ktx:2.7.4")
     implementation("androidx.navigation:navigation-ui-ktx:2.7.4")
@@ -51,6 +53,7 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.6.1")
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1")
     implementation("androidx.legacy:legacy-support-v4:1.0.0")
+    implementation("com.google.firebase:firebase-auth:22.3.0")
 //    implementation("androidx.navigation:navigation-fragment-ktx:2.7.5")
 //    implementation("androidx.navigation:navigation-ui-ktx:2.7.5")
     testImplementation("junit:junit:4.13.2")

@@ -27,6 +27,9 @@
         <activity
             android:name=".view.getStarted.SplashActivity"
             android:exported="false" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="false" />
 
         <activity
             android:name=".view.auth.AuthActivity"
