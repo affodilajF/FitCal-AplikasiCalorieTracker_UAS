@@ -25,7 +25,7 @@ class AuthActivity : AppCompatActivity() {
         binding = ActivityAuthBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-//        val viewModel = ViewModelProvider(this).get(AuthViewModel::class.java)
+        val viewModel = ViewModelProvider(this).get(AuthViewModel::class.java)
 //        if(viewModel.checkLoginStatus()){
 //            val intent = Intent(this, MainActivity::class.java)
 //            startActivity(intent)

@@ -3,19 +3,19 @@
 
     <item
         android:title="History"
-        android:id="@+id/ticketFragment"
+        android:id="@+id/historyFragment"
         android:icon="@drawable/baseline_history_24"
         />
 
     <item
         android:title="Home"
-        android:id="@+id/ticketFragment2"
+        android:id="@+id/homeFragment"
         android:icon="@drawable/baseline_home_24"
         />
 
     <item
         android:title="Profile"
-        android:id="@+id/ticketFragment3"
+        android:id="@+id/profileFragment"
         android:icon="@drawable/iconamoon_profile"
         />
 

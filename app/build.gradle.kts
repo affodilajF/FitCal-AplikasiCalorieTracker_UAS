@@ -41,6 +41,8 @@ android {
 }
 
 dependencies {
+    implementation ("nl.bryanderidder:themed-toggle-button-group:1.4.1")
+
     implementation ("androidx.fragment:fragment-ktx:1.3.0")
 
     implementation("androidx.navigation:navigation-fragment-ktx:2.7.4")

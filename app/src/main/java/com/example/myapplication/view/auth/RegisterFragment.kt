@@ -8,12 +8,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
-import com.example.myapplication.MainActivity
 import com.example.myapplication.databinding.FragmentRegisterBinding
+import com.example.myapplication.view.personalData.PersonalDataActivity
 
 class RegisterFragment : Fragment() {
     private lateinit var binding: FragmentRegisterBinding
-
     private val viewModel: AuthViewModel by activityViewModels()
 
     override fun onCreateView(
@@ -52,7 +51,9 @@ class RegisterFragment : Fragment() {
 
             viewModel.registerUser(email, password) { result ->
                 if (result) {
-                    (activity as AuthActivity).viewPager2.setCurrentItem(1, true)
+//                    (activity as AuthActivity).viewPager2.setCurrentItem(1, true)
+                    startActivity(Intent(requireContext(), PersonalDataActivity::class.java))
+
                 }
             }
 
