@@ -9,7 +9,8 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.myapplication.R
 import com.example.myapplication.databinding.FragmentHistoryBinding
-import com.example.myapplication.view.menuUser.addMenu.AddMenuActivity
+import com.example.myapplication.view.menuUser.addMenu.listMenu.ListMenuActivity
+import com.example.myapplication.view.menuUser.addMenu2.AddMenuActivity
 
 class HistoryFragment : Fragment() {
 
@@ -34,9 +35,13 @@ class HistoryFragment : Fragment() {
                 }
             }
 
-            btnAdd.setOnClickListener {
-                startActivity(Intent(requireContext(), AddMenuActivity::class.java))
+//            btnAdd.setOnClickListener {
+//                startActivity(Intent(requireContext(), ListMenuActivity::class.java))
+//
+//            }
 
+            btnSearch.setOnClickListener{
+                startActivity(Intent(requireContext(), ListMenuActivity::class.java))
             }
 
 

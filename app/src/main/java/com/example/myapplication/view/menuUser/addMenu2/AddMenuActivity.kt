@@ -1,4 +1,4 @@
-package com.example.myapplication.view.menuUser.addMenu
+package com.example.myapplication.view.menuUser.addMenu2
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -17,25 +17,26 @@ class AddMenuActivity : AppCompatActivity() {
         binding = ActivityAddMenuBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        with(binding){
-            viewPager2 = viewPagerMenu
+//        with(binding){
+//            viewPager2 = viewPagerMenu
+//
+//            viewPagerMenu.adapter = MenuTabAdapter(supportFragmentManager, this@AddMenuActivity.lifecycle)
+//
+//            mediator = TabLayoutMediator(tabLayout, viewPagerMenu)
+//            { tab, position->
+//                when(position){
+//                    0->tab.text = "Search"
+//                    1->tab.text = "Custom"
+//                }
+//            }
+//            mediator.attach()
+//
+//            btnBack.setOnClickListener{
+//                finish()
+//            }
+//
+//        }
 
-            viewPagerMenu.adapter = MenuTabAdapter(supportFragmentManager, this@AddMenuActivity.lifecycle)
 
-            mediator = TabLayoutMediator(tabLayout, viewPagerMenu)
-            { tab, position->
-                when(position){
-                    0->tab.text = "Search"
-                    1->tab.text = "Custom"
-                }
-            }
-            mediator.attach()
-
-            btnBack.setOnClickListener{
-                finish()
-            }
-
-
-        }
     }
 }

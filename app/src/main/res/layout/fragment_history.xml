@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
     tools:context=".view.menuUser.history.HistoryFragment"
     android:background="#eef2f5">
 
@@ -211,20 +212,73 @@
 
 
 
+<!--        <Button-->
+<!--        android:layout_marginRight="30dp"-->
+<!--        android:layout_marginBottom="55dp"-->
+<!--        android:id="@+id/btn_add"-->
+<!--        android:layout_width="80dp"-->
+<!--        android:layout_height="80dp"-->
+<!--        android:background="@drawable/buttonstyle2"-->
+<!--        android:text="+"-->
+<!--        android:textSize="50dp"-->
+<!--        android:textColor="#FFFFFF"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        />-->
 
-    <Button
-        android:layout_marginRight="30dp"
-        android:layout_marginBottom="55dp"
-        android:id="@+id/btn_add"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:background="@drawable/buttonstyle2"
-        android:text="+"
-        android:textSize="50dp"
-        android:textColor="#FFFFFF"
+
+<!--    BATAS -->
+
+
+    <LinearLayout
+        android:layout_marginRight="25dp"
+        android:layout_marginBottom="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        xmlns:fab="http://schemas.android.com/apk/res-auto">
+
+        <com.getbase.floatingactionbutton.FloatingActionsMenu
+            fab:fab_labelStyle="@style/menu_labels_style"
+            fab:fab_size="mini"
+            android:id="@+id/right_labels"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="16dp"
+            android:layout_marginStart="16dp"
+            fab:fab_addButtonColorNormal="@color/ungu4"
+            fab:fab_addButtonColorPressed="@color/ungu4"
+            fab:fab_addButtonPlusIconColor="@color/white"
+            fab:fab_labelsPosition="left">
+
+            <com.getbase.floatingactionbutton.FloatingActionButton
+                android:id="@+id/btn_custom_add"
+                fab:fab_icon="@drawable/baseline_add_24"
+
+                fab:fab_size="normal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                fab:fab_colorNormal="@color/ungu1"
+                fab:fab_title="Add Custom Menu"
+                fab:fab_colorPressed="@color/white"/>
+
+            <com.getbase.floatingactionbutton.FloatingActionButton
+                android:id="@+id/btn_search"
+                fab:fab_icon="@drawable/baseline_saved_search_24"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                fab:fab_colorNormal="@color/ungu1"
+                fab:fab_size="normal"
+                fab:fab_title="Search Menu"
+                fab:fab_colorPressed="@color/white"/>
+
+        </com.getbase.floatingactionbutton.FloatingActionsMenu>
+
+    </LinearLayout>
 
 
 

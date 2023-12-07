@@ -1,11 +1,9 @@
-package com.example.myapplication.view.menuUser.addMenu
+package com.example.myapplication.view.menuUser.addMenu2
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.example.myapplication.view.auth.LoginFragment
-import com.example.myapplication.view.auth.RegisterFragment
 
 class MenuTabAdapter(fm: FragmentManager, lifecycle: Lifecycle) : FragmentStateAdapter(fm, lifecycle) {
 

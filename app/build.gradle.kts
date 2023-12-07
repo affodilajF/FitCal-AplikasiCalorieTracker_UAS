@@ -41,6 +41,8 @@ android {
 }
 
 dependencies {
+    implementation ("com.getbase:floatingactionbutton:1.10.1")
+
     implementation ("nl.bryanderidder:themed-toggle-button-group:1.4.1")
 
     implementation ("androidx.fragment:fragment-ktx:1.3.0")

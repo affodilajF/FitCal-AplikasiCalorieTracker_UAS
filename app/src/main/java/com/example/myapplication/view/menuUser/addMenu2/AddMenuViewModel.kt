@@ -1,4 +1,4 @@
-package com.example.myapplication.view.menuUser.addMenu
+package com.example.myapplication.view.menuUser.addMenu2
 
 import androidx.lifecycle.ViewModel
 import com.example.myapplication.data.model.Menu
