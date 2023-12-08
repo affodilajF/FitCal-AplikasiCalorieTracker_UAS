@@ -24,11 +24,11 @@
 
     <EditText
         android:paddingHorizontal="20dp"
-        android:background="@drawable/edittextstyle"
+        android:background="@drawable/cardstyle3"
         android:layout_marginTop="30dp"
         android:id="@+id/edit_text_username"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="50dp"
         android:hint="username"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -39,9 +39,9 @@
         android:paddingHorizontal="20dp"
         android:id="@+id/edit_txt_email"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="50dp"
         android:layout_marginTop="30dp"
-        android:background="@drawable/edittextstyle"
+        android:background="@drawable/cardstyle3"
         android:hint="email"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -51,8 +51,9 @@
         android:paddingHorizontal="20dp"
         android:id="@+id/edit_txt_phone"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:background="@drawable/edittextstyle"
+        android:layout_height="50dp"
+        android:background="@drawable/cardstyle3"
+        android:inputType="number"
         android:hint="phone"
         android:layout_marginTop="30dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -65,8 +66,8 @@
         android:layout_marginTop="30dp"
         android:id="@+id/edit_txt_password"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:background="@drawable/edittextstyle"
+        android:layout_height="50dp"
+        android:background="@drawable/cardstyle3"
         android:hint="password"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -127,7 +128,7 @@
         app:layout_constraintTop_toBottomOf="@+id/edit_txt_password"
         android:hint="Register"
         android:textColorHint="@color/white"
-        android:background="@drawable/buttonstyle"/>
+        android:background="@drawable/cardstyle5"/>
 
 
 

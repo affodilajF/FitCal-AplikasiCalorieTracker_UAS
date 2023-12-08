@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import com.example.myapplication.databinding.FragmentRegisterBinding
 import com.example.myapplication.view.personalData.PersonalDataActivity
@@ -52,8 +53,12 @@ class RegisterFragment : Fragment() {
             viewModel.registerUser(email, password) { result ->
                 if (result) {
 //                    (activity as AuthActivity).viewPager2.setCurrentItem(1, true)
-                    startActivity(Intent(requireContext(), PersonalDataActivity::class.java))
 
+                    startActivity(Intent(requireContext(), PersonalDataActivity::class.java))
+                    viewModel.saveUserIdSharePrefs(viewModel.getUserId())
+                    viewModel.saveUserNameSharePrefs(binding.editTextUsername.text.toString())
+                    viewModel.saveUserPhoneSharePrefs(binding.editTxtPhone.text.toString())
+//                    Toast.makeText(requireContext(), selectedDate.toString(), Toast.LENGTH_SHORT).show()
                 }
             }
 

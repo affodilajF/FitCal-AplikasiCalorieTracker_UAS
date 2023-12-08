@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="115dp"
-   >
+    >
 
     <LinearLayout
         android:background="@color/white"
@@ -30,12 +30,12 @@
                 android:layout_height="wrap_content"/>
 
             <TextView
-                android:id="@+id/txt_totalcal"
+                android:id="@+id/txt_date"
 
-                android:textColor="#06D60F"
+                android:textColor="@color/ungu3"
                 android:gravity="right"
                 android:layout_marginLeft="10dp"
-                android:text="120cal"
+                android:text="Wednesday, 2022 - 10- 222"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 />
@@ -62,23 +62,21 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
+
                 <TextView
+                    android:padding="7dp"
                     android:textStyle="bold"
-                    android:id="@+id/txt_carbs_amount"
+                    android:id="@+id/txt_totalcal"
                     android:gravity="left"
-                    android:textSize="13dp"
-                    android:text="24 gram"
+                    android:textSize="18dp"
+                    android:text="120 cal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
 
-                <TextView
-                    android:textSize="10dp"
-                    android:gravity="left"
-                    android:text="Carbs"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
 
             </LinearLayout>
+
+
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -86,43 +84,21 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/txt_protein_amount"
-                    android:gravity="center"
-                    android:textSize="13dp"
-                    android:textStyle="bold"
-                    android:text="24 gram"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-
-                <TextView
-                    android:textSize="10dp"
-                    android:gravity="center"
-                    android:text="Protein"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
 
                 <TextView
                     android:textStyle="bold"
-                    android:id="@+id/txt_fat_amount"
+                    android:id="@+id/txt_meal_category"
                     android:gravity="right"
                     android:textSize="13dp"
-                    android:text="24 gram"
+                    android:text="Breakfast"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
 
                 <TextView
+                    android:id="@+id/id_serving"
                     android:textSize="10dp"
                     android:gravity="right"
-                    android:text="Fat"
+                    android:text="2.5 Servings"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
 

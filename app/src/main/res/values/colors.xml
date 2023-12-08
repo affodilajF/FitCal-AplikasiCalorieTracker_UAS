@@ -8,8 +8,14 @@
     <color name="ungu3">#AF8EFF</color>
     <color name="ungu4">#5847D8</color>
     <color name="ungu5">#BDA4F8</color>
+    <color name="ungu6">#7060E6</color>
+    <color name="ungu7">#7F70C3</color>
     <color name="biru1">#7EE5EE</color>
     <color name="oren">#FFAE35</color>
+    <color name="oren2">#DF8E15</color>
     <color name="biruungu">#314268</color>
+    <color name="pink">#E33771</color>
+
+
 
 </resources>

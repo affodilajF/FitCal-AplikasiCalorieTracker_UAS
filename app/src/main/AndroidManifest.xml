@@ -13,10 +13,10 @@
         android:theme="@style/Theme.MyApplication"
         tools:targetApi="31">
         <activity
-            android:name=".view.menuUser.addMenu.addMenu.AddMenuActivity"
+            android:name=".view.menuUser.addMenu.addMenuCustom.AddCustomMenuActivity"
             android:exported="false" />
         <activity
-            android:name=".view.menuUser.addMenu2.AddMenuActivity"
+            android:name=".view.menuUser.addMenu.addMenu.AddMenuActivity"
             android:exported="false" />
         <activity
             android:name=".view.menuUser.addMenu.listMenu.ListMenuActivity"
@@ -26,20 +26,21 @@
             android:exported="false" />
         <activity
             android:name=".view.auth.AuthActivity"
-            android:exported="false" /> <!-- <activity -->
-        <!-- android:name=".view.menuUser.HomepageActivity" -->
-        <!-- android:exported="false" /> -->
+            android:exported="false" />
+         <activity
+         android:name=".view.menuUser.HomepageActivity"
+         android:exported="false" />
         <activity
             android:name=".view.getStarted.WellcomingActivity"
             android:exported="false" />
-        <activity
-            android:name=".view.getStarted.SplashActivity"
-            android:exported="false" />
+<!--        <activity-->
+<!--            android:name=".view.getStarted.SplashActivity"-->
+<!--            android:exported="false" />-->
         <activity
             android:name=".MainActivity"
             android:exported="false" />
         <activity
-            android:name=".view.menuUser.HomepageActivity"
+            android:name=".view.getStarted.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -47,6 +48,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
     </application>
 
 </manifest>

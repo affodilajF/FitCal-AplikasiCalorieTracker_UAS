@@ -6,4 +6,11 @@
         <item name="android:textColor">@color/white</item>
     </style>
 
+
+    <!-- Di dalam file styles.xml -->
+    <style name="CustomTabLayoutTheme" parent="Theme.MaterialComponents">
+        <item name="colorPrimary">@color/ungu4</item>
+        <item name="colorOnPrimary">@color/ungu4</item>
+    </style>
+
 </resources>

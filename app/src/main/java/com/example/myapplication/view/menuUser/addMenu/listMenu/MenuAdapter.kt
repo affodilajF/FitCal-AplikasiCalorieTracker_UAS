@@ -17,12 +17,17 @@ class MenuAdapter(
 
     inner class ItemNoteViewHolder(private var binding: ItemMenuBinding) : RecyclerView.ViewHolder(binding.root){
 
-        fun bind(note: Menu) {
+        fun bind(menu: Menu) {
             with(binding){
 
+                txtMenuName.text = menu.name
+                txtCarbsAmount.text = menu.carbsGram + " gr"
+                txtProteinAmount.text = menu.proteinGram + " gr"
+                txtFatAmount.text = menu.fatGram + " gr"
+                txtTotalcal.text = menu.calAmount + " cal"
 
                 itemView.setOnClickListener{
-                    onClickData(note)
+                    onClickData(menu)
                 }
             }
         }
@@ -43,5 +48,12 @@ class MenuAdapter(
     override fun onBindViewHolder(holder: ItemNoteViewHolder, position: Int) {
         holder.bind(listdata[position])
     }
+
+    fun updateData(newNotesList: List<Menu>) {
+        listdata= newNotesList
+        notifyDataSetChanged()
+    }
+
+
 }
 

@@ -7,9 +7,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import com.example.myapplication.MainActivity
 import com.example.myapplication.databinding.FragmentLoginBinding
+import com.example.myapplication.view.menuUser.HomepageActivity
 
 class LoginFragment : Fragment() {
     private lateinit var binding: FragmentLoginBinding
@@ -23,8 +25,6 @@ class LoginFragment : Fragment() {
         binding = FragmentLoginBinding.inflate(inflater, container, false)
         val view = binding.root
 
-//        val sharedPreferencesHelper = SharedPreferencesHelper(requireContext())
-//        val isLoggedIn = sharedPreferencesHelper.getLoginStatus()
 
         binding.btnLogin.setOnClickListener {
             val email = binding.editTxtGmail.text.toString()
@@ -53,21 +53,26 @@ class LoginFragment : Fragment() {
 
             viewModel.loginUser(email, password) { result ->
                 if (result) {
-                    startActivity(Intent(requireContext(), MainActivity::class.java))
+                    startActivity(Intent(requireContext(), HomepageActivity::class.java))
+//                    viewModel.saveUserIdSharePrefs(viewModel.getUserId())
+//                    viewModel.initializeUserProfSharedPrefData()
+
+//                    viewModel.getUserDataByUserId()
+
+//                    viewModel.getUserProfileByUserAuthId()
+//                    Toast.makeText(requireContext(), viewModel.ab, Toast.LENGTH_SHORT).show()
+
                 }
             }
-        }
+
+            }
+
 
         return view
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-//        viewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
-        // TODO: Use the ViewModel
-
-
-
 
 
     }

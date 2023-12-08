@@ -2,4 +2,19 @@
     <string name="app_name">My Application</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <array name="dietgoal">
+        <item>Cutting</item>
+        <item>Bulking</item>
+        <item>Maintaining</item>
+    </array>
+
+    <array name="mealcategory">
+        <item>Breakfeast</item>
+        <item>Lunch</item>
+        <item>Dinner</item>
+        <item>Snack</item>
+    </array>
+
+
 </resources>
