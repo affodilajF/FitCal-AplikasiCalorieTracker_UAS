@@ -2,11 +2,8 @@ package com.example.myapplication.view.menuUser.history
 
 import android.app.Application
 import android.content.Context
-import android.util.Log
-import android.widget.ArrayAdapter
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.ViewModel
 import com.example.myapplication.data.database.MenuDAO
 import com.example.myapplication.data.database.MenuRoomDatabase
 import com.example.myapplication.data.model.MenuData
@@ -21,6 +18,21 @@ import java.util.concurrent.Executors
 
 class HistoryViewModel(application: Application) : AndroidViewModel(application) {
 
+    private lateinit var mMenuDao : MenuDAO
+    private lateinit var executorService : ExecutorService
+
+
+
+
+//    initialize all
+    fun init(context: Context){
+        executorService = Executors.newSingleThreadExecutor()
+        val db = MenuRoomDatabase.getDatabase(context)
+        mMenuDao = db!!.menuDao()!!
+    }
+
+
+
 
 //    shared pref
     private val sharedPreferencesHelper =
@@ -28,11 +40,11 @@ class HistoryViewModel(application: Application) : AndroidViewModel(application)
 
 
 //    get all live data by userid
-    fun getAllLiveDataByUserId(mMenuDao : MenuDAO, date : String): LiveData<List<MenuData>> {
+    fun getAllLiveDataByUserId( date : String): LiveData<List<MenuData>> {
         return mMenuDao.allMenusByUserId(sharedPreferencesHelper.getUserId().toString(), date )
     }
 
-    fun getAllLiveDataByCategory(mMenuDao : MenuDAO, filter : String, date : String): LiveData<List<MenuData>> {
+    fun getAllLiveDataByCategory(filter : String, date : String): LiveData<List<MenuData>> {
         return mMenuDao.allMenusByCategory(sharedPreferencesHelper.getUserId().toString(), filter, date)
     }
 

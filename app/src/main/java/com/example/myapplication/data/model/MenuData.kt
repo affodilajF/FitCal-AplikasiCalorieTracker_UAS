@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey
 import java.io.Serializable
 import java.util.Date
 
-@Entity(tableName = "menu1_table")
+@Entity(tableName = "menu01_table")
 data class MenuData(
 
     @PrimaryKey(autoGenerate = true)
@@ -21,12 +21,13 @@ data class MenuData(
     val name: String = "",
 
 //    ini cal amount dari berapa serving yang diinputkan user
-    val calAmount: Double = 0.0,
+    val calAmount: Int = 0,
 
 //    ini fat crab protein per 100gr (sesuai dengan inputan awal / database firebase)
-    val fatGram: Double = 0.0,
-    val carbsGram: Double = 0.0,
-    val proteinGram: Double = 0.0,
+    val calAmount100 : Int = 0,
+    val fatGram: Int = 0,
+    val carbsGram: Int = 0,
+    val proteinGram: Int = 0,
 
     val servings: Double = 0.0,
     val date: String = "",

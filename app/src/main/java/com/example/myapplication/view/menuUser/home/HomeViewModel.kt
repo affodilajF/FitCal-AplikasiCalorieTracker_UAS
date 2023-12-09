@@ -17,9 +17,9 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
     private val sharedPreferencesHelper =
         SharedPreferencesHelper.getInstance(application.applicationContext)
 
-    fun getRemainingCal(achievedCal: Double): String {
+    fun getRemainingCal(achievedCal: Int): String {
         val a = getAmountCal()?.toDouble() ?: 0.0
-        val b = achievedCal ?: 0.0
+        val b = achievedCal
         val c = a - b
 
         val formattedResult = String.format("%.1f", c.coerceAtLeast(0.0))
@@ -28,11 +28,11 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
     }
 
 
-    fun getPercentProgress(achievedCal: Double) : Int {
+    fun getPercentProgress(achievedCal: Int) : Int {
 //        kalori target perhari
-        val a = getAmountCal()?.toDouble() ?: 0.0
+        val a = getAmountCal().toDouble()
 //        kalori sekarang
-        val b = achievedCal ?: 0.0
+        val b = achievedCal.toDouble()
 //        percent progress
         val c = (b/a)*100
 
@@ -45,7 +45,7 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
         return mMenuDao.allMenusByCategory(sharedPreferencesHelper.getUserId().toString(), filter, date)
     }
 
-    fun getAmountCalAllLiveDataByUserId(mMenuDao : MenuDAO, date : String): LiveData<Double> {
+    fun getAmountCalAllLiveDataByUserId(mMenuDao : MenuDAO, date : String): LiveData<Int> {
         return mMenuDao.getTotalAmountCal(sharedPreferencesHelper.getUserId().toString(), date )
     }
 

@@ -86,8 +86,8 @@ class AddMenuActivity : AppCompatActivity(),  DatePickerDialog.OnDateSetListener
 //            nanti invoke viewmodel yang terhubung dengan room
 
             btnDone.setOnClickListener {
-                menuFix = MenuData( userId = viewModel.getUserId() , name = name, calAmount = txtTotalCalCalculated.text.toString().toDouble(),  fatGram =  fat.toDouble(), carbsGram = carbs.toDouble(), proteinGram = protein.toDouble(), servings = editTextServingsNumber.text.toString().toDouble(),
-                    date = viewModel.getFormattedDate(selectedDate), category = selectedmealcategory )
+                menuFix = MenuData( userId = viewModel.getUserId() , name = name, calAmount = txtTotalCalCalculated.text.toString().toInt(),  fatGram =  fat.toInt(), carbsGram = carbs.toInt(), proteinGram = protein.toInt(), servings = editTextServingsNumber.text.toString().toDouble(),
+                    date = viewModel.getFormattedDate(selectedDate), category = selectedmealcategory, calAmount100 = calories.toInt() )
                 viewModel.insertRoom(menuFix)
                 finish()
             }

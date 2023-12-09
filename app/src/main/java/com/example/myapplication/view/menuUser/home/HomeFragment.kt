@@ -107,7 +107,7 @@ class HomeFragment : Fragment() {
         fun getAllMenus(){
 
 //            get remaining calorie
-            val liveDataDoubleTotalAchievedCal: LiveData<Double> = viewModel.getAmountCalAllLiveDataByUserId(mMenuDao, txtDateFilter)
+            val liveDataDoubleTotalAchievedCal: LiveData<Int> = viewModel.getAmountCalAllLiveDataByUserId(mMenuDao, txtDateFilter)
             liveDataDoubleTotalAchievedCal.observe(viewLifecycleOwner) { doubleValue ->
 
                 if(doubleValue != null){

@@ -21,6 +21,7 @@ import java.util.Date
 
 
 class UpdateMenuActivity : AppCompatActivity() {
+
     private lateinit var binding : ActivityUpdateMenuBinding
     private lateinit var menuFix : MenuData
     private val viewModel: UpdateMenuViewModel by viewModels()
@@ -55,9 +56,10 @@ class UpdateMenuActivity : AppCompatActivity() {
             txtGrFat.text = fat.toString() + " gr"
             txtGrProtein.text = protein.toString() + " gr"
 
-            val totalCal = ((fat * 9) + (carbs * 4) + (protein * 4))
-            val formattedTotalCal = String.format("%.0f", totalCal)
-            txtCalOneserving.text = formattedTotalCal + " cal"
+            val totalCal = ((fat * 9) + (carbs * 4) + (protein * 4)).toString()
+//            val formattedTotalCal = String.format("%.0f", totalCal)
+
+            txtCalOneserving.text = totalCal + " cal"
 
 
             val servingString = serving.toString()
@@ -65,21 +67,20 @@ class UpdateMenuActivity : AppCompatActivity() {
             editTextServingsNumber.text = editableServings
 
 
-            val result = ((((fat * 9) + (carbs * 4) + (protein * 4)) * serving))
-            val formattedResult = String.format("%.0f", result)
-            txtTotalCalCalculated.text = formattedResult + " cal"
+            val result = viewModel.getCalAchieved(carbs, protein,fat, serving)
+            txtTotalCalCalculated.text = result.toString() + " cal"
 
 
 
             btnUpdate.setOnClickListener {
-                val text = txtTotalCalCalculated.text.toString()
-                val totalCalBaru = text.toDoubleOrNull() ?: 0.0
+                val newTotalCal = txtTotalCalCalculated.text.toString()
+                val newTotalCal2 = newTotalCal.toIntOrNull() ?: 0
                 val servBaru = editTextServingsNumber.text.toString()
                 val servBaru2 = servBaru.toDoubleOrNull() ?: 0.0
 
                 menuFix = MenuData(id = menu.id, userId = menu.userId, name=menu.name, fatGram = menu.fatGram, carbsGram = menu.carbsGram
                 , proteinGram = menu.proteinGram, date = menu.date, category = menu.category,
-                    calAmount = totalCalBaru, servings = servBaru2)
+                    calAmount = newTotalCal2, servings = servBaru2, calAmount100 = menu.calAmount100)
                 viewModel.update(menuFix)
                 finish()
             }
@@ -98,6 +99,7 @@ class UpdateMenuActivity : AppCompatActivity() {
                 override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                     val resultA = ((((fat * 9) + (carbs * 4) + (protein * 4))))
                     txtTotalCalCalculated.text = viewModel.getTotalCal(resultA.toString(), s.toString())
+
                     calculatedCalCarbs.text = ((viewModel.getCalCarbs(carbs)).toDouble()*((s.toString()).toDoubleOrNull() ?: 0.0)).toString()
                     calculatedCalFat.text = ((viewModel.getCalFat(fat)).toDouble()*((s.toString()).toDoubleOrNull() ?: 0.0)).toString()
                     calculatedCalProtein.text = ((viewModel.getCalProtein(protein)).toDouble()*((s.toString()).toDoubleOrNull() ?: 0.0)).toString()

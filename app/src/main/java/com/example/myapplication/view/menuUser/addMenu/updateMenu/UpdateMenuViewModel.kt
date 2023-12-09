@@ -41,12 +41,18 @@ class UpdateMenuViewModel() : ViewModel() {
         }
     }
 
-    fun getTotalCal100( carbs : Double, protein : Double, fat : Double) : String {
-        val b = (carbs*4) + (protein*4) + (fat*4)
-        val a = b.toString()
+    fun getTotalCal100( carbs : Int, protein : Int, fat : Int) : Int {
+        val b = (carbs*4) + (protein*4) + (fat*9)
+//        val a = b.toInt()
 
-        val result = String.format("%.0f", a)
-        return a
+//        val result = String.format("%.0f", a)
+        return b
+    }
+
+    fun getCalAchieved(param1 : Int, param2 : Int, param3 : Int, param4 : Double): Int {
+        val a = (getTotalCal100(param1, param2, param3))*param4
+        return a.toInt()
+
     }
     fun getTotalCal(servings: String?, calories: String?): String {
         val a = servings?.toDoubleOrNull() ?: 0.0
@@ -56,19 +62,16 @@ class UpdateMenuViewModel() : ViewModel() {
         return result
     }
 
-    fun getCalCarbs(gram : Double) : String {
-        val a = gram.toDouble()
-        return String.format("%.0f", a * 4)
+    fun getCalCarbs(gram : Int) : String {
+        return (gram*4).toString()
     }
 
-    fun getCalProtein(gram: Double): String {
-        val a = gram.toDouble()
-        return String.format("%.0f", a * 4)
+    fun getCalProtein(gram: Int): String {
+        return (gram*4).toString()
     }
 
-    fun getCalFat(gram: Double): String {
-        val a = gram
-        return String.format("%.0f", a * 9)
+    fun getCalFat(gram: Int): String {
+        return (gram*9).toString()
     }
 
 }

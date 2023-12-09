@@ -3,12 +3,10 @@ package com.example.myapplication.view.menuUser.addMenu.addMenu
 import android.app.Application
 import android.content.Context
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.ViewModel
 import com.example.myapplication.data.database.MenuDAO
 import com.example.myapplication.data.database.MenuRoomDatabase
 import com.example.myapplication.data.model.MenuData
 import com.example.myapplication.util.SharedPreferencesHelper
-import com.google.firebase.auth.FirebaseAuth
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date
@@ -60,23 +58,19 @@ class AddMenuViewModel(application: Application) : AndroidViewModel(application)
         val a = servings?.toDoubleOrNull() ?: 0.0
         val b = calories?.toDoubleOrNull() ?: 0.0
 
-        val result = String.format("%.0f", a * b)
-        return result
+        return String.format("%.0f", a * b)
     }
 
-    fun getCalCarbs(gram : String) : String {
-        val a = gram.toDouble()
-        return String.format("%.0f", a * 4)
+    fun getCalCarbs(gram: String): String {
+        return (gram.toInt() * 4).toString()
     }
 
     fun getCalProtein(gram: String): String {
-        val a = gram.toDouble()
-        return String.format("%.0f", a * 4)
+        return (gram.toInt() * 4).toString()
     }
 
     fun getCalFat(gram: String): String {
-        val a = gram.toDouble()
-        return String.format("%.0f", a * 9)
+        return (gram.toInt() * 9).toString()
     }
 
 }

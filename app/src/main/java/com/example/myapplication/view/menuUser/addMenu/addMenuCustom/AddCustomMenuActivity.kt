@@ -62,19 +62,19 @@ class AddCustomMenuActivity : AppCompatActivity(), DatePickerDialog.OnDateSetLis
                 Toast.makeText(this@AddCustomMenuActivity, a, Toast.LENGTH_SHORT).show()
 
 //               calAmount
-                val b : Double = viewModel.formattedDouble(txtTotalCalCalculated.text.toString())
+                val b : Int = viewModel.formattedInt(txtTotalCalCalculated.text.toString())
 
 //                carbsGram
-                val c : Double =inputCarbs.text.toString().toDoubleOrNull() ?: 0.0
+                val c : Int =inputCarbs.text.toString().toIntOrNull() ?: 0
 
 //                fatGram
-                val d: Double = inputFat.text.toString().toDoubleOrNull() ?: 0.0
+                val d: Int = inputFat.text.toString().toIntOrNull() ?: 0
 
 //                proteinGram
-                val e : Double = inputProtein.text.toString().toDoubleOrNull() ?: 0.0
+                val e : Int = inputProtein.text.toString().toIntOrNull() ?: 0
 
 //                servings
-                val f : Double = viewModel.formattedDouble2(editTextServingsNumber.text.toString())
+                val f : Double = viewModel.formattedDouble(editTextServingsNumber.text.toString())
 
 //                date
                 val g : String = viewModel.getFormattedDate(selectedDate)
@@ -82,9 +82,12 @@ class AddCustomMenuActivity : AppCompatActivity(), DatePickerDialog.OnDateSetLis
 //                category
                 val h = selectedmealcategory
 
+//                cal100gr
+                val i : Int = (c*4)+(d*9)+(e*4)
+
                 menuFix = MenuData(userId = viewModel.getUserId(),
                     name = a, calAmount = b, carbsGram = c, fatGram = d, proteinGram = e,
-                    servings = f, date = g, category = h)
+                    servings = f, date = g, category = h, calAmount100 = i)
                 viewModel.insertRoom(menuFix)
                 finish()
             }

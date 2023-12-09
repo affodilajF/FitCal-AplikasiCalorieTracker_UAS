@@ -7,24 +7,15 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.myapplication.MainActivity
 import com.example.myapplication.R
-import com.example.myapplication.data.database.MenuDAO
-import com.example.myapplication.data.database.MenuRoomDatabase
-import com.example.myapplication.data.model.Menu
 import com.example.myapplication.data.model.MenuData
 import com.example.myapplication.databinding.FragmentHistoryBinding
-import com.example.myapplication.view.menuUser.addMenu.addMenu.AddMenuActivity
 import com.example.myapplication.view.menuUser.addMenu.addMenuCustom.AddCustomMenuActivity
 import com.example.myapplication.view.menuUser.addMenu.updateMenu.UpdateMenuActivity
 import com.example.myapplication.view.menuUser.listMenu.ListMenuActivity
-import com.example.myapplication.view.menuUser.listMenu.MenuAdapter
-import java.util.concurrent.ExecutorService
-import java.util.concurrent.Executors
 
 class HistoryFragment : Fragment() {
 
@@ -33,8 +24,8 @@ class HistoryFragment : Fragment() {
     private lateinit var viewModel: HistoryViewModel
     private lateinit var adapterMenuItem : MenuDataAdapter
 //
-    private lateinit var mMenuDao : MenuDAO
-    private lateinit var executorService : ExecutorService
+//    private lateinit var mMenuDao : MenuDAO
+//    private lateinit var executorService : ExecutorService
 
     private var allMenusLiveData : LiveData<List<MenuData>>? = null
 
@@ -53,9 +44,13 @@ class HistoryFragment : Fragment() {
         binding = FragmentHistoryBinding.inflate(inflater, container, false)
         val view = binding.root
 
-        executorService = Executors.newSingleThreadExecutor()
-        val db = MenuRoomDatabase.getDatabase(requireContext())
-        mMenuDao = db!!.menuDao()!!
+//        executorService = Executors.newSingleThreadExecutor()
+//        val db = MenuRoomDatabase.getDatabase(requireContext())
+//        mMenuDao = db!!.menuDao()!!
+
+//        initialize menuDao and execService
+
+        viewModel.init(requireContext())
 
 
         with(binding){
@@ -147,9 +142,9 @@ class HistoryFragment : Fragment() {
     fun getAllMenus(filter : String){
 //        by user id
         if(filter == "userid"){
-            allMenusLiveData = viewModel.getAllLiveDataByUserId(mMenuDao, txtDateFilter)
+            allMenusLiveData = viewModel.getAllLiveDataByUserId(txtDateFilter)
         } else if (filter == "Breakfast" || filter == "Lunch" || filter == "Dinner" || filter =="Snack" ){
-            allMenusLiveData = viewModel.getAllLiveDataByCategory(mMenuDao, filter, txtDateFilter)
+            allMenusLiveData = viewModel.getAllLiveDataByCategory(filter, txtDateFilter)
         }
 
 
