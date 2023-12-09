@@ -79,8 +79,6 @@ class AddCustomMenuActivity : AppCompatActivity(), DatePickerDialog.OnDateSetLis
                     calculatedCalCarbs.text = viewModel.getCalCarbs(s.toString()) + " cal"
                     temporaryCarbs = s.toString()
 
-//                    Toast.makeText(this@AddCustomMenuActivity, temporaryCarbs, Toast.LENGTH_SHORT).show()
-
                     calculatedAllCal1serving.text = viewModel.getCalculatedAllCalories(temporaryCarbs, temporaryProtein, temporaryFat) + " calories in 1 serving"
 
                 }

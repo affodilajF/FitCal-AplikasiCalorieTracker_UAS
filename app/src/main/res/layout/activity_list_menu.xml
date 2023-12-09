@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.menuUser.addMenu.listMenu.ListMenuActivity"
+    tools:context=".view.menuUser.listMenu.ListMenuActivity"
     android:background="#eef2f5"
     android:orientation="vertical">
 

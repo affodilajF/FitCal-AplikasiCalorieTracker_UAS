@@ -12,4 +12,6 @@ class ProfileViewModel(application: Application) : AndroidViewModel(application)
     fun logout(){
         sharedPreferencesHelper.clear()
     }
+
+    
 }

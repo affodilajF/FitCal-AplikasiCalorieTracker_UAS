@@ -66,7 +66,7 @@
         android:paddingLeft="25dp"
         android:paddingRight="25dp"
         android:paddingTop="40dp"
-        android:background="@drawable/cardstyle2"
+        android:background="@drawable/cardstyle3"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
@@ -101,7 +101,7 @@
             <TextView
                 android:textStyle="bold"
                 android:gravity="right"
-                android:id="@+id/txt_cal"
+                android:id="@+id/txt_cal_oneserving"
                 android:textColor="@color/ungu7"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -113,7 +113,14 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="1 serving equals to 100 gram"
+            android:text="1 serving equals to 100 gram."
+            android:textSize="12dp"/>
+
+        <TextView
+            android:textColor="@color/ungu5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Here is the calories detail in 1 serving."
             android:textSize="12dp"/>
 
 
@@ -270,8 +277,6 @@
 
 
 
-
-
         <LinearLayout
             android:layout_marginTop="20dp"
             android:layout_weight="1"
@@ -293,13 +298,14 @@
                     android:textSize="14dp"/>
 
                 <EditText
+                    android:text="0.0"
                     android:inputType="numberDecimal"
                     android:padding="10dp"
                     android:background="@drawable/cardstyle4"
                     android:id="@+id/edit_text_servings_number"
                     android:layout_width="120dp"
                     android:layout_height="45dp"
-                    android:hint="0" />
+                   />
 
 
             </LinearLayout>

@@ -12,9 +12,6 @@ import com.google.firebase.firestore.FirebaseFirestore
 
 class PersonalDataViewModel(application: Application) : AndroidViewModel(application) {
 
-//    firebase auth
-//    private val auth: FirebaseAuth = FirebaseAuth.getInstance()
-
 //    firebase
     private var firestore = FirebaseFirestore.getInstance()
     private val profileCollectionRef = firestore.collection("userProfile")
@@ -60,47 +57,20 @@ class PersonalDataViewModel(application: Application) : AndroidViewModel(applica
         }
     }
 
-    //    function to sharedpref
-//    fun saveDayTargetedCalorie(dayTargetedCalorie: String) {
-//        sharedPreferencesHelper.saveDayTargetedCalorie(dayTargetedCalorie)
-//    }
-//    fun saveDietGoal(dietGoal: String) {
-//        sharedPreferencesHelper.saveDietGoal(dietGoal)
-//    }
-//    fun saveCurrentWeight1(currentWeight: String) {
-//        sharedPreferencesHelper.saveCurrentWeight(currentWeight)
-//    }
-//    fun saveTargetedWeight(targetedWeight: String) {
-//        sharedPreferencesHelper.saveTargetedWeight(targetedWeight)
-//    }
-//    fun saveHeight(height: String) {
-//        sharedPreferencesHelper.saveHeight(height)
-//    }
-//
-//    fun saveFatGram(fatGram: String) {
-//        sharedPreferencesHelper.saveFatGram(fatGram)
-//    }
-//
-//    fun saveCarbsGram(carbsGram: String) {
-//        sharedPreferencesHelper.saveCarbsGram(carbsGram)
-//    }
-//    fun saveProteinGram(proteinGram: String) {
-//        sharedPreferencesHelper.saveProteinGram(proteinGram)
-//    }
 
     fun getCalCarbs(gram : String?) : String {
         val a = gram?.toDoubleOrNull() ?: 0.0
-        return String.format("%.1f", a * 4)
+        return String.format("%.0f", a * 4)
     }
 
     fun getCalProtein(gram: String?): String {
         val a = gram?.toDoubleOrNull() ?: 0.0
-        return String.format("%.1f", a * 4)
+        return String.format("%.0f", a * 4)
     }
 
     fun getCalFat(gram: String?): String {
         val a = gram?.toDoubleOrNull() ?: 0.0
-        return String.format("%.1f", a * 9)
+        return String.format("%.0f", a * 9)
     }
 
     fun getCalculatedAllCalories(gram : String?, gram2 : String?, gram3 : String?) : String{

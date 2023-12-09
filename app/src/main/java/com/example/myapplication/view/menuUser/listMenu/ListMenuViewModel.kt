@@ -1,4 +1,4 @@
-package com.example.myapplication.view.menuUser.addMenu.listMenu
+package com.example.myapplication.view.menuUser.listMenu
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData

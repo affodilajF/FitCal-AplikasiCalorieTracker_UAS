@@ -1,4 +1,4 @@
-package com.example.myapplication.view.menuUser.addMenu.listMenu
+package com.example.myapplication.view.menuUser.listMenu
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -58,6 +58,10 @@ class ListMenuActivity : AppCompatActivity() {
                 adapter = adapterMenuItem
                 layoutManager = LinearLayoutManager(this@ListMenuActivity)
             }
+
+
+
+
         }
     }
 

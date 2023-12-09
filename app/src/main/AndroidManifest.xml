@@ -5,6 +5,7 @@
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
+        android:enableOnBackInvokedCallback="true"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -13,13 +14,16 @@
         android:theme="@style/Theme.MyApplication"
         tools:targetApi="31">
         <activity
+            android:name=".view.menuUser.addMenu.updateMenu.UpdateMenuActivity"
+            android:exported="false" />
+        <activity
             android:name=".view.menuUser.addMenu.addMenuCustom.AddCustomMenuActivity"
             android:exported="false" />
         <activity
             android:name=".view.menuUser.addMenu.addMenu.AddMenuActivity"
             android:exported="false" />
         <activity
-            android:name=".view.menuUser.addMenu.listMenu.ListMenuActivity"
+            android:name=".view.menuUser.listMenu.ListMenuActivity"
             android:exported="false" />
         <activity
             android:name=".view.personalData.PersonalDataActivity"
@@ -27,15 +31,14 @@
         <activity
             android:name=".view.auth.AuthActivity"
             android:exported="false" />
-         <activity
-         android:name=".view.menuUser.HomepageActivity"
-         android:exported="false" />
+        <activity
+            android:name=".view.menuUser.HomepageActivity"
+            android:exported="false" />
         <activity
             android:name=".view.getStarted.WellcomingActivity"
-            android:exported="false" />
-<!--        <activity-->
-<!--            android:name=".view.getStarted.SplashActivity"-->
-<!--            android:exported="false" />-->
+            android:exported="false" /> <!-- <activity -->
+        <!-- android:name=".view.getStarted.SplashActivity" -->
+        <!-- android:exported="false" /> -->
         <activity
             android:name=".MainActivity"
             android:exported="false" />
@@ -48,7 +51,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
     </application>
 
 </manifest>

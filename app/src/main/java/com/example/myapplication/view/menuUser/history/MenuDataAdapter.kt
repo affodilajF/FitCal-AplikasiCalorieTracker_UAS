@@ -3,7 +3,6 @@ package com.example.myapplication.view.menuUser.history
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.myapplication.data.model.Menu
 import com.example.myapplication.data.model.MenuData
 import com.example.myapplication.databinding.ItemMenu2Binding
 import com.example.myapplication.databinding.ItemMenuBinding
@@ -25,10 +24,12 @@ class MenuDataAdapter(
             with(binding){
 
                 txtMenuName.text = menu.name
+//                txtMenuName.text = menu.userId
                 txtMealCategory.text = menu.category
-                txtDate.text = formattedDate(menu.date)
+//                txtDate.text = formattedDate(menu.date.toString())
+                txtDate.text = menu.date
                 txtTotalcal.text = menu.calAmount.toString()
-                idServing.text = menu.servings.toString()
+                idServing.text = menu.servings.toString() + " servings"
 
 //                total car = (getCal + getCal + getCal) * servings
 
@@ -63,10 +64,10 @@ class MenuDataAdapter(
         notifyDataSetChanged()
     }
 
-    private fun formattedDate(date : Date): String {
-        val simpleDateFormat = SimpleDateFormat("EEEE, yyyy-MM-dd", Locale.getDefault())
-        return simpleDateFormat.format(date)
-    }
+//    private fun formattedDate(date: Date): String {
+//        val simpleDateFormat = SimpleDateFormat("EEEE, yyyy-MM-dd", Locale.getDefault())
+//        return simpleDateFormat.format(date)
+//    }
 
 
 }

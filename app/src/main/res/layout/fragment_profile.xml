@@ -4,12 +4,77 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".view.menuUser.profile.ProfileFragment"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:padding="60dp"
+    >
+
+    <LinearLayout
+        android:layout_marginTop="100dp"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:id="@+id/txt_namee"
+            android:textColor="@color/ungu4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Username"
+            android:textSize="15dp"/>
+        <TextView
+            android:padding="13dp"
+            android:background="@drawable/buttonstyle"
+            android:id="@+id/txt_name"
+            android:textColor="@color/ungu4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Your food name"
+            android:textSize="20dp"/>
+
+
+        <TextView
+            android:layout_marginTop="20dp"
+            android:id="@+id/txt_phonee"
+            android:textColor="@color/ungu4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Phone Number"
+            android:textSize="15dp"/>
+        <TextView
+            android:padding="13dp"
+            android:background="@drawable/buttonstyle"
+            android:id="@+id/txt_phone"
+            android:textColor="@color/ungu4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Your food name"
+            android:textSize="20dp"/>
+
+
+
+
+    </LinearLayout>
+
+
+
+
+
+
+
+
+
+
+
 
 
     <Button
+        android:layout_marginTop="100dp"
+        android:textColor="@color/white"
+        android:background="@drawable/cardstyle5"
         android:id="@+id/btn_logout"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="logout"/>
 

@@ -10,7 +10,6 @@ class SharedPreferencesHelper(private val context: Context) {
     companion object {
         private const val PREFS_NAME = "authAppPrefs"
 
-
         private const val KEY_USER_ID = "userIdFromFirebase"
         private const val KEY_IS_LOGGED_IN = "isLoggedIn"
         private const val KEY_USERNAME = "username"

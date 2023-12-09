@@ -24,7 +24,6 @@ class PersonalDataActivity : AppCompatActivity() {
     private lateinit var binding : ActivityPersonalDataBinding
     private lateinit var viewModel: PersonalDataViewModel
 
-    private var selectedGender = ""
 
     private lateinit var dietgoalcategoryarray : Array<String>
     private var selecteddietgoalcategory = ""
@@ -132,11 +131,7 @@ class PersonalDataActivity : AppCompatActivity() {
                 viewModel.createUserProfile(p1DayTarget = calDayTarget, p2DietGoal = dietGoal, p3cWeight = cWeight,
                     p4tWeight = tWeight, p5heght = height,  p7carbs = carbsGram,
                     p8protein = proteinGram, p9fat = fatGram)
-
             }
-
-
-
         }
 
     }

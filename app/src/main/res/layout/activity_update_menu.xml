@@ -1,0 +1,474 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.menuUser.addMenu.updateMenu.UpdateMenuActivity"
+    android:orientation="vertical"
+    >
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/ungu4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:titleTextColor="@android:color/white">
+
+        <ImageView
+            android:layout_gravity="left"
+            android:id="@+id/btn_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/baseline2_close_24"/>
+
+        <Button
+            android:background="@drawable/cardstyle2"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:text="Update"
+            android:layout_marginRight="20dp"
+            android:layout_gravity="right"
+            android:id="@+id/btn_update"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+         />
+
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal">
+
+            <TextView
+                android:textSize="18dp"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Your Food Details"/>
+
+        </LinearLayout>
+
+
+
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <LinearLayout
+        android:background="@color/ungu5"
+        android:layout_width="match_parent"
+        android:layout_height="2dp">
+    </LinearLayout>
+
+    <LinearLayout
+
+        android:paddingLeft="25dp"
+        android:paddingRight="25dp"
+        android:paddingTop="40dp"
+        android:background="@drawable/cardstyle2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+
+            android:paddingBottom="40dp"
+            android:paddingLeft="25dp"
+            android:paddingRight="25dp"
+            android:paddingTop="40dp"
+            android:background="@drawable/cardstyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/txt_name"
+                    android:textColor="@color/ungu4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Chicken Breast"
+                    android:textStyle="bold"
+                    android:textSize="24dp"/>
+
+                <TextView
+                    android:textStyle="bold"
+                    android:gravity="right"
+                    android:id="@+id/txt_cal_oneserving"
+                    android:textColor="@color/ungu7"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="138 cal"
+                    android:textSize="20dp"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1 serving equals to 100 gram."
+                android:textSize="12dp"/>
+
+            <TextView
+                android:textColor="@color/ungu5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Here is the calories detail in 1 serving."
+                android:textSize="12dp"/>
+
+
+            <LinearLayout
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+
+                <LinearLayout
+                    android:layout_marginEnd="10dp"
+                    android:padding="10dp"
+                    android:background="@drawable/cardstyle3"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+                    <TextView
+                        android:textColor="@color/ungu4"
+                        android:gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Carbs"
+                        android:textSize="10dp"/>
+
+                    <TextView
+                        android:id="@+id/txt_gr_carbs"
+                        android:textColor="@color/ungu5"
+                        android:gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="41 gr"
+                        android:textStyle="bold"
+                        android:textSize="13dp"/>
+
+
+                    <TextView
+                        android:id="@+id/txt_cal_carbs"
+                        android:textColor="@color/ungu5"
+                        android:gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="68 cal"
+                        android:textStyle="bold"
+                        android:textSize="13dp"/>
+                </LinearLayout>
+
+
+
+
+
+                <LinearLayout
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginStart="5dp"
+
+                    android:padding="10dp"
+                    android:background="@drawable/cardstyle3"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:textColor="@color/ungu4"
+                        android:gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Protein"
+                        android:textSize="10dp"/>
+
+                    <TextView
+                        android:id="@+id/txt_gr_protein"
+                        android:textColor="@color/ungu5"
+                        android:gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="41 gr"
+                        android:textStyle="bold"
+                        android:textSize="13dp"/>
+
+
+                    <TextView
+                        android:id="@+id/txt_cal_protein"
+                        android:textColor="@color/ungu5"
+                        android:gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="68 cal"
+                        android:textStyle="bold"
+                        android:textSize="13dp"/>
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_marginLeft="10dp"
+                    android:padding="10dp"
+                    android:background="@drawable/cardstyle3"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:textColor="@color/ungu4"
+                        android:gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Fat"
+                        android:textSize="10dp"/>
+
+                    <TextView
+                        android:id="@+id/txt_gr_fat"
+                        android:textColor="@color/ungu5"
+                        android:gravity="center"
+                        android:layout_width="match_parent"
+                        android:text="41 gr"
+                        android:textStyle="bold"
+                        android:textSize="13dp"
+                        android:layout_height="wrap_content"/>
+
+
+
+                    <TextView
+                        android:id="@+id/txt_cal_fat"
+                        android:textColor="@color/ungu5"
+                        android:gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="68 cal"
+                        android:textStyle="bold"
+                        android:textSize="13dp"/>
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginTop="20dp"
+                android:background="@color/ungu4"
+                android:layout_width="match_parent"
+                android:layout_height="1dp">
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_marginTop="5dp"
+                android:background="@color/ungu4"
+                android:layout_width="match_parent"
+                android:layout_height="1dp">
+            </LinearLayout>
+
+
+
+
+            <LinearLayout
+                android:layout_marginTop="20dp"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.3"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_marginBottom="10dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Number of servings?"
+                        android:textSize="14dp"/>
+
+                    <EditText
+                        android:text="0.0"
+                        android:inputType="numberDecimal"
+                        android:padding="10dp"
+                        android:background="@drawable/cardstyle4"
+                        android:id="@+id/edit_text_servings_number"
+                        android:layout_width="120dp"
+                        android:layout_height="45dp"
+                        />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginLeft="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_marginBottom="10dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Total calorie (cal)"
+                        android:textSize="14dp"/>
+
+                    <TextView
+                        android:id="@+id/txt_total_cal_calculated"
+                        android:textColor="#11DF19"
+                        android:layout_marginBottom="10dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0.0"
+                        android:textStyle="bold"
+                        android:textSize="34dp"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+
+                <LinearLayout
+
+                    android:padding="5dp"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+
+                    <TextView
+                        android:text="Carbs"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/txt_carbs"
+                        android:textSize="10dp"
+                        android:layout_width="match_parent"
+                        />
+
+                    <TextView
+                        android:id="@+id/calculated_cal_carbs"
+                        android:textSize="12dp"
+                        android:inputType="numberDecimal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="0 cal" />
+
+                </LinearLayout>
+
+
+                <TextView
+                    android:textStyle="bold"
+                    android:textSize="20dp"
+                    android:inputType="numberDecimal"
+                    android:padding="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="+" />
+
+
+                <LinearLayout
+
+                    android:padding="5dp"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:text="Protein"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/txt_protein"
+                        android:textSize="10dp"
+                        android:layout_width="match_parent"
+                        />
+
+                    <TextView
+                        android:id="@+id/calculated_cal_protein"
+                        android:textSize="12dp"
+                        android:inputType="numberDecimal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="0 cal" />
+
+
+                </LinearLayout>
+
+                <TextView
+                    android:textStyle="bold"
+                    android:textSize="20dp"
+                    android:inputType="numberDecimal"
+                    android:padding="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="+" />
+
+                <LinearLayout
+
+                    android:padding="5dp"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:text="Fat"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/txt_fat"
+                        android:textSize="10dp"
+                        android:layout_width="match_parent"
+                        />
+
+                    <TextView
+                        android:id="@+id/calculated_cal_fat"
+                        android:textSize="12dp"
+                        android:inputType="numberDecimal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="0 cal" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btn_del"
+                android:layout_marginTop="100dp"
+                android:text="delete"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/buttonstyle"/>
+
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+
+
+
+
+
+
+
+
+
+</LinearLayout>

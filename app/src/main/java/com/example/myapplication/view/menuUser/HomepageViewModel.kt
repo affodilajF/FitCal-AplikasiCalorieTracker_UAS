@@ -63,8 +63,7 @@ class HomepageViewModel(application: Application) : AndroidViewModel(application
                     userProfileListLiveData.postValue(data)
                     satuUser = data[0]
 
-
-
+                    sharedPreferencesHelper.saveUserId(satuUser.userIdAuth)
                     sharedPreferencesHelper.saveUsername(satuUser.userName)
                     sharedPreferencesHelper.saveCarbsGram(satuUser.carbsGram)
                     sharedPreferencesHelper.saveProteinGram(satuUser.proteinGram)

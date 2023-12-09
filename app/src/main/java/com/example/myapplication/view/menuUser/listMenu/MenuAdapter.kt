@@ -1,4 +1,4 @@
-package com.example.myapplication.view.menuUser.addMenu.listMenu
+package com.example.myapplication.view.menuUser.listMenu
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -10,7 +10,8 @@ typealias OnClickData = (Menu) -> Unit
 
 
 class MenuAdapter(
-    private var onClickData : OnClickData) :
+    private var onClickData : OnClickData
+) :
     RecyclerView.Adapter<MenuAdapter.ItemNoteViewHolder>() {
 
     private var listdata : List<Menu> = ArrayList()
@@ -32,8 +33,6 @@ class MenuAdapter(
             }
         }
     }
-
-
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemNoteViewHolder {

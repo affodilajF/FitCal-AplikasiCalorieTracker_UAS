@@ -47,83 +47,83 @@
 
     <!--        BAGIAN DATE -->
 <!--    -->
-<!--    <LinearLayout-->
-<!--        android:id="@+id/linearLayoutDate"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="40dp"-->
-<!--        android:background="@drawable/cardstyle3"-->
-<!--        android:orientation="horizontal"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/toolbar">-->
+    <LinearLayout
+        android:id="@+id/linearLayoutDate"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@drawable/cardstyle3"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar">
 
-<!--        <LinearLayout-->
-<!--            android:layout_width="0dp"-->
-<!--            android:layout_height="match_parent"-->
-<!--            android:layout_weight="1">-->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
 
-<!--            <ImageButton-->
-<!--                android:id="@+id/imageButtonBack"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:adjustViewBounds="true"-->
-<!--                android:background="@android:color/transparent"-->
-<!--                android:contentDescription="Your description"-->
-<!--                android:onClick="yourClickFunction"-->
-<!--                android:scaleType="fitCenter"-->
-<!--                android:src="@drawable/baseline_keyboard_arrow_left_24" />-->
-<!--        </LinearLayout>-->
+            <ImageButton
+                android:id="@+id/imageButtonBack"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:background="@android:color/transparent"
+                android:contentDescription="Your description"
+                android:onClick="yourClickFunction"
+                android:scaleType="fitCenter"
+                android:src="@drawable/baseline_keyboard_arrow_left_24" />
+        </LinearLayout>
 
-<!--        <LinearLayout-->
-<!--            android:layout_width="0dp"-->
-<!--            android:layout_height="match_parent"-->
-<!--            android:layout_weight="0.01"-->
-<!--            android:background="@color/ungu3"></LinearLayout>-->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.01"
+            android:background="@color/ungu3"></LinearLayout>
 
-<!--        <LinearLayout-->
-<!--            android:layout_width="0dp"-->
-<!--            android:layout_height="match_parent"-->
-<!--            android:layout_weight="2"-->
-<!--            android:gravity="center_vertical">-->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:gravity="center_vertical">
 
-<!--            <TextView-->
-<!--                android:id="@+id/txt_date_now"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:gravity="center"-->
-<!--                android:text="Date Place Holder"-->
-<!--                android:textColor="@color/ungu4" />-->
+            <TextView
+                android:id="@+id/txt_date_now"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Date Place Holder"
+                android:textColor="@color/ungu4" />
 
-<!--        </LinearLayout>-->
+        </LinearLayout>
 
-<!--        <LinearLayout-->
-<!--            android:layout_width="0dp"-->
-<!--            android:layout_height="match_parent"-->
-<!--            android:layout_weight="0.01"-->
-<!--            android:background="@color/ungu3"></LinearLayout>-->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.01"
+            android:background="@color/ungu3"></LinearLayout>
 
-<!--        <LinearLayout-->
-<!--            android:layout_width="0dp"-->
-<!--            android:layout_height="match_parent"-->
-<!--            android:layout_weight="1">-->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
 
-<!--            <ImageButton-->
-<!--                android:id="@+id/imageButtonNext"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:adjustViewBounds="true"-->
-<!--                android:background="@android:color/transparent"-->
-<!--                android:contentDescription="Your description"-->
-<!--                android:onClick="yourClickFunction"-->
-<!--                android:scaleType="fitCenter"-->
-<!--                android:src="@drawable/baseline_keyboard_arrow_right_24" />-->
-<!--        </LinearLayout>-->
-<!--    </LinearLayout>-->
+            <ImageButton
+                android:id="@+id/imageButtonNext"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:background="@android:color/transparent"
+                android:contentDescription="Your description"
+                android:onClick="yourClickFunction"
+                android:scaleType="fitCenter"
+                android:src="@drawable/baseline_keyboard_arrow_right_24" />
+        </LinearLayout>
+    </LinearLayout>
 
 
     <HorizontalScrollView
         android:id="@+id/horizontalScrollView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar">
+        app:layout_constraintTop_toBottomOf="@+id/linearLayoutDate">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -144,7 +144,7 @@
 
 
                 <RadioButton
-                    android:id="@+id/radio0"
+                    android:id="@+id/radioall"
                     android:layout_width="80dp"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="10dp"
@@ -157,7 +157,7 @@
                     android:textColor="@drawable/radio_flat_text_selector" />
 
                 <RadioButton
-                    android:id="@+id/radio1"
+                    android:id="@+id/radiobreakfast"
                     android:layout_width="80dp"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="10dp"
@@ -169,7 +169,7 @@
                     android:textColor="@drawable/radio_flat_text_selector" />
 
                 <RadioButton
-                    android:id="@+id/radio2"
+                    android:id="@+id/radiolunch"
                     android:layout_width="80dp"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="10dp"
@@ -177,11 +177,11 @@
                     android:button="@android:color/transparent"
                     android:gravity="center"
                     android:padding="10dp"
-                    android:text="Launch"
+                    android:text="Lunch"
                     android:textColor="@drawable/radio_flat_text_selector" />
 
                 <RadioButton
-                    android:id="@+id/radio3"
+                    android:id="@+id/radiodinner"
                     android:layout_width="80dp"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="10dp"
@@ -193,7 +193,7 @@
                     android:textColor="@drawable/radio_flat_text_selector" />
 
                 <RadioButton
-                    android:id="@+id/radio4"
+                    android:id="@+id/radiosnack"
                     android:layout_width="80dp"
                     android:layout_height="wrap_content"
                     android:background="@drawable/radio_flat_selector"
