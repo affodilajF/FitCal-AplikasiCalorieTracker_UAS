@@ -90,10 +90,6 @@ class HistoryFragment : Fragment() {
 
             }
 
-//            btnAdd.setOnClickListener {
-//                startActivity(Intent(requireContext(), ListMenuActivity::class.java))
-//
-//            }
 
             adapterMenuItem = MenuDataAdapter { menu: MenuData ->
                 val intent = Intent(requireContext(), UpdateMenuActivity::class.java).apply {
@@ -103,10 +99,6 @@ class HistoryFragment : Fragment() {
             }
 
             with(binding){
-//                btnBack.setOnClickListener{
-//                    finish()
-//                }
-
                 rvItemMenu.apply {
                     adapter = adapterMenuItem
                     layoutManager = LinearLayoutManager(requireContext())
@@ -135,8 +127,6 @@ class HistoryFragment : Fragment() {
                 getAllMenus("userid")
             }
 
-
-
             btnSearch.setOnClickListener{
                 startActivity(Intent(requireContext(), ListMenuActivity::class.java))
             }
@@ -146,9 +136,6 @@ class HistoryFragment : Fragment() {
         }
 
         getAllMenus("userid")
-
-
-
         return view
     }
 

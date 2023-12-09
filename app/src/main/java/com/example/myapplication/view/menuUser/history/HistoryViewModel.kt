@@ -36,13 +36,6 @@ class HistoryViewModel(application: Application) : AndroidViewModel(application)
         return mMenuDao.allMenusByCategory(sharedPreferencesHelper.getUserId().toString(), filter, date)
     }
 
-
-
-
-
-
-
-
     fun getTodayDate(): Date {
         val calendar = Calendar.getInstance()
         return calendar.time
@@ -56,10 +49,5 @@ class HistoryViewModel(application: Application) : AndroidViewModel(application)
         calendar.add(Calendar.DAY_OF_MONTH, days)
         return calendar.time
     }
-
-
-
-
-
 
 }

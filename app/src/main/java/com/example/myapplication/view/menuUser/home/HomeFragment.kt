@@ -28,15 +28,12 @@ class HomeFragment : Fragment() {
     private var allMenusLiveData2 : LiveData<List<MenuData>>? = null
     private var allMenusLiveData3 : LiveData<List<MenuData>>? = null
 
-
-
     private lateinit var viewModel: HomeViewModel
     private lateinit var binding : FragmentHomeBinding
 
     private var dateTrigger : Int = 0
     private var txtDateFilter = "yiha"
 
-//    private var progressInd = 0 // Misalkan nilai awal adalah 0
     private lateinit var progressAnimator: ValueAnimator
 
 
@@ -52,17 +49,6 @@ class HomeFragment : Fragment() {
         executorService = Executors.newSingleThreadExecutor()
         val db = MenuRoomDatabase.getDatabase(requireContext())
         mMenuDao = db!!.menuDao()!!
-
-
-
-
-//        // Listener untuk memperbarui nilai progressCircularIndicator
-//        progressAnimator.addUpdateListener { animator ->
-//            val animatedValue = animator.animatedValue as Int
-//            binding.progressCircularIndicator.progress = animatedValue
-//        }
-//
-
 
         with(binding){
 
@@ -88,8 +74,6 @@ class HomeFragment : Fragment() {
                 getAllMenus()
 
             }
-
-
             imageButtonNext.setOnClickListener{
                 dateTrigger = dateTrigger + 1
                 val a = viewModel.getExactDateDays(dateTrigger)
@@ -100,22 +84,15 @@ class HomeFragment : Fragment() {
 
             }
         }
-
-
-
-
-
         getAllMenus()
         return view
     }
 
 
         fun animateProgressBar(progressInd : Int){
-                // Inisialisasi animator untuk progressCircularIndicator
-                progressAnimator = ValueAnimator.ofInt(0, 100) // Nilai awal dan akhir (0 - 100)
-                progressAnimator.duration = 400 // Durasi animasi, dalam milidetik
+                progressAnimator = ValueAnimator.ofInt(0, 100)
+                progressAnimator.duration = 400
 
-                // Listener untuk memperbarui nilai progressCircularIndicator
                 progressAnimator.addUpdateListener { animator ->
                     val animatedValue = animator.animatedValue as Int
                     binding.progressCircularIndicator.progress = animatedValue
@@ -144,11 +121,6 @@ class HomeFragment : Fragment() {
                     animateProgressBar(0)
 
                 }
-
-
-
-
-
             }
 
                 allMenusLiveData = viewModel.getAllLiveDataByCategory(mMenuDao, "Breakfast", txtDateFilter)
@@ -156,9 +128,7 @@ class HomeFragment : Fragment() {
                     menus?.let {
                         with(binding){
                             txtCountBreakfast.text = (menus.size).toString()
-
                         }
-
                     }
                 })
 
@@ -168,7 +138,6 @@ class HomeFragment : Fragment() {
                         with(binding){
                             txtCountSnack.text = (menus.size).toString()
                         }
-
                     }
                 })
 
@@ -178,7 +147,6 @@ class HomeFragment : Fragment() {
                         with(binding){
                             txtCountLunch.text = (menus.size).toString()
                         }
-
                     }
                 })
 
@@ -188,30 +156,12 @@ class HomeFragment : Fragment() {
                         with(binding){
                             txtCountDinner.text = (menus.size).toString()
                         }
-
                     }
                 })
 
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-//        viewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
-//        sharedViewModel.getUserDataByUserId()
     }
-
-
-
 }

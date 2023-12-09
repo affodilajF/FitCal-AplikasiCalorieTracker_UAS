@@ -17,12 +17,10 @@ class HomepageActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         viewModelActivity = ViewModelProvider(this).get(HomepageViewModel::class.java)
         viewModelActivity.getUserDataByUserId()
+
         super.onCreate(savedInstanceState)
         binding = ActivityHomepageBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-
-
 
         with(binding){
             val navController = findNavController(R.id.nav_host_fragment)

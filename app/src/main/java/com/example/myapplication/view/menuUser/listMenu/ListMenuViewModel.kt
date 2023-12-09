@@ -13,19 +13,15 @@ class ListMenuViewModel : ViewModel() {
     val menuListLiveData : MutableLiveData<List<Menu>> by lazy {
         MutableLiveData<List<Menu>>()
     }
-
     private val menuCollectionRef = firestore.collection("menus")
 
 
     fun getAllMenus() {
         menuCollectionRef.addSnapshotListener { snapshots, error ->
-
             if(error != null){
                 Log.d("MainActivity", "Error listening for budget changes", error)
                 return@addSnapshotListener
             }
-
-
             val menu = arrayListOf<Menu>()
             snapshots?.forEach{
                     documentReference ->
@@ -36,10 +32,8 @@ class ListMenuViewModel : ViewModel() {
                         documentReference.get("fatGram").toString(),
                         documentReference.get("carbsGram").toString(),
                         documentReference.get("proteinGram").toString(),
-
                 ))
             }
-
             if(menu != null){
                 menuListLiveData.postValue(menu)
             }
@@ -51,11 +45,5 @@ class ListMenuViewModel : ViewModel() {
             .addOnFailureListener {
                 Log.d("ListMenuActivity", "Error adding menu : ", it)
             }
-
     }
-
-
-
-
-
 }

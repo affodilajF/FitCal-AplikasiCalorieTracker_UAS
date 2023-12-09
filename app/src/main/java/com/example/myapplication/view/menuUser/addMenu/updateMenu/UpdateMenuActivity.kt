@@ -57,23 +57,26 @@ class UpdateMenuActivity : AppCompatActivity() {
 
             val totalCal = ((fat * 9) + (carbs * 4) + (protein * 4))
             val formattedTotalCal = String.format("%.0f", totalCal)
-
             txtCalOneserving.text = formattedTotalCal + " cal"
+
 
             val servingString = serving.toString()
             val editableServings = Editable.Factory.getInstance().newEditable(servingString)
             editTextServingsNumber.text = editableServings
 
-            val resultA = ((((fat * 9) + (carbs * 4) + (protein * 4))))
+
             val result = ((((fat * 9) + (carbs * 4) + (protein * 4)) * serving))
             val formattedResult = String.format("%.0f", result)
             txtTotalCalCalculated.text = formattedResult + " cal"
+
+
 
             btnUpdate.setOnClickListener {
                 val text = txtTotalCalCalculated.text.toString()
                 val totalCalBaru = text.toDoubleOrNull() ?: 0.0
                 val servBaru = editTextServingsNumber.text.toString()
                 val servBaru2 = servBaru.toDoubleOrNull() ?: 0.0
+
                 menuFix = MenuData(id = menu.id, userId = menu.userId, name=menu.name, fatGram = menu.fatGram, carbsGram = menu.carbsGram
                 , proteinGram = menu.proteinGram, date = menu.date, category = menu.category,
                     calAmount = totalCalBaru, servings = servBaru2)
@@ -93,6 +96,7 @@ class UpdateMenuActivity : AppCompatActivity() {
                 }
 
                 override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                    val resultA = ((((fat * 9) + (carbs * 4) + (protein * 4))))
                     txtTotalCalCalculated.text = viewModel.getTotalCal(resultA.toString(), s.toString())
                     calculatedCalCarbs.text = ((viewModel.getCalCarbs(carbs)).toDouble()*((s.toString()).toDoubleOrNull() ?: 0.0)).toString()
                     calculatedCalFat.text = ((viewModel.getCalFat(fat)).toDouble()*((s.toString()).toDoubleOrNull() ?: 0.0)).toString()

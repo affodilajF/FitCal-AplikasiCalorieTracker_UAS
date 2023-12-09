@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter
 import android.widget.DatePicker
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.lifecycle.ViewModel
 import com.example.myapplication.R
 import com.example.myapplication.data.model.MenuData
 import com.example.myapplication.databinding.ActivityAddCustomMenuBinding
@@ -42,11 +43,55 @@ class AddCustomMenuActivity : AppCompatActivity(), DatePickerDialog.OnDateSetLis
 
         selectedDate = viewModel.getTodayDate()
 
+        viewModel.initializeDBRoom(this)
+
         mealcategoryarray = resources.getStringArray(R.array.mealcategory)
         val adapterMealCategory = ArrayAdapter(this@AddCustomMenuActivity, android.R.layout.simple_spinner_item, mealcategoryarray)
         adapterMealCategory.setDropDownViewResource(
             com.google.android.material.R.layout.support_simple_spinner_dropdown_item
         )
+
+
+        with(binding){
+            btnDone.setOnClickListener {
+
+
+//                userid
+//                foodname
+                val a : String = txtName.text.toString()
+                Toast.makeText(this@AddCustomMenuActivity, a, Toast.LENGTH_SHORT).show()
+
+//               calAmount
+                val b : Double = viewModel.formattedDouble(txtTotalCalCalculated.text.toString())
+
+//                carbsGram
+                val c : Double =inputCarbs.text.toString().toDoubleOrNull() ?: 0.0
+
+//                fatGram
+                val d: Double = inputFat.text.toString().toDoubleOrNull() ?: 0.0
+
+//                proteinGram
+                val e : Double = inputProtein.text.toString().toDoubleOrNull() ?: 0.0
+
+//                servings
+                val f : Double = viewModel.formattedDouble2(editTextServingsNumber.text.toString())
+
+//                date
+                val g : String = viewModel.getFormattedDate(selectedDate)
+
+//                category
+                val h = selectedmealcategory
+
+                menuFix = MenuData(userId = viewModel.getUserId(),
+                    name = a, calAmount = b, carbsGram = c, fatGram = d, proteinGram = e,
+                    servings = f, date = g, category = h)
+                viewModel.insertRoom(menuFix)
+                finish()
+            }
+        }
+
+
+
 
         with(binding){
             btnBack.setOnClickListener {
@@ -127,16 +172,6 @@ class AddCustomMenuActivity : AppCompatActivity(), DatePickerDialog.OnDateSetLis
 
                 }
             })
-
-
-
-
-
-
-
-
-
-
         }
 
 
@@ -149,9 +184,9 @@ class AddCustomMenuActivity : AppCompatActivity(), DatePickerDialog.OnDateSetLis
         selectedDate = calendar.time
 
         binding.txtDatePlaceholder.text = viewModel.getFormattedDate(selectedDate)
-
-//        Toast.makeText(this@AddMenuActivity, selectedDate.toString(), Toast.LENGTH_SHORT).show()
-
     }
+
+
+
 
 }

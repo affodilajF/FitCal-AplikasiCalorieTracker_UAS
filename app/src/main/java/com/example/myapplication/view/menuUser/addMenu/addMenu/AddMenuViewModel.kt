@@ -41,6 +41,11 @@ class AddMenuViewModel(application: Application) : AndroidViewModel(application)
         executorService.execute(runnable)
     }
 
+    fun getUserId(): String {
+        return sharedPreferencesHelper.getUserId() ?: ""
+    }
+
+
     fun getTodayDate(): Date {
         val calendar = Calendar.getInstance()
         return calendar.time

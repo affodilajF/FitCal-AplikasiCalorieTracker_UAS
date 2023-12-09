@@ -1,4 +1,4 @@
-package com.example.myapplication.view.personalData
+package com.example.myapplication.view.menuUser.personalData
 
 import android.app.Application
 import android.util.Log

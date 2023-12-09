@@ -13,5 +13,11 @@ class ProfileViewModel(application: Application) : AndroidViewModel(application)
         sharedPreferencesHelper.clear()
     }
 
-    
+    fun getUsn() : String? {
+        return sharedPreferencesHelper.getUsername()
+    }
+
+    fun getPhone() : String? {
+        return sharedPreferencesHelper.getUserPhone()
+    }
 }

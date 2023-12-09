@@ -10,7 +10,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import com.example.myapplication.databinding.FragmentRegisterBinding
-import com.example.myapplication.view.personalData.PersonalDataActivity
+import com.example.myapplication.view.menuUser.personalData.PersonalDataActivity
 
 class RegisterFragment : Fragment() {
     private lateinit var binding: FragmentRegisterBinding

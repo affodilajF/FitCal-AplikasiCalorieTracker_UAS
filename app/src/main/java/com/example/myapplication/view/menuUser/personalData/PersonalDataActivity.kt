@@ -1,4 +1,4 @@
-package com.example.myapplication.view.personalData
+package com.example.myapplication.view.menuUser.personalData
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -86,13 +86,6 @@ class PersonalDataActivity : AppCompatActivity() {
                 }
             })
 
-
-
-
-
-//            validate data
-//            get user id
-//            store data to firebase firestore
             spinnerCategory.adapter = adapterMealCategory
             spinnerCategory.onItemSelectedListener =
                 object  : AdapterView.OnItemSelectedListener{

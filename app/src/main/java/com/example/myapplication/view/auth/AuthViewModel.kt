@@ -6,6 +6,7 @@ import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.myapplication.data.model.Admin
 import com.example.myapplication.data.model.Menu
 import com.example.myapplication.data.model.UserProfile
 import com.example.myapplication.util.SharedPreferencesHelper
@@ -21,11 +22,54 @@ class AuthViewModel(application: Application) : AndroidViewModel(application) {
 
 //    firestore
     private var firestore = FirebaseFirestore.getInstance()
-
-    val userProfileListLiveData : MutableLiveData<List<UserProfile>> by lazy {
-        MutableLiveData<List<UserProfile>>()
+    private val adminCollectionRef = firestore.collection("admins")
+    private val adminListLiveData : MutableLiveData<List<Admin>> by lazy {
+        MutableLiveData<List<Admin>>()
     }
-    private val userProfileCollectionRef = firestore.collection("userProfile")
+
+    private var isAdmin : String = "99"
+
+
+
+
+
+
+
+//    retrieve data firestore admin
+
+    fun getAllAdmins(){
+        adminCollectionRef
+//            .whereEqualTo("adminID", getUserId())
+            .addSnapshotListener { snapshots, error ->
+            if(error != null){
+                Log.d("MainActivity", "Error listening for budget changes", error)
+                return@addSnapshotListener
+            }
+
+            val admin  = arrayListOf<Admin>()
+            snapshots?.forEach{
+                    documentReference ->
+                admin.add(
+                    Admin(documentReference.id,
+                        documentReference.get("adminID").toString(),
+                ))
+            }
+            if(admin != null){
+                adminListLiveData.postValue(admin)
+                isAdmin ="admin"
+            } else {
+                isAdmin = "user"
+            }
+        }
+    }
+
+    fun checkAdminOrUser() : String {
+//        true 1 => admin
+//        false 0 => user
+
+        return isAdmin
+    }
+
 
 
     fun registerUser(email: String, password: String, onResult: (Boolean) -> Unit) {

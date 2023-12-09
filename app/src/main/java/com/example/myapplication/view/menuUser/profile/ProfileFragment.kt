@@ -30,11 +30,19 @@ class ProfileFragment : Fragment() {
 
 
 
+        binding.txtName.text = viewModel.getUsn() ?: ""
+        binding.txtPhone.text = viewModel.getPhone() ?: ""
 
 
         binding.btnLogout.setOnClickListener {
+
+
             viewModel.logout()
             startActivity(Intent(requireContext(), AuthActivity::class.java))
+
+
+
+
         }
 
         return view

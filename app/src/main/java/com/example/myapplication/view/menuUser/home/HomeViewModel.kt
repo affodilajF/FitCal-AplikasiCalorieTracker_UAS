@@ -29,13 +29,10 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
 
 
     fun getPercentProgress(achievedCal: Double) : Int {
-
 //        kalori target perhari
         val a = getAmountCal()?.toDouble() ?: 0.0
-
 //        kalori sekarang
         val b = achievedCal ?: 0.0
-
 //        percent progress
         val c = (b/a)*100
 
@@ -51,8 +48,6 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
     fun getAmountCalAllLiveDataByUserId(mMenuDao : MenuDAO, date : String): LiveData<Double> {
         return mMenuDao.getTotalAmountCal(sharedPreferencesHelper.getUserId().toString(), date )
     }
-
-
 
 
 //    sharedpref
@@ -81,6 +76,7 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
     fun getFatTarget() : String {
         return sharedPreferencesHelper.getFatGram().toString()
     }
+
 
 
     fun getTodayDate(): Date {

@@ -26,10 +26,7 @@ class HomepageViewModel(application: Application) : AndroidViewModel(application
     val userProfileListLiveData : MutableLiveData<List<UserProfile>> by lazy {
         MutableLiveData<List<UserProfile>>()
     }
-
     private var satuUser  : UserProfile = UserProfile()
-
-
 
     fun getUserDataByUserId() {
         userProfileCollectionRef
@@ -77,13 +74,4 @@ class HomepageViewModel(application: Application) : AndroidViewModel(application
                 }
             }
     }
-
-
-
-
-
-
-
-
-
 }

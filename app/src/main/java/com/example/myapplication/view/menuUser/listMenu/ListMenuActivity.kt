@@ -58,10 +58,6 @@ class ListMenuActivity : AppCompatActivity() {
                 adapter = adapterMenuItem
                 layoutManager = LinearLayoutManager(this@ListMenuActivity)
             }
-
-
-
-
         }
     }
 

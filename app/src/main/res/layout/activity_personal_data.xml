@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.personalData.PersonalDataActivity"
+    tools:context=".view.menuUser.personalData.PersonalDataActivity"
     android:padding="20dp"
     android:orientation="vertical"
     android:background="@color/ungu2">

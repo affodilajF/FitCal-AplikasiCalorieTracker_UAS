@@ -149,13 +149,13 @@
 
                     <EditText
                         android:id="@+id/input_carbs"
-                        android:textSize="15dp"
-                        android:inputType="numberDecimal"
+                        android:textSize="13dp"
+                        android:inputType="number"
                         android:padding="10dp"
                         android:background="@drawable/cardstyle4"
                         android:layout_width="match_parent"
                         android:layout_height="45dp"
-                        android:hint="Carbs" />
+                        android:hint="Carbs (gr)" />
 
                 </LinearLayout>
 
@@ -173,13 +173,13 @@
 
                     <EditText
                         android:id="@+id/input_protein"
-                        android:textSize="15dp"
-                        android:inputType="numberDecimal"
+                        android:textSize="13dp"
+                        android:inputType="number"
                         android:padding="10dp"
                         android:background="@drawable/cardstyle4"
                         android:layout_width="match_parent"
                         android:layout_height="45dp"
-                        android:hint="Protein" />
+                        android:hint="Protein (gr)" />
 
 
                 </LinearLayout>
@@ -196,13 +196,13 @@
 
                     <EditText
                         android:id="@+id/input_fat"
-                        android:textSize="15dp"
-                        android:inputType="numberDecimal"
+                        android:textSize="13dp"
+                        android:inputType="number"
                         android:padding="10dp"
                         android:background="@drawable/cardstyle4"
                         android:layout_width="match_parent"
                         android:layout_height="45dp"
-                        android:hint="Fat" />
+                        android:hint="Fat (gr)" />
 
                 </LinearLayout>
 
