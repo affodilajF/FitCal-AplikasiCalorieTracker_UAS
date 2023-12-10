@@ -37,11 +37,17 @@ interface MenuDAO {
     fun getTotalAmountCal(userId: String, date: String): LiveData<Int>
 
 
-    @Query("SELECT SUM(CAST(calAmount AS REAL)) AS totalAmount FROM menu01_table WHERE userId = :userId AND category = :category AND date = :date")
-    fun getTotalCalAmountByCaategory(userId: String, category: String, date: String): LiveData<Double>
 
-    @Query("SELECT SUM(CAST(calAmount AS INTEGER)) AS totalAmount FROM menu01_table WHERE userId = :userId AND category = :category AND date = :date")
-    fun getTotalCalAmountByCategory(userId: String, category: String, date: String): LiveData<Int>
+
+
+
+
+
+//    @Query("SELECT SUM(CAST(calAmount AS REAL)) AS totalAmount FROM menu01_table WHERE userId = :userId AND category = :category AND date = :date")
+//    fun getTotalCalAmountByCaategory(userId: String, category: String, date: String): LiveData<Double>
+
+//    @Query("SELECT SUM(CAST(calAmount AS INTEGER)) AS totalAmount FROM menu01_table WHERE userId = :userId AND category = :category AND date = :date")
+//    fun getTotalCalAmountByCategory(userId: String, category: String, date: String): LiveData<Int>
 
 
 

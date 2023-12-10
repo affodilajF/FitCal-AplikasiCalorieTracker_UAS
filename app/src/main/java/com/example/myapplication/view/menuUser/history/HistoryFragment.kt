@@ -20,37 +20,25 @@ import com.example.myapplication.view.menuUser.listMenu.ListMenuActivity
 class HistoryFragment : Fragment() {
 
     private lateinit var binding : FragmentHistoryBinding
-
     private lateinit var viewModel: HistoryViewModel
+
     private lateinit var adapterMenuItem : MenuDataAdapter
-//
-//    private lateinit var mMenuDao : MenuDAO
-//    private lateinit var executorService : ExecutorService
 
     private var allMenusLiveData : LiveData<List<MenuData>>? = null
-
-
     private var dateTrigger : Int = 0
     private var txtDateFilter = ""
-
     private var selectedCategoryFilter = "All"
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        viewModel = ViewModelProvider(this).get(HistoryViewModel::class.java)
+        viewModel = ViewModelProvider(this)[HistoryViewModel::class.java]
 
         binding = FragmentHistoryBinding.inflate(inflater, container, false)
         val view = binding.root
 
-//        executorService = Executors.newSingleThreadExecutor()
-//        val db = MenuRoomDatabase.getDatabase(requireContext())
-//        mMenuDao = db!!.menuDao()!!
-
-//        initialize menuDao and execService
-
-        viewModel.init(requireContext())
+        viewModel.initDBRoom(requireContext())
 
 
         with(binding){
@@ -61,8 +49,8 @@ class HistoryFragment : Fragment() {
             radioGroup.setOnCheckedChangeListener { group, checkedId ->
                 when (checkedId) {
                     R.id.radioall -> {
-                        getAllMenus("userid")
-                        selectedCategoryFilter = "userid"
+                        getAllMenus("All")
+                        selectedCategoryFilter = "All"
                     }
                     R.id.radiobreakfast-> {
                         getAllMenus("Breakfast")
@@ -79,16 +67,14 @@ class HistoryFragment : Fragment() {
                     R.id.radiosnack->{
                         getAllMenus("Snack")
                         selectedCategoryFilter = "Snack"
-
                     }
                 }
-
             }
 
 
             adapterMenuItem = MenuDataAdapter { menu: MenuData ->
                 val intent = Intent(requireContext(), UpdateMenuActivity::class.java).apply {
-                    putExtra("menu object", menu)
+                    putExtra("MenuData object", menu)
                 }
                 requireContext().startActivity(intent)
             }
@@ -100,18 +86,13 @@ class HistoryFragment : Fragment() {
                 }
             }
 
-
             imageButtonBack.setOnClickListener{
                 dateTrigger = dateTrigger - 1
                 val a = viewModel.getExactDateDays(dateTrigger)
                 txtDateNow.text = viewModel.getFormattedDate(a)
                 txtDateFilter = viewModel.getFormattedDate(a)
                 getAllMenus(selectedCategoryFilter)
-                getAllMenus("userid")
-
-
             }
-
 
             imageButtonNext.setOnClickListener{
                 dateTrigger = dateTrigger + 1
@@ -119,7 +100,6 @@ class HistoryFragment : Fragment() {
                 txtDateNow.text = viewModel.getFormattedDate(a)
                 txtDateFilter = viewModel.getFormattedDate(a)
                 getAllMenus(selectedCategoryFilter)
-                getAllMenus("userid")
             }
 
             btnSearch.setOnClickListener{
@@ -130,7 +110,7 @@ class HistoryFragment : Fragment() {
             }
         }
 
-        getAllMenus("userid")
+        getAllMenus("All")
         return view
     }
 
@@ -139,14 +119,9 @@ class HistoryFragment : Fragment() {
     }
 
 
-    fun getAllMenus(filter : String){
-//        by user id
-        if(filter == "userid"){
-            allMenusLiveData = viewModel.getAllLiveDataByUserId(txtDateFilter)
-        } else if (filter == "Breakfast" || filter == "Lunch" || filter == "Dinner" || filter =="Snack" ){
-            allMenusLiveData = viewModel.getAllLiveDataByCategory(filter, txtDateFilter)
-        }
+    private fun getAllMenus(filter : String){
 
+        allMenusLiveData = viewModel.getAllLiveDataByCategory(filter, txtDateFilter)
 
         allMenusLiveData?.observe(viewLifecycleOwner, Observer { menus ->
             menus?.let {

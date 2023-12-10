@@ -1,27 +1,30 @@
 package com.example.myapplication.view.menuUser.home
 
 import android.animation.ValueAnimator
+import android.app.DatePickerDialog
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.DatePicker
 import android.widget.Toast
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import com.example.myapplication.data.database.MenuDAO
 import com.example.myapplication.data.database.MenuRoomDatabase
 import com.example.myapplication.data.model.MenuData
 import com.example.myapplication.databinding.FragmentHomeBinding
+import com.example.myapplication.view.auth.AuthViewModel
+import com.example.myapplication.view.menuUser.HomepageActivity
+import com.example.myapplication.view.menuUser.HomepageViewModel
 import com.google.android.material.progressindicator.CircularProgressIndicator
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
-class HomeFragment : Fragment() {
-
-    private lateinit var mMenuDao : MenuDAO
-    private lateinit var executorService : ExecutorService
+class HomeFragment : Fragment()  {
 
     private var allMenusLiveData : LiveData<List<MenuData>>? = null
     private var allMenusLiveData1 : LiveData<List<MenuData>>? = null
@@ -36,6 +39,8 @@ class HomeFragment : Fragment() {
 
     private lateinit var progressAnimator: ValueAnimator
 
+    private var targetedCalByDay : Int = 0
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -46,9 +51,10 @@ class HomeFragment : Fragment() {
         val view = binding.root
         viewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
 
-        executorService = Executors.newSingleThreadExecutor()
-        val db = MenuRoomDatabase.getDatabase(requireContext())
-        mMenuDao = db!!.menuDao()!!
+        viewModel.initDBRoom(requireContext())
+        viewModel.getUserDataByUserId()
+
+        observeData()
 
         with(binding){
 
@@ -56,30 +62,22 @@ class HomeFragment : Fragment() {
             dateTrigger = 0
             txtDateFilter = viewModel.getFormattedDate(viewModel.getTodayDate())
 
-            txtUsername.text = viewModel.getUsn()
-            cweight.text = viewModel.getCweight()
-            tweight.text = viewModel.getTWeight()
-            txtTargetcal.text = viewModel.getAmountCal() + " cal / day"
-
-            carbsTarget.text = "25 of " + viewModel.getCarbsTarget() + "gr"
-            proteinTarget.text = "67 of " + viewModel.getProteinTarget() + " gr"
-            fatTarget.text = "69 of " + viewModel.getFatTarget() + " gr"
-
 
             imageButtonBack.setOnClickListener{
-                dateTrigger = dateTrigger - 1
+                dateTrigger -= 1
                 val a = viewModel.getExactDateDays(dateTrigger)
                 txtDateNow.text = viewModel.getFormattedDate(a)
                 txtDateFilter = viewModel.getFormattedDate(a)
                 getAllMenus()
-
+                getRemainingCal(targetedCalByDay)
             }
             imageButtonNext.setOnClickListener{
-                dateTrigger = dateTrigger + 1
+                dateTrigger += 1
                 val a = viewModel.getExactDateDays(dateTrigger)
                 txtDateNow.text = viewModel.getFormattedDate(a)
                 txtDateFilter = viewModel.getFormattedDate(a)
                 getAllMenus()
+                getRemainingCal(targetedCalByDay)
 
 
             }
@@ -89,7 +87,49 @@ class HomeFragment : Fragment() {
     }
 
 
-        fun animateProgressBar(progressInd : Int){
+        private fun observeData(){
+            with(binding){
+                viewModel.userProfileListLiveData.observe(viewLifecycleOwner, Observer {myData
+                    ->
+                    val userObject = myData[0]
+
+                    txtDitTarget.text = userObject.dietGoal
+
+                    txtUsername.text = userObject.userName
+                    cweight.text = userObject.currentWeight
+                    tweight.text = userObject.targetedWeight
+                    txtTargetcal.text = userObject.dayTargetedCalorie + " cal / day"
+
+                    carbsTarget.text = "25 of " + userObject.carbsGram + "gr"
+                    proteinTarget.text = "67 of " + userObject.proteinGram+ " gr"
+                    fatTarget.text = "69 of " + userObject.fatGram+ " gr"
+
+                    targetedCalByDay = (userObject.dayTargetedCalorie).toDouble().toInt()
+
+                    getRemainingCal(targetedCalByDay)
+                })
+            }
+        }
+
+        private fun getRemainingCal(dayTargetedCal : Int){
+            val liveDataIntTotalAchievedCal: LiveData<Int> = viewModel.getAmountCalAllLiveDataByUserId(txtDateFilter)
+            liveDataIntTotalAchievedCal.observe(viewLifecycleOwner) { intValue ->
+
+                if(intValue != null){
+                    val remainingcal  = viewModel.getRemainingCal(dayTargetedCal, intValue)
+                    val progressInd = viewModel.getPercentProgress(dayTargetedCal, intValue)
+                    binding.textRemainingCal.text = remainingcal
+                    animateProgressBar(progressInd)
+
+                } else {
+                    binding.textRemainingCal.text = targetedCalByDay.toString()
+                    animateProgressBar(0)
+                }
+            }
+        }
+
+
+        private fun animateProgressBar(progressInd : Int){
                 progressAnimator = ValueAnimator.ofInt(0, 100)
                 progressAnimator.duration = 400
 
@@ -104,26 +144,9 @@ class HomeFragment : Fragment() {
 
         }
 
-        fun getAllMenus(){
+        private fun getAllMenus(){
 
-//            get remaining calorie
-            val liveDataDoubleTotalAchievedCal: LiveData<Int> = viewModel.getAmountCalAllLiveDataByUserId(mMenuDao, txtDateFilter)
-            liveDataDoubleTotalAchievedCal.observe(viewLifecycleOwner) { doubleValue ->
-
-                if(doubleValue != null){
-                    val remainingcal  = viewModel.getRemainingCal(doubleValue)
-                    val progressInd = viewModel.getPercentProgress(doubleValue)
-
-                    binding.textRemainingCal.text = remainingcal
-                    animateProgressBar(progressInd)
-                } else {
-                    binding.textRemainingCal.text = viewModel.getAmountCal()
-                    animateProgressBar(0)
-
-                }
-            }
-
-                allMenusLiveData = viewModel.getAllLiveDataByCategory(mMenuDao, "Breakfast", txtDateFilter)
+                allMenusLiveData = viewModel.getAllLiveDataByCategory("Breakfast", txtDateFilter)
                 allMenusLiveData?.observe(viewLifecycleOwner, Observer { menus ->
                     menus?.let {
                         with(binding){
@@ -132,7 +155,7 @@ class HomeFragment : Fragment() {
                     }
                 })
 
-                allMenusLiveData1 = viewModel.getAllLiveDataByCategory(mMenuDao, "Snack", txtDateFilter)
+                allMenusLiveData1 = viewModel.getAllLiveDataByCategory("Snack", txtDateFilter)
                 allMenusLiveData1?.observe(viewLifecycleOwner, Observer { menus ->
                     menus?.let {
                         with(binding){
@@ -141,7 +164,7 @@ class HomeFragment : Fragment() {
                     }
                 })
 
-                allMenusLiveData2 = viewModel.getAllLiveDataByCategory(mMenuDao, "Lunch", txtDateFilter)
+                allMenusLiveData2 = viewModel.getAllLiveDataByCategory("Lunch", txtDateFilter)
                 allMenusLiveData2?.observe(viewLifecycleOwner, Observer { menus ->
                     menus?.let {
                         with(binding){
@@ -150,7 +173,7 @@ class HomeFragment : Fragment() {
                     }
                 })
 
-                allMenusLiveData3 = viewModel.getAllLiveDataByCategory(mMenuDao, "Dinner", txtDateFilter)
+                allMenusLiveData3 = viewModel.getAllLiveDataByCategory("Dinner", txtDateFilter)
                 allMenusLiveData3?.observe(viewLifecycleOwner, Observer { menus ->
                     menus?.let {
                         with(binding){
@@ -164,4 +187,9 @@ class HomeFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
     }
+
+
+
+
+
 }

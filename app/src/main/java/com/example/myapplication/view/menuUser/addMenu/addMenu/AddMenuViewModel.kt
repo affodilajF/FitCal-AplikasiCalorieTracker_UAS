@@ -61,16 +61,35 @@ class AddMenuViewModel(application: Application) : AndroidViewModel(application)
         return String.format("%.0f", a * b)
     }
 
-    fun getCalCarbs(gram: String): String {
-        return (gram.toInt() * 4).toString()
+
+    fun getCalCarbsOnUserServing(gram: String, servings: String): String {
+        val a = getCalCarbs(gram)
+        val b = servings.toDoubleOrNull() ?: 0.0
+        return String.format("%.1f", a * b)
     }
 
-    fun getCalProtein(gram: String): String {
-        return (gram.toInt() * 4).toString()
+    fun getCalProteinOnUserServing(gram: String, servings: String): String {
+        val a = getCalProtein(gram)
+        val b = servings.toDoubleOrNull() ?: 0.0
+        return String.format("%.1f", a * b)
     }
 
-    fun getCalFat(gram: String): String {
-        return (gram.toInt() * 9).toString()
+    fun getCalFatOnUserServing(gram: String, servings: String): String {
+        val a = getCalFat(gram)
+        val b = servings.toDoubleOrNull() ?: 0.0
+        return String.format("%.1f", a * b)
+    }
+
+    fun getCalCarbs(gram: String): Int {
+        return (gram.toInt() * 4)
+    }
+
+    fun getCalProtein(gram: String): Int {
+        return (gram.toInt() * 4)
+    }
+
+    fun getCalFat(gram: String): Int {
+        return (gram.toInt() * 9)
     }
 
 }

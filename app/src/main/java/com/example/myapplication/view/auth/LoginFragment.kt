@@ -31,7 +31,7 @@ class LoginFragment : Fragment() {
             val email = binding.editTxtGmail.text.toString()
             val password = binding.editTxtPassword.text.toString()
 
-            a = a + 1
+            a += 1
             //Validasi email
             if (email.isEmpty()){
                 binding.editTxtGmail.error = "Email Harus Diisi"
@@ -53,36 +53,9 @@ class LoginFragment : Fragment() {
                 return@setOnClickListener
             }
 
-
-//            if(a > 0){
             viewModel.loginUser(email, password) { result ->
                 if (result) {
-
-                    viewModel.getAllAdmins()
-
                     startActivity(Intent(requireContext(), HomepageActivity::class.java))
-
-//                    if(viewModel.checkAdminOrUser() == "admin"){
-//                        startActivity(Intent(requireContext(), HomepageActivity::class.java))
-////                        startActivity(Intent(requireContext(), HomeAdminActivity::class.java))
-//
-//                    } else if (viewModel.checkAdminOrUser() == "user"){
-//                        startActivity(Intent(requireContext(), HomeAdminActivity::class.java))
-////                        startActivity(Intent(requireContext(), HomepageActivity::class.java))
-//
-//                    }
-
-
-//                    viewModel.saveUserIdSharePrefs(viewModel.getUserId())
-//                    viewModel.initializeUserProfSharedPrefData()
-
-//                    viewModel.getUserDataByUserId()
-
-//                    viewModel.getUserProfileByUserAuthId()
-//                    Toast.makeText(requireContext(), viewModel.ab, Toast.LENGTH_SHORT).show()
-
-//                    retrieve data dari firestore admin
-//                }
             }
             }}
 

@@ -25,17 +25,7 @@
             android:layout_height="wrap_content"
             android:src="@drawable/baseline2_close_24"/>
 
-        <Button
-            android:background="@drawable/cardstyle2"
-            android:textStyle="bold"
-            android:textColor="@color/white"
-            android:text="Update"
-            android:layout_marginRight="20dp"
-            android:layout_gravity="right"
-            android:id="@+id/btn_update"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-         />
+
 
 
         <LinearLayout
@@ -449,13 +439,34 @@
                 </LinearLayout>
             </LinearLayout>
 
-            <Button
-                android:id="@+id/btn_del"
-                android:layout_marginTop="100dp"
-                android:text="delete"
+            <LinearLayout
+                android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/buttonstyle"/>
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:textColor="@color/oren"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1"
+                    android:id="@+id/btn_del"
+                    android:layout_marginTop="100dp"
+                    android:text="delete"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/buttonstyle4"/>
+
+                <Button
+                    android:textColor="@color/white"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="1"
+                    android:id="@+id/btn_update"
+                    android:layout_marginTop="100dp"
+                    android:text="update"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/buttonstyle3"/>
+
+            </LinearLayout>
 
 
         </LinearLayout>

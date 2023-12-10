@@ -5,7 +5,7 @@ import com.google.firebase.firestore.Exclude
 data class UserProfile(
 
 //    stored in firebase
-//    invoked when user regist
+//    invoked when user regist n login
 //    collectionname = userProfile
 
     @set:Exclude @get:Exclude @Exclude var id: String = "",

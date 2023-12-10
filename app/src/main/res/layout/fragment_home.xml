@@ -493,15 +493,25 @@
                 android:layout_weight="1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="horizontal">
+                android:orientation="vertical">
 
                 <TextView
+                    android:textSize="18dp"
                     android:textStyle="bold"
                     android:gravity="center"
                     android:textColor="@color/ungu3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="- - - - - - - - Your Goal - - - - - - - -"/>
+
+                <TextView
+                    android:id="@+id/txt_dit_target"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center"
+                    android:textColor="@color/oren"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Bulking"/>
 
 
             </LinearLayout>

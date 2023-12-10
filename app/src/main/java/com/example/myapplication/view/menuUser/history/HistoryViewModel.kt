@@ -21,31 +21,24 @@ class HistoryViewModel(application: Application) : AndroidViewModel(application)
     private lateinit var mMenuDao : MenuDAO
     private lateinit var executorService : ExecutorService
 
-
-
-
 //    initialize all
-    fun init(context: Context){
+    fun initDBRoom(context: Context){
         executorService = Executors.newSingleThreadExecutor()
         val db = MenuRoomDatabase.getDatabase(context)
         mMenuDao = db!!.menuDao()!!
     }
-
-
-
 
 //    shared pref
     private val sharedPreferencesHelper =
         SharedPreferencesHelper.getInstance(application.applicationContext)
 
 
-//    get all live data by userid
-    fun getAllLiveDataByUserId( date : String): LiveData<List<MenuData>> {
-        return mMenuDao.allMenusByUserId(sharedPreferencesHelper.getUserId().toString(), date )
-    }
-
     fun getAllLiveDataByCategory(filter : String, date : String): LiveData<List<MenuData>> {
-        return mMenuDao.allMenusByCategory(sharedPreferencesHelper.getUserId().toString(), filter, date)
+        return if(filter=="All"){
+            mMenuDao.allMenusByUserId(sharedPreferencesHelper.getUserId().toString(), date )
+        } else {
+            mMenuDao.allMenusByCategory(sharedPreferencesHelper.getUserId().toString(), filter, date)
+        }
     }
 
     fun getTodayDate(): Date {

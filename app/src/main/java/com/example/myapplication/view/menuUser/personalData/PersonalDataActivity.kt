@@ -17,6 +17,7 @@ import com.example.myapplication.view.menuUser.HomepageActivity
 import java.util.Date
 
 class PersonalDataActivity : AppCompatActivity() {
+
     private var temporaryCarbs = ""
     private var temporaryProtein= ""
     private var temporaryFat = ""
@@ -101,25 +102,15 @@ class PersonalDataActivity : AppCompatActivity() {
                 finish()
 
                 val carbsGram = inputCarbs.text.toString()
-//                viewModel.saveCarbsGram(carbsGram)
 
                 val proteinGram = inputProtein.text.toString()
-//                viewModel.saveProteinGram(proteinGram)
                 val fatGram = inputFat.text.toString()
-//                viewModel.saveFatGram(fatGram)
 
                 val calDayTarget = txtTotalCalCalculated.text.toString()
-//                viewModel.saveDayTargetedCalorie(calDayTarget)
                 val dietGoal = selecteddietgoalcategory
-//                viewModel.saveDietGoal(dietGoal)
                 val cWeight = inputCweight.text.toString()
-//                viewModel.saveCurrentWeight1(cWeight)
                 val tWeight = inputTweight.text.toString()
-//                viewModel.saveTargetedWeight(tWeight)
                 val height = inputHeight.text.toString()
-//                viewModel.saveHeight(height)
-
-//                if(carbsGram.isBlank() || proteinGram.isBlank())
 
                 viewModel.createUserProfile(p1DayTarget = calDayTarget, p2DietGoal = dietGoal, p3cWeight = cWeight,
                     p4tWeight = tWeight, p5heght = height,  p7carbs = carbsGram,

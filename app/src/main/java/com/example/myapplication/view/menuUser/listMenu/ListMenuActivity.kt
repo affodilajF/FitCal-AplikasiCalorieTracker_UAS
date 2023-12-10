@@ -12,9 +12,9 @@ import com.example.myapplication.view.menuUser.addMenu.addMenu.AddMenuActivity
 class ListMenuActivity : AppCompatActivity() {
 
     private lateinit var binding : ActivityListMenuBinding
-    private lateinit var adapterMenuItem : MenuAdapter
-
     private val viewModel: ListMenuViewModel by viewModels()
+
+    private lateinit var adapterMenuItem : MenuAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,23 +22,8 @@ class ListMenuActivity : AppCompatActivity() {
         binding = ActivityListMenuBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
-        // Mendefinisikan observer untuk LiveData dari ViewModel
         observeMenus()
         viewModel.getAllMenus()
-
-
-//        temporary, buat nambahin data menu
-//        val dummymenu = Menu (name = "Fried Chicken", calAmount = "345", fatGram = "39", carbsGram = "28.2", proteinGram = "65.6")
-//        viewModel.addMenu(dummymenu)
-//
-//        val dummymenu2 = Menu (name = "Ice Cream", calAmount = "289", fatGram = "25.7", carbsGram = "23.9", proteinGram = "29.6")
-//        viewModel.addMenu(dummymenu2)
-//
-//        val dummymenu3 = Menu (name = "Banana", calAmount = "129", fatGram = "15", carbsGram = "20.2", proteinGram = "15.8")
-//        viewModel.addMenu(dummymenu3)
-
-
 
         adapterMenuItem = MenuAdapter {
                 menu: Menu ->
@@ -46,7 +31,6 @@ class ListMenuActivity : AppCompatActivity() {
                 putExtra("menu object", menu)
             }
             startActivity(intent)
-
         }
 
         with(binding){
@@ -61,8 +45,6 @@ class ListMenuActivity : AppCompatActivity() {
         }
     }
 
-
-
     private fun observeMenus(){
         viewModel.menuListLiveData.observe(this){
                 menus ->
@@ -70,7 +52,4 @@ class ListMenuActivity : AppCompatActivity() {
 
         }
     }
-
-
-
 }

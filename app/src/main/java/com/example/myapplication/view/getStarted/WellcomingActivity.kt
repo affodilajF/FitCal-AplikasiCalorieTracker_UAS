@@ -22,9 +22,5 @@ class WellcomingActivity : AppCompatActivity() {
             startActivity(intent1)
             finish()
         }
-
-
-
-
     }
 }

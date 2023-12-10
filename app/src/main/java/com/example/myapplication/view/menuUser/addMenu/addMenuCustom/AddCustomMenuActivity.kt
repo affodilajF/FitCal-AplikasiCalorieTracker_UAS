@@ -27,7 +27,6 @@ class AddCustomMenuActivity : AppCompatActivity(), DatePickerDialog.OnDateSetLis
     private lateinit var mealcategoryarray : Array<String>
     private var selectedmealcategory = ""
     private lateinit var selectedDate : Date
-    private lateinit var menuFix : MenuData
 
     private var temporaryCarbs = ""
     private var temporaryProtein= ""
@@ -85,7 +84,7 @@ class AddCustomMenuActivity : AppCompatActivity(), DatePickerDialog.OnDateSetLis
 //                cal100gr
                 val i : Int = (c*4)+(d*9)+(e*4)
 
-                menuFix = MenuData(userId = viewModel.getUserId(),
+                val menuFix = MenuData(userId = viewModel.getUserId(),
                     name = a, calAmount = b, carbsGram = c, fatGram = d, proteinGram = e,
                     servings = f, date = g, category = h, calAmount100 = i)
                 viewModel.insertRoom(menuFix)

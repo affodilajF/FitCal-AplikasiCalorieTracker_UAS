@@ -60,18 +60,27 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="horizontal">
 
 
                 <TextView
-                    android:padding="7dp"
+                    android:textColor="@color/oren"
+                    android:paddingTop="7dp"
+                    android:paddingBottom="7dp"
+                    android:paddingRight="7dp"
                     android:textStyle="bold"
                     android:id="@+id/txt_totalcal"
                     android:gravity="left"
                     android:textSize="18dp"
-                    android:text="120 cal"
-                    android:layout_width="match_parent"
+                    android:text="120"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:textColor="@color/oren"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" cal"/>
 
 
             </LinearLayout>

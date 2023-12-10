@@ -20,57 +20,12 @@ class AuthViewModel(application: Application) : AndroidViewModel(application) {
     private val sharedPreferencesHelper =
         SharedPreferencesHelper.getInstance(application.applicationContext)
 
-//    firestore
-    private var firestore = FirebaseFirestore.getInstance()
-    private val adminCollectionRef = firestore.collection("admins")
-    private val adminListLiveData : MutableLiveData<List<Admin>> by lazy {
-        MutableLiveData<List<Admin>>()
-    }
-
-    private var isAdmin : String = "99"
-
-
-
-
-
-
-
-//    retrieve data firestore admin
-
-    fun getAllAdmins(){
-        adminCollectionRef
-//            .whereEqualTo("adminID", getUserId())
-            .addSnapshotListener { snapshots, error ->
-            if(error != null){
-                Log.d("MainActivity", "Error listening for budget changes", error)
-                return@addSnapshotListener
-            }
-
-            val admin  = arrayListOf<Admin>()
-            snapshots?.forEach{
-                    documentReference ->
-                admin.add(
-                    Admin(documentReference.id,
-                        documentReference.get("adminID").toString(),
-                ))
-            }
-            if(admin != null){
-                adminListLiveData.postValue(admin)
-                isAdmin ="admin"
-            } else {
-                isAdmin = "user"
-            }
-        }
-    }
-
-    fun checkAdminOrUser() : String {
-//        true 1 => admin
-//        false 0 => user
-
-        return isAdmin
-    }
-
-
+////    firestore
+////    private var firestore = FirebaseFirestore.getInstance()
+////    private val adminCollectionRef = firestore.collection("admins")
+//    private val adminListLiveData : MutableLiveData<List<Admin>> by lazy {
+//        MutableLiveData<List<Admin>>()
+//    }
 
     fun registerUser(email: String, password: String, onResult: (Boolean) -> Unit) {
         auth.createUserWithEmailAndPassword(email, password)
@@ -109,84 +64,6 @@ class AuthViewModel(application: Application) : AndroidViewModel(application) {
     fun saveUserPhoneSharePrefs(user : String){
         sharedPreferencesHelper.saveUserPhone(user)
     }
-
-//    fungsi untuk update semua data untuk share pref
-
-//    fun getUserDataByUserId() {
-//        userProfileCollectionRef
-//            .whereEqualTo("userIdAuth", getUserId())
-//            .addSnapshotListener { snapshots, error ->
-//                if (error != null) {
-//                    Log.d("MainActivity", "Error listening for budget changes", error)
-//                    return@addSnapshotListener
-//                }
-//
-//                val data = arrayListOf<UserProfile>()
-//                snapshots?.forEach { documentReference ->
-//                    data.add(
-//                        UserProfile(
-//                            documentReference.id,
-//                            userIdAuth = documentReference.get("userIdAuth").toString(),
-//                            userName = documentReference.get("userName").toString(),
-//                            userPhone = documentReference.get("userPhone").toString(),
-//                            dayTargetedCalorie = documentReference.get("dayTargetedCalorie").toString(),
-//                            dietGoal = documentReference.get("dietGoal").toString(),
-//                            currentWeight = documentReference.get("currentWeight").toString(),
-//                            targetedWeight = documentReference.get("targetedWeight").toString(),
-//                            height = documentReference.get("height").toString(),
-//                            fatGram = documentReference.get("fatGram").toString(),
-//                            carbsGram = documentReference.get("carbsGram").toString(),
-//                            proteinGram = documentReference.get("proteinGram").toString()
-//                        )
-//                    )
-//                }
-//                if (data.isNotEmpty()) {
-//                    userProfileListLiveData.postValue(data)
-//                    val satuUser = data[0]
-//
-//                    sharedPreferencesHelper.saveUsername(satuUser.userName)
-//                    sharedPreferencesHelper.saveCarbsGram(satuUser.carbsGram)
-//                    sharedPreferencesHelper.saveProteinGram(satuUser.proteinGram)
-//                    sharedPreferencesHelper.saveFatGram(satuUser.fatGram)
-//                    sharedPreferencesHelper.saveCurrentWeight(satuUser.currentWeight)
-//                    sharedPreferencesHelper.saveTargetedWeight(satuUser.targetedWeight)
-//                    sharedPreferencesHelper.saveUserPhone(satuUser.userPhone)
-//                    sharedPreferencesHelper.saveDietGoal(satuUser.dietGoal)
-//                    sharedPreferencesHelper.saveHeight(satuUser.height)
-//                    sharedPreferencesHelper.saveDayTargetedCalorie(satuUser.dayTargetedCalorie)
-//                }
-//            }
-//    }
-
-
-
-
-
-
-    // Mendapatkan satu baris data berdasarkan userAuthId tertentu
-//    fun getUserProfileByUserAuthId() {
-//        userProfileCollectionRef
-//            .whereEqualTo("userIdAuth", getUserId())
-//            .get()
-//            .addOnSuccessListener { documents ->
-//                for (document in documents) {
-//                    // Mendapatkan data dari dokumen yang sesuai
-////                    cek = document.toObject(UserProfile::class.java)
-//
-//                    // Lakukan sesuatu dengan userProfile (misalnya, tampilkan, simpan, atau gunakan data tersebut)
-//                }
-//            }
-//            .addOnFailureListener { exception ->
-//                // Tangani kegagalan pengambilan data
-//                Log.w("TAG", "Error getting documents: ", exception)
-//            }
-//    }
-
-
-
-
-
-
 
 
 }

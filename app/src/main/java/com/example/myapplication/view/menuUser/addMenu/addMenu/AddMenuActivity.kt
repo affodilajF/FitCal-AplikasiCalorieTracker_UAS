@@ -19,18 +19,19 @@ import java.util.Date
 class AddMenuActivity : AppCompatActivity(),  DatePickerDialog.OnDateSetListener {
 
     private lateinit var binding : ActivityAddMenuBinding
+    private val viewModel: AddMenuViewModel by viewModels()
+
     private lateinit var mealcategoryarray : Array<String>
     private var selectedmealcategory = ""
     private lateinit var selectedDate : Date
-    private lateinit var menuFix : MenuData
-
-    private val viewModel: AddMenuViewModel by viewModels()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityAddMenuBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        viewModel.initializeDBRoom(this)
 
         selectedDate = viewModel.getTodayDate()
 
@@ -39,8 +40,6 @@ class AddMenuActivity : AppCompatActivity(),  DatePickerDialog.OnDateSetListener
         adapterMealCategory.setDropDownViewResource(
             com.google.android.material.R.layout.support_simple_spinner_dropdown_item
         )
-
-        viewModel.initializeDBRoom(this)
 
         with(binding){
             txtDatePlaceholder.text = viewModel.getFormattedDate(selectedDate)
@@ -73,20 +72,17 @@ class AddMenuActivity : AppCompatActivity(),  DatePickerDialog.OnDateSetListener
 
             txtName.text = menu.name
 
-            txtCalCarbs.text = viewModel.getCalCarbs(carbs) + " cal"
-            txtCalFat.text = viewModel.getCalFat(fat) + " cal"
-            txtCalProtein.text = viewModel.getCalProtein(protein) + " cal"
+            txtCalCarbs.text = viewModel.getCalCarbs(carbs).toString() + " cal"
+            txtCalFat.text = viewModel.getCalFat(fat).toString() + " cal"
+            txtCalProtein.text = viewModel.getCalProtein(protein).toString() + " cal"
 
             txtGrCarbs.text = carbs + " gr"
             txtGrFat.text = fat + " gr"
             txtGrProtein.text = protein + " gr"
             txtCalOneserving.text = calories + " cal"
 
-
-//            nanti invoke viewmodel yang terhubung dengan room
-
             btnDone.setOnClickListener {
-                menuFix = MenuData( userId = viewModel.getUserId() , name = name, calAmount = txtTotalCalCalculated.text.toString().toInt(),  fatGram =  fat.toInt(), carbsGram = carbs.toInt(), proteinGram = protein.toInt(), servings = editTextServingsNumber.text.toString().toDouble(),
+                val menuFix = MenuData( userId = viewModel.getUserId() , name = name, calAmount = txtTotalCalCalculated.text.toString().toInt(),  fatGram =  fat.toInt(), carbsGram = carbs.toInt(), proteinGram = protein.toInt(), servings = editTextServingsNumber.text.toString().toDouble(),
                     date = viewModel.getFormattedDate(selectedDate), category = selectedmealcategory, calAmount100 = calories.toInt() )
                 viewModel.insertRoom(menuFix)
                 finish()
@@ -99,9 +95,9 @@ class AddMenuActivity : AppCompatActivity(),  DatePickerDialog.OnDateSetListener
                 override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                     txtTotalCalCalculated.text = viewModel.getTotalCal(calories, s.toString())
 
-                    calculatedCalCarbs.text = ((viewModel.getCalCarbs(carbs)).toDouble()*((s.toString()).toDoubleOrNull() ?: 0.0)).toString()
-                    calculatedCalFat.text = ((viewModel.getCalFat(fat)).toDouble()*((s.toString()).toDoubleOrNull() ?: 0.0)).toString()
-                    calculatedCalProtein.text = ((viewModel.getCalProtein(protein)).toDouble()*((s.toString()).toDoubleOrNull() ?: 0.0)).toString()
+                    calculatedCalCarbs.text = viewModel.getCalCarbsOnUserServing(carbs, s.toString())
+                    calculatedCalFat.text = viewModel.getCalFatOnUserServing(carbs, s.toString())
+                    calculatedCalProtein.text = viewModel.getCalProteinOnUserServing(carbs, s.toString())
                 }
                 override fun afterTextChanged(s: Editable?) {
                 }
