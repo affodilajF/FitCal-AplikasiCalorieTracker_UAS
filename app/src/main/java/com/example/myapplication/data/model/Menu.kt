@@ -7,7 +7,6 @@ import java.io.Serializable
 data class Menu(
 
 //    stored in firebase
-
     @set:Exclude @get:Exclude @Exclude var id: String = "",
 
     val name: String = "",

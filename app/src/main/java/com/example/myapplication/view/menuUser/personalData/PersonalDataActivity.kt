@@ -12,6 +12,7 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.example.myapplication.R
 import com.example.myapplication.databinding.ActivityPersonalDataBinding
+import com.example.myapplication.util.CalorieCalculator
 import com.example.myapplication.view.menuUser.HomepageActivity
 
 import java.util.Date
@@ -53,7 +54,7 @@ class PersonalDataActivity : AppCompatActivity() {
 
                 override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                     temporaryCarbs = s.toString()
-                    txtTotalCalCalculated.text = viewModel.getCalculatedAllCalories(temporaryCarbs, temporaryProtein, temporaryFat)
+                    txtTotalCalCalculated.text = CalorieCalculator.getCalculatedAllCalories(temporaryCarbs, temporaryProtein, temporaryFat)
 
 
                 }
@@ -67,7 +68,7 @@ class PersonalDataActivity : AppCompatActivity() {
 
                 override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                     temporaryProtein = s.toString()
-                    txtTotalCalCalculated.text = viewModel.getCalculatedAllCalories(temporaryCarbs, temporaryProtein, temporaryFat)
+                    txtTotalCalCalculated.text = CalorieCalculator.getCalculatedAllCalories(temporaryCarbs, temporaryProtein, temporaryFat)
 
 
                 }
@@ -81,7 +82,7 @@ class PersonalDataActivity : AppCompatActivity() {
 
                 override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                     temporaryFat = s.toString()
-                    txtTotalCalCalculated.text = viewModel.getCalculatedAllCalories(temporaryCarbs, temporaryProtein, temporaryFat)
+                    txtTotalCalCalculated.text = CalorieCalculator.getCalculatedAllCalories(temporaryCarbs, temporaryProtein, temporaryFat)
                 }
                 override fun afterTextChanged(s: Editable?) {
                 }

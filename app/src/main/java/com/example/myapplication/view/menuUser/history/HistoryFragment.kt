@@ -1,5 +1,6 @@
 package com.example.myapplication.view.menuUser.history
 
+import android.app.ActivityOptions
 import android.content.Intent
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
@@ -9,10 +10,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myapplication.R
 import com.example.myapplication.data.model.MenuData
 import com.example.myapplication.databinding.FragmentHistoryBinding
+import com.example.myapplication.util.DateUtils
 import com.example.myapplication.view.menuUser.addMenu.addMenuCustom.AddCustomMenuActivity
 import com.example.myapplication.view.menuUser.addMenu.updateMenu.UpdateMenuActivity
 import com.example.myapplication.view.menuUser.listMenu.ListMenuActivity
@@ -41,10 +44,11 @@ class HistoryFragment : Fragment() {
         viewModel.initDBRoom(requireContext())
 
 
+
         with(binding){
-            txtDateNow.text = viewModel.getFormattedDate(viewModel.getTodayDate())
+            txtDateNow.text = DateUtils.getFormattedDate(DateUtils.getTodayDate())
             dateTrigger = 0
-            txtDateFilter = viewModel.getFormattedDate(viewModel.getTodayDate())
+            txtDateFilter = DateUtils.getFormattedDate(DateUtils.getTodayDate())
 
             radioGroup.setOnCheckedChangeListener { group, checkedId ->
                 when (checkedId) {
@@ -83,30 +87,40 @@ class HistoryFragment : Fragment() {
                 rvItemMenu.apply {
                     adapter = adapterMenuItem
                     layoutManager = LinearLayoutManager(requireContext())
+
                 }
             }
 
             imageButtonBack.setOnClickListener{
-                dateTrigger = dateTrigger - 1
-                val a = viewModel.getExactDateDays(dateTrigger)
-                txtDateNow.text = viewModel.getFormattedDate(a)
-                txtDateFilter = viewModel.getFormattedDate(a)
+                dateTrigger -= 1
+                val a = DateUtils.getExactDateDays(dateTrigger)
+                txtDateNow.text = DateUtils.getFormattedDate(a)
+                txtDateFilter = DateUtils.getFormattedDate(a)
                 getAllMenus(selectedCategoryFilter)
             }
 
             imageButtonNext.setOnClickListener{
-                dateTrigger = dateTrigger + 1
-                val a = viewModel.getExactDateDays(dateTrigger)
-                txtDateNow.text = viewModel.getFormattedDate(a)
-                txtDateFilter = viewModel.getFormattedDate(a)
+                dateTrigger += 1
+                val a = DateUtils.getExactDateDays(dateTrigger)
+                txtDateNow.text = DateUtils.getFormattedDate(a)
+                txtDateFilter = DateUtils.getFormattedDate(a)
                 getAllMenus(selectedCategoryFilter)
             }
 
             btnSearch.setOnClickListener{
-                startActivity(Intent(requireContext(), ListMenuActivity::class.java))
+//                startActivity(Intent(requireContext(), ListMenuActivity::class.java))
+                val intent = Intent(requireContext(), ListMenuActivity::class.java)
+                startActivity(intent)
+                activity?.overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             }
             btnCustomAdd.setOnClickListener{
-                startActivity(Intent(requireContext(), AddCustomMenuActivity::class.java))
+//                startActivity(Intent(requireContext(), AddCustomMenuActivity::class.java))
+                val intent = Intent(requireContext(), AddCustomMenuActivity::class.java)
+                startActivity(intent)
+                activity?.overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+
+//                val options = ActivityOptions.makeSceneTransitionAnimation(requireActivity())
+//                requireContext().startActivity(intent, options.toBundle())
             }
         }
 

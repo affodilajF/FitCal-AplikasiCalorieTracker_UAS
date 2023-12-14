@@ -9,10 +9,14 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.activity.viewModels
+import androidx.lifecycle.ViewModelProvider
 import com.example.myapplication.R
 import com.example.myapplication.data.model.Menu
 import com.example.myapplication.data.model.MenuData
+import com.example.myapplication.data.repository.MenuDataRepository
 import com.example.myapplication.databinding.ActivityAddMenuBinding
+import com.example.myapplication.util.CalorieCalculator
+import com.example.myapplication.util.DateUtils
 import java.util.Calendar
 import java.util.Date
 
@@ -33,7 +37,8 @@ class AddMenuActivity : AppCompatActivity(),  DatePickerDialog.OnDateSetListener
 
         viewModel.initializeDBRoom(this)
 
-        selectedDate = viewModel.getTodayDate()
+
+        selectedDate = DateUtils.getTodayDate()
 
         mealcategoryarray = resources.getStringArray(R.array.mealcategory)
         val adapterMealCategory = ArrayAdapter(this@AddMenuActivity, android.R.layout.simple_spinner_item, mealcategoryarray)
@@ -42,7 +47,7 @@ class AddMenuActivity : AppCompatActivity(),  DatePickerDialog.OnDateSetListener
         )
 
         with(binding){
-            txtDatePlaceholder.text = viewModel.getFormattedDate(selectedDate)
+            txtDatePlaceholder.text = DateUtils.getFormattedDate(selectedDate)
 
             btnBack.setOnClickListener{
                 finish()
@@ -72,9 +77,9 @@ class AddMenuActivity : AppCompatActivity(),  DatePickerDialog.OnDateSetListener
 
             txtName.text = menu.name
 
-            txtCalCarbs.text = viewModel.getCalCarbs(carbs).toString() + " cal"
-            txtCalFat.text = viewModel.getCalFat(fat).toString() + " cal"
-            txtCalProtein.text = viewModel.getCalProtein(protein).toString() + " cal"
+            txtCalCarbs.text = CalorieCalculator.getCalCarbs(carbs).toString() + " cal"
+            txtCalFat.text = CalorieCalculator.getCalFat(fat).toString() + " cal"
+            txtCalProtein.text = CalorieCalculator.getCalProtein(protein).toString() + " cal"
 
             txtGrCarbs.text = carbs + " gr"
             txtGrFat.text = fat + " gr"
@@ -83,8 +88,8 @@ class AddMenuActivity : AppCompatActivity(),  DatePickerDialog.OnDateSetListener
 
             btnDone.setOnClickListener {
                 val menuFix = MenuData( userId = viewModel.getUserId() , name = name, calAmount = txtTotalCalCalculated.text.toString().toInt(),  fatGram =  fat.toInt(), carbsGram = carbs.toInt(), proteinGram = protein.toInt(), servings = editTextServingsNumber.text.toString().toDouble(),
-                    date = viewModel.getFormattedDate(selectedDate), category = selectedmealcategory, calAmount100 = calories.toInt() )
-                viewModel.insertRoom(menuFix)
+                    date = DateUtils.getFormattedDate(selectedDate), category = selectedmealcategory, calAmount100 = calories.toInt() )
+                viewModel.insertMenu(menuFix)
                 finish()
             }
 
@@ -93,11 +98,11 @@ class AddMenuActivity : AppCompatActivity(),  DatePickerDialog.OnDateSetListener
                 }
 
                 override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                    txtTotalCalCalculated.text = viewModel.getTotalCal(calories, s.toString())
+                    txtTotalCalCalculated.text = CalorieCalculator.getTotalCal(calories, s.toString())
 
-                    calculatedCalCarbs.text = viewModel.getCalCarbsOnUserServing(carbs, s.toString())
-                    calculatedCalFat.text = viewModel.getCalFatOnUserServing(carbs, s.toString())
-                    calculatedCalProtein.text = viewModel.getCalProteinOnUserServing(carbs, s.toString())
+                    calculatedCalCarbs.text = CalorieCalculator.getCalCarbsOnUserServing(carbs, s.toString())
+                    calculatedCalFat.text = CalorieCalculator.getCalFatOnUserServing(carbs, s.toString())
+                    calculatedCalProtein.text = CalorieCalculator.getCalProteinOnUserServing(carbs, s.toString())
                 }
                 override fun afterTextChanged(s: Editable?) {
                 }
@@ -110,7 +115,7 @@ class AddMenuActivity : AppCompatActivity(),  DatePickerDialog.OnDateSetListener
         val calendar = Calendar.getInstance()
         calendar.set(year, month, dayOfMonth)
         selectedDate = calendar.time
-        binding.txtDatePlaceholder.text = viewModel.getFormattedDate(selectedDate)
+        binding.txtDatePlaceholder.text = DateUtils.getFormattedDate(selectedDate)
 
     }
 }

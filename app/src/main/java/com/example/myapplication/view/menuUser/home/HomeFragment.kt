@@ -1,24 +1,19 @@
 package com.example.myapplication.view.menuUser.home
 
 import android.animation.ValueAnimator
-import android.app.DatePickerDialog
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.DatePicker
-import android.widget.Toast
-import androidx.fragment.app.activityViewModels
+import android.widget.TextView
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
-import com.example.myapplication.data.database.MenuDAO
-import com.example.myapplication.data.database.MenuRoomDatabase
 import com.example.myapplication.data.model.MenuData
 import com.example.myapplication.databinding.FragmentHomeBinding
-import com.example.myapplication.view.auth.AuthViewModel
-import com.example.myapplication.view.menuUser.HomepageActivity
+import com.example.myapplication.util.CalorieCalculator
+import com.example.myapplication.util.DateUtils
 import com.example.myapplication.view.menuUser.HomepageViewModel
 import com.google.android.material.progressindicator.CircularProgressIndicator
 import java.util.concurrent.ExecutorService
@@ -38,8 +33,11 @@ class HomeFragment : Fragment()  {
     private var txtDateFilter = "yiha"
 
     private lateinit var progressAnimator: ValueAnimator
+    private lateinit var progressAnimator1: ValueAnimator
 
     private var targetedCalByDay : Int = 0
+    private var targetedGramCarbsByDay : Int = 0
+    private var targetedGramProteinByDay : Int = 0
 
 
     override fun onCreateView(
@@ -58,24 +56,24 @@ class HomeFragment : Fragment()  {
 
         with(binding){
 
-            txtDateNow.text = viewModel.getFormattedDate(viewModel.getTodayDate())
+            txtDateNow.text = DateUtils.getFormattedDate(DateUtils.getTodayDate())
             dateTrigger = 0
-            txtDateFilter = viewModel.getFormattedDate(viewModel.getTodayDate())
+            txtDateFilter = DateUtils.getFormattedDate(DateUtils.getTodayDate())
 
 
             imageButtonBack.setOnClickListener{
                 dateTrigger -= 1
-                val a = viewModel.getExactDateDays(dateTrigger)
-                txtDateNow.text = viewModel.getFormattedDate(a)
-                txtDateFilter = viewModel.getFormattedDate(a)
+                val a = DateUtils.getExactDateDays(dateTrigger)
+                txtDateNow.text = DateUtils.getFormattedDate(a)
+                txtDateFilter = DateUtils.getFormattedDate(a)
                 getAllMenus()
                 getRemainingCal(targetedCalByDay)
             }
             imageButtonNext.setOnClickListener{
                 dateTrigger += 1
-                val a = viewModel.getExactDateDays(dateTrigger)
-                txtDateNow.text = viewModel.getFormattedDate(a)
-                txtDateFilter = viewModel.getFormattedDate(a)
+                val a = DateUtils.getExactDateDays(dateTrigger)
+                txtDateNow.text = DateUtils.getFormattedDate(a)
+                txtDateFilter = DateUtils.getFormattedDate(a)
                 getAllMenus()
                 getRemainingCal(targetedCalByDay)
 
@@ -83,6 +81,7 @@ class HomeFragment : Fragment()  {
             }
         }
         getAllMenus()
+//        observeAllMenuCategories()
         return view
     }
 
@@ -98,32 +97,79 @@ class HomeFragment : Fragment()  {
                     txtUsername.text = userObject.userName
                     cweight.text = userObject.currentWeight
                     tweight.text = userObject.targetedWeight
-                    txtTargetcal.text = userObject.dayTargetedCalorie + " cal / day"
+                    txtTargetcal.text = userObject.dayTargetedCalorie
 
                     carbsTarget.text = "25 of " + userObject.carbsGram + "gr"
                     proteinTarget.text = "67 of " + userObject.proteinGram+ " gr"
                     fatTarget.text = "69 of " + userObject.fatGram+ " gr"
 
+
+//                    call total
                     targetedCalByDay = (userObject.dayTargetedCalorie).toDouble().toInt()
+//                    call carbs
+                    targetedGramCarbsByDay = (userObject.carbsGram).toDouble().toInt()
+                    targetedGramProteinByDay = (userObject.proteinGram).toDouble().toInt()
 
                     getRemainingCal(targetedCalByDay)
+
                 })
             }
         }
 
         private fun getRemainingCal(dayTargetedCal : Int){
-            val liveDataIntTotalAchievedCal: LiveData<Int> = viewModel.getAmountCalAllLiveDataByUserId(txtDateFilter)
+            val liveDataIntTotalAchievedCal: LiveData<Int> = viewModel.getAmountCalAllLiveData(txtDateFilter)
             liveDataIntTotalAchievedCal.observe(viewLifecycleOwner) { intValue ->
 
                 if(intValue != null){
-                    val remainingcal  = viewModel.getRemainingCal(dayTargetedCal, intValue)
-                    val progressInd = viewModel.getPercentProgress(dayTargetedCal, intValue)
-                    binding.textRemainingCal.text = remainingcal
-                    animateProgressBar(progressInd)
+                    val remainingcal  = CalorieCalculator.getRemainingCal(dayTargetedCal, intValue)
+                    val progressIndAllCal = CalorieCalculator.getPercentProgress(dayTargetedCal, intValue)
+
+                    if(remainingcal <= 0.toString()){
+                        binding.textRemainingCal.text = "0"
+                    } else {
+                        binding.textRemainingCal.text = remainingcal
+                    }
+                    animateProgressBar(progressIndAllCal)
 
                 } else {
                     binding.textRemainingCal.text = targetedCalByDay.toString()
                     animateProgressBar(0)
+                }
+            }
+
+
+
+
+            val liveDataDoubleAchievedCarbsGram : LiveData<Double> = viewModel.getAmountGramAllCarbsLiveData(txtDateFilter)
+            liveDataDoubleAchievedCarbsGram.observe(viewLifecycleOwner) { dobValueCarbs ->
+
+                if(dobValueCarbs != null){
+
+                    val progressIndCarbs = CalorieCalculator.getPercentProgressEachComponentGram(targetedGramCarbsByDay, dobValueCarbs)
+                    binding.carbsTarget.text = dobValueCarbs.toInt().toString() +" of " + targetedGramCarbsByDay + " gr"
+                    animateProgressBarCarbs(progressIndCarbs)
+
+
+                } else {
+                    binding.carbsTarget.text = "0 of " + targetedGramCarbsByDay + " gr"
+                    animateProgressBarCarbs(0)
+                }
+            }
+
+//            protein
+            val liveDataDoubleAchievedProteinGram : LiveData<Double> = viewModel.getAmountGramAllProteinLiveData(txtDateFilter)
+            liveDataDoubleAchievedProteinGram.observe(viewLifecycleOwner) { dobValueProtein ->
+
+                if(dobValueProtein != null){
+
+                    val progressIndProtein = CalorieCalculator.getPercentProgressEachComponentGram(targetedGramProteinByDay, dobValueProtein)
+                    binding.proteinTarget.text = dobValueProtein.toInt().toString() +" of " + targetedGramProteinByDay + " gr"
+                    animateProgressBarProtein(progressIndProtein)
+
+
+                } else {
+                    binding.proteinTarget.text = "0 of " + targetedGramProteinByDay + " gr"
+                    animateProgressBarProtein(0)
                 }
             }
         }
@@ -136,13 +182,49 @@ class HomeFragment : Fragment()  {
                 progressAnimator.addUpdateListener { animator ->
                     val animatedValue = animator.animatedValue as Int
                     binding.progressCircularIndicator.progress = animatedValue
+                    binding.progressCircularIndicator2.progress = animatedValue
+
                 }
 
                 progressAnimator.setIntValues(binding.progressCircularIndicator.progress, progressInd)
+                progressAnimator.setIntValues(binding.progressCircularIndicator2.progress, progressInd)
+
                 progressAnimator.start()
-
-
         }
+
+        private fun animateProgressBarCarbs(progressInd : Int){
+            progressAnimator1 = ValueAnimator.ofInt(0, 100)
+            progressAnimator1.duration = 400
+
+            progressAnimator1.addUpdateListener { animator ->
+                val animatedValue = animator.animatedValue as Int
+                binding.linearProgressCarbs.progress = animatedValue
+            }
+
+                    progressAnimator1.setIntValues(binding.linearProgressCarbs.progress, progressInd)
+
+            progressAnimator1.start()
+        }
+
+        private fun animateProgressBarProtein(progressInd : Int){
+            progressAnimator1 = ValueAnimator.ofInt(0, 100)
+            progressAnimator1.duration = 400
+
+            progressAnimator1.addUpdateListener { animator ->
+                val animatedValue = animator.animatedValue as Int
+                binding.linearProgressProtein.progress = animatedValue
+            }
+
+            progressAnimator1.setIntValues(binding.linearProgressProtein.progress, progressInd)
+
+            progressAnimator1.start()
+        }
+
+
+
+
+
+
 
         private fun getAllMenus(){
 

@@ -33,29 +33,4 @@ class UpdateMenuViewModel() : ViewModel() {
             mMenuDao.delete(note)
         }
     }
-
-    fun getTotalCal100(carbs: Int, protein: Int, fat: Int): Int {
-        return (carbs * 4) + (protein * 4) + (fat * 9)
-    }
-
-
-    fun getTotalCal(servings: String?, calories: String?): String {
-        val a = servings?.toDoubleOrNull() ?: 0.0
-        val b = calories?.toDoubleOrNull() ?: 0.0
-
-        return String.format("%.0f", a * b)
-    }
-
-    fun getCalCarbs(gram : Int) : String {
-        return (gram*4).toString()
-    }
-
-    fun getCalProtein(gram: Int): String {
-        return (gram*4).toString()
-    }
-
-    fun getCalFat(gram: Int): String {
-        return (gram*9).toString()
-    }
-
 }

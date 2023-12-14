@@ -76,6 +76,38 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/txt_date"
+                    android:layout_weight="1"
+                    android:textSize="11dp"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/ungu3"
+                    android:text="Wednesday 2021-05-30"/>
+
+                <TextView
+                    android:id="@+id/txt_category"
+                    android:layout_weight="1"
+                    android:gravity="end"
+                    android:textSize="11dp"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Breakfast"/>
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/ungu2"
+                android:layout_width="match_parent"
+                android:layout_height="2dp">
+            </LinearLayout>
 
 
             <LinearLayout
@@ -104,21 +136,51 @@
 
             </LinearLayout>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="1 serving equals to 100 gram."
-                android:textSize="12dp"/>
 
-            <TextView
-                android:textColor="@color/ungu5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Here is the calories detail in 1 serving."
-                android:textSize="12dp"/>
+
 
 
             <LinearLayout
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="1 serving equals to 100 gram."
+                        android:textSize="12dp"/>
+
+                    <TextView
+                        android:textColor="@color/ungu5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Here is the calories detail in 1 serving."
+                        android:textSize="12dp"/>
+                </LinearLayout>
+
+
+
+                <ImageButton
+                    android:id="@+id/btn_see_more_data1serving"
+                    android:background="@color/ungu2"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/baseline_keyboard_arrow_down_24"/>
+            </LinearLayout>
+
+
+
+
+            <LinearLayout
+                android:id="@+id/layout_data1serving"
+                android:visibility="gone"
                 android:layout_marginTop="20dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -289,7 +351,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Number of servings?"
-                        android:textSize="14dp"/>
+                        android:textSize="12dp"/>
 
                     <EditText
                         android:text="0.0"
@@ -316,7 +378,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Total calorie (cal)"
-                        android:textSize="14dp"/>
+                        android:textSize="12dp"/>
 
                     <TextView
                         android:id="@+id/txt_total_cal_calculated"
@@ -357,8 +419,10 @@
                         />
 
                     <TextView
+                        android:textSize="20dp"
+                        android:textColor="@color/oren"
+                        android:textStyle="bold"
                         android:id="@+id/calculated_cal_carbs"
-                        android:textSize="12dp"
                         android:inputType="numberDecimal"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -394,8 +458,10 @@
                         />
 
                     <TextView
+                        android:textSize="20dp"
+                        android:textColor="@color/oren"
+                        android:textStyle="bold"
                         android:id="@+id/calculated_cal_protein"
-                        android:textSize="12dp"
                         android:inputType="numberDecimal"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -430,8 +496,10 @@
                         />
 
                     <TextView
+                        android:textSize="20dp"
+                        android:textColor="@color/oren"
+                        android:textStyle="bold"
                         android:id="@+id/calculated_cal_fat"
-                        android:textSize="12dp"
                         android:inputType="numberDecimal"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"

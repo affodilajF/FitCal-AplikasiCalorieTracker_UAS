@@ -58,29 +58,6 @@ class PersonalDataViewModel(application: Application) : AndroidViewModel(applica
     }
 
 
-    fun getCalCarbs(gram : String?) : String {
-        val a = gram?.toDoubleOrNull() ?: 0.0
-        return String.format("%.0f", a * 4)
-    }
-
-    fun getCalProtein(gram: String?): String {
-        val a = gram?.toDoubleOrNull() ?: 0.0
-        return String.format("%.0f", a * 4)
-    }
-
-    fun getCalFat(gram: String?): String {
-        val a = gram?.toDoubleOrNull() ?: 0.0
-        return String.format("%.0f", a * 9)
-    }
-
-    fun getCalculatedAllCalories(gram : String?, gram2 : String?, gram3 : String?) : String{
-        val a = getCalCarbs(gram).toDouble()
-        val b = getCalProtein(gram2).toDouble()
-        val c = getCalFat(gram3).toDouble()
-
-        return (a + b + c).toString()
-
-    }
 
 
 }

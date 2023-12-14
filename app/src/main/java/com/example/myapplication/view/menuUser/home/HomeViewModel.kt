@@ -88,47 +88,22 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
     }
 
 
-    fun getRemainingCal(targetedCal : Int, achievedCal: Int): String {
-        val c = (targetedCal - achievedCal)
-
-        return c.toString()
-    }
-
-
-    fun getPercentProgress(dayTargetedCal : Int, achievedCal: Int) : Int {
-//        caloric target perhari
-        val a = dayTargetedCal.toDouble()
-//        caloric sekarang
-        val b = achievedCal.toDouble()
-//        percent progress
-        val c = (b/a)*100
-
-        return c.toInt()
-
-    }
-
-
     fun getAllLiveDataByCategory(filter : String, date : String): LiveData<List<MenuData>> {
         return mMenuDao.allMenusByCategory(sharedPreferencesHelper.getUserId().toString(), filter, date)
     }
 
-    fun getAmountCalAllLiveDataByUserId(date : String): LiveData<Int> {
+
+    fun getAmountCalAllLiveData(date : String): LiveData<Int> {
         return mMenuDao.getTotalAmountCal(sharedPreferencesHelper.getUserId().toString(), date )
     }
 
+    fun getAmountGramAllCarbsLiveData(date : String): LiveData<Double> {
+        return mMenuDao.getTotalServingTimesCarbs(sharedPreferencesHelper.getUserId().toString(), date )
+    }
 
-    fun getTodayDate(): Date {
-        val calendar = Calendar.getInstance()
-        return calendar.time
+    fun getAmountGramAllProteinLiveData(date : String): LiveData<Double> {
+        return mMenuDao.getTotalServingTimesProtein(sharedPreferencesHelper.getUserId().toString(), date )
     }
-    fun getFormattedDate(date : Date): String {
-        val simpleDateFormat = SimpleDateFormat("EEEE, yyyy-MM-dd", Locale.getDefault())
-        return simpleDateFormat.format(date)
-    }
-    fun getExactDateDays( days : Int ): Date {
-        val calendar = Calendar.getInstance()
-        calendar.add(Calendar.DAY_OF_MONTH, days)
-        return calendar.time
-    }
+
 
 }

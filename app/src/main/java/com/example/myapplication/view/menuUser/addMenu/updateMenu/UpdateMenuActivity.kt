@@ -19,6 +19,10 @@ import com.example.myapplication.databinding.ActivityUpdateMenuBinding
 import com.example.myapplication.view.menuUser.addMenu.addMenu.AddMenuViewModel
 import java.util.Calendar
 import java.util.Date
+import android.transition.TransitionManager
+import android.view.animation.AlphaAnimation
+import android.view.animation.Animation
+import com.example.myapplication.util.CalorieCalculator
 
 
 class UpdateMenuActivity : AppCompatActivity() {
@@ -47,16 +51,17 @@ class UpdateMenuActivity : AppCompatActivity() {
             val fat = menu.fatGram
             val serving = menu.servings
 
+
             txtName.text = name
-            txtCalCarbs.text = viewModel.getCalCarbs(carbs) + " cal"
-            txtCalFat.text = viewModel.getCalFat(fat) + " cal"
-            txtCalProtein.text = viewModel.getCalProtein(protein) + " cal"
+            txtCalCarbs.text = CalorieCalculator.getCalCarbs(carbs) + " cal"
+            txtCalFat.text = CalorieCalculator.getCalFat(fat) + " cal"
+            txtCalProtein.text = CalorieCalculator.getCalProtein(protein) + " cal"
 
             txtGrCarbs.text = "$carbs gr"
             txtGrFat.text = "$fat gr"
             txtGrProtein.text = "$protein gr"
 
-            val totalCal = viewModel.getTotalCal100(carbs,protein, fat)
+            val totalCal = CalorieCalculator.getTotalCal100(carbs,protein, fat)
             txtCalOneserving.text = "$totalCal cal"
 
 
@@ -65,6 +70,14 @@ class UpdateMenuActivity : AppCompatActivity() {
             editTextServingsNumber.text = editableServings
 
             txtTotalCalCalculated.text = "$calories cal"
+
+            calculatedCalCarbs.text = (serving * carbs).toString()
+            calculatedCalFat.text = (serving * fat).toString()
+            calculatedCalProtein.text = (serving * protein).toString()
+
+            txtDate.text = menu.date
+            txtCategory.text = menu.category
+
 
             btnUpdate.setOnClickListener {
                 val newTotalCal = txtTotalCalCalculated.text.toString()
@@ -86,16 +99,33 @@ class UpdateMenuActivity : AppCompatActivity() {
             }
 
 
+
+            btnSeeMoreData1serving.setOnClickListener {
+                if (layoutData1serving.visibility == View.VISIBLE) {
+                    val fadeOut = AlphaAnimation(1f, 0f)
+                    fadeOut.duration = 1
+                    layoutData1serving.startAnimation(fadeOut)
+
+                    layoutData1serving.visibility = View.GONE
+                    btnSeeMoreData1serving.setImageResource(R.drawable.baseline_keyboard_arrow_down_24)
+                } else {
+                    TransitionManager.beginDelayedTransition(layoutData1serving)
+                    layoutData1serving.visibility = View.VISIBLE
+                    btnSeeMoreData1serving.setImageResource(R.drawable.baseline_keyboard_arrow_up_24)
+                }
+            }
+
+
             editTextServingsNumber.addTextChangedListener(object : TextWatcher {
                 override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
                 }
 
                 override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                    txtTotalCalCalculated.text = viewModel.getTotalCal(viewModel.getTotalCal100(carbs,protein, fat).toString(), s.toString())
+                    txtTotalCalCalculated.text = CalorieCalculator.getTotalCal(CalorieCalculator.getTotalCal100(carbs,protein, fat).toString(), s.toString())
 
-                    calculatedCalCarbs.text = ((viewModel.getCalCarbs(carbs)).toDouble()*((s.toString()).toDoubleOrNull() ?: 0.0)).toString()
-                    calculatedCalFat.text = ((viewModel.getCalFat(fat)).toDouble()*((s.toString()).toDoubleOrNull() ?: 0.0)).toString()
-                    calculatedCalProtein.text = ((viewModel.getCalProtein(protein)).toDouble()*((s.toString()).toDoubleOrNull() ?: 0.0)).toString()
+                    calculatedCalCarbs.text = ((CalorieCalculator.getCalCarbs(carbs)).toDouble()*((s.toString()).toDoubleOrNull() ?: 0.0)).toString()
+                    calculatedCalFat.text = ((CalorieCalculator.getCalFat(fat)).toDouble()*((s.toString()).toDoubleOrNull() ?: 0.0)).toString()
+                    calculatedCalProtein.text = ((CalorieCalculator.getCalProtein(protein)).toDouble()*((s.toString()).toDoubleOrNull() ?: 0.0)).toString()
                 }
                 override fun afterTextChanged(s: Editable?) {
                 }

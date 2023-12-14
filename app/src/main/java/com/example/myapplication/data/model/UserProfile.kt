@@ -21,6 +21,7 @@ data class UserProfile(
     val height : String = "",
 
 
+//    targetnya, nilainya diisi pas awal regist
     val fatGram: String = "",
     val carbsGram: String = "",
     val proteinGram: String = "",

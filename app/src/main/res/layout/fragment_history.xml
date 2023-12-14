@@ -164,7 +164,7 @@
 
                 <RadioButton
                     android:id="@+id/radiobreakfast"
-                    android:layout_width="80dp"
+                    android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="10dp"
                     android:background="@drawable/radio_flat_selector"

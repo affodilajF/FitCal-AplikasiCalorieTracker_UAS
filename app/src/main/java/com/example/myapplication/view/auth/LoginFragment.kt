@@ -2,21 +2,25 @@ package com.example.myapplication.view.auth
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.util.Patterns
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Observer
+import com.example.myapplication.data.model.Admin
 import com.example.myapplication.databinding.FragmentLoginBinding
 import com.example.myapplication.view.menuAdmin.HomeAdminActivity
 import com.example.myapplication.view.menuUser.HomepageActivity
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 
 class LoginFragment : Fragment() {
     private lateinit var binding: FragmentLoginBinding
     private val viewModel: AuthViewModel by activityViewModels()
-
-    private var a : Int = 0;
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,7 +35,6 @@ class LoginFragment : Fragment() {
             val email = binding.editTxtGmail.text.toString()
             val password = binding.editTxtPassword.text.toString()
 
-            a += 1
             //Validasi email
             if (email.isEmpty()){
                 binding.editTxtGmail.error = "Email Harus Diisi"
@@ -53,9 +56,11 @@ class LoginFragment : Fragment() {
                 return@setOnClickListener
             }
 
+            navigateRole()
+
             viewModel.loginUser(email, password) { result ->
                 if (result) {
-                    startActivity(Intent(requireContext(), HomepageActivity::class.java))
+                    viewModel.fetchUserRoleFromFirestore()
             }
             }}
 
@@ -63,10 +68,22 @@ class LoginFragment : Fragment() {
         return view
     }
 
+
+    private fun navigateRole(){
+        viewModel.userRole.observe(viewLifecycleOwner, Observer { role ->
+            val destinationActivity = viewModel.navigateBasedOnRole()
+            destinationActivity?.let {
+                val intent = Intent(requireContext(), it)
+                startActivity(intent)
+            }
+        })
+    }
+
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-
-
     }
+
+
+
 
 }

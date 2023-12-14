@@ -61,6 +61,7 @@
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
+        android:layoutAnimation="@anim/layout_animation"
 
         android:paddingLeft="25dp"
         android:paddingRight="25dp"

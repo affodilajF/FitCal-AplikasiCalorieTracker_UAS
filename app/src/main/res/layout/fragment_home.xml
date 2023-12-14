@@ -178,7 +178,7 @@
                 android:id="@+id/constraintLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="10dp"
+                android:padding="12dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
@@ -187,7 +187,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
 
-                    app:indicatorColor="@color/ungu1"
+                    app:indicatorColor="@color/ungu5"
                     app:indicatorSize="130dp"
 
                     app:layout_constraintBottom_toBottomOf="@+id/progress_circular_indicator"
@@ -196,7 +196,7 @@
                     app:layout_constraintTop_toTopOf="parent"
                     app:trackColor="@color/ungu2"
                     app:trackCornerRadius="26dp"
-                    app:trackThickness="1dp" />
+                    app:trackThickness="2dp" />
 
                 <com.google.android.material.progressindicator.CircularProgressIndicator
                     android:id="@+id/progress_circular_indicator"
@@ -368,10 +368,11 @@
             android:layout_marginBottom="5dp"/>
 
         <com.google.android.material.progressindicator.LinearProgressIndicator
+            android:id="@+id/linear_progress_carbs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:indicatorColor="#ED2B69"
-            android:progress="30"
+            android:progress="20"
             app:indicatorSize="140dp"
             app:trackColor="@color/ungu2"
             app:trackCornerRadius="26dp"
@@ -383,7 +384,6 @@
             android:textSize="10sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="25 of 155 gr "
             android:layout_marginBottom="5dp"/>
 
 
@@ -405,6 +405,7 @@
                 android:layout_marginBottom="5dp"/>
 
             <com.google.android.material.progressindicator.LinearProgressIndicator
+                android:id="@+id/linear_progress_protein"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:indicatorColor="@color/biru1"
@@ -438,6 +439,7 @@
                 android:text="Fats"
                 android:layout_marginBottom="5dp"/>
             <com.google.android.material.progressindicator.LinearProgressIndicator
+                android:id="@+id/linear_progress_fat"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:indicatorColor="@color/oren"
@@ -479,7 +481,6 @@
         android:layout_height="wrap_content"
         android:background="@drawable/cardstyle"
         android:orientation="vertical"
-        android:layout_marginBottom="10dp"
         >
 
         <LinearLayout
@@ -620,14 +621,16 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="2dp"
             android:padding="8dp"
             android:background="@drawable/cardstyle3"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
             <TextView
-                android:gravity="center"
+                android:layout_weight="1"
+                android:gravity="right"
                 android:id="@+id/txt_targetcal"
                 android:layout_marginTop="3dp"
                 android:textStyle="bold"
@@ -635,16 +638,35 @@
                 android:textColor="@color/ungu1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="1278 cal / day"/>
+                android:text="1278 "/>
+
+            <TextView
+                android:layout_weight="1"
+                android:gravity="left"
+                android:id="@+id/txt_targetcal2"
+                android:layout_marginTop="3dp"
+                android:textStyle="bold"
+                android:textSize="10dp"
+                android:textColor="@color/ungu1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=" cal / day"/>
+
         </LinearLayout>
+
 
 
     </LinearLayout>
 
 
-
-
-
+        <LinearLayout
+            android:background="@color/ungu2"
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
+        </LinearLayout>
 
 
     </LinearLayout>

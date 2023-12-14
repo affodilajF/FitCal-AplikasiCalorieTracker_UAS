@@ -1,14 +1,17 @@
 package com.example.myapplication.view.menuUser.history
 
+import android.R
+import android.content.Context
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.data.model.MenuData
 import com.example.myapplication.databinding.ItemMenu2Binding
-import com.example.myapplication.databinding.ItemMenuBinding
-import java.text.SimpleDateFormat
-import java.util.Date
-import java.util.Locale
+
+
 
 typealias OnClickData = (MenuData) -> Unit
 
@@ -17,6 +20,8 @@ class MenuDataAdapter(
     RecyclerView.Adapter<MenuDataAdapter.ItemNoteViewHolder>() {
 
     private var listdata : List<MenuData> = ArrayList()
+
+//    private val context: Context? = null
 
     inner class ItemNoteViewHolder(private var binding: ItemMenu2Binding) : RecyclerView.ViewHolder(binding.root){
 
@@ -53,6 +58,9 @@ class MenuDataAdapter(
         listdata= newNotesList
         notifyDataSetChanged()
     }
+
+
+
 
 }
 

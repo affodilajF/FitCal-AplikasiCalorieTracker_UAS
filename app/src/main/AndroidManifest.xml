@@ -13,12 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication"
         tools:targetApi="31">
-        <activity
-            android:name=".view.HelloActivity"
-            android:exported="false" />
-        <activity
-            android:name=".view.HaiWellcomeActivity"
-            android:exported="false" />
+
         <activity
             android:name=".view.menuAdmin.HomeAdminActivity"
             android:exported="false" />
@@ -45,7 +40,8 @@
             android:exported="false" />
         <activity
             android:name=".view.getStarted.WellcomingActivity"
-            android:exported="false" /> <!-- <activity -->
+            android:exported="false" />
+        <!-- <activity -->
         <!-- android:name=".view.getStarted.SplashActivity" -->
         <!-- android:exported="false" /> -->
         <activity

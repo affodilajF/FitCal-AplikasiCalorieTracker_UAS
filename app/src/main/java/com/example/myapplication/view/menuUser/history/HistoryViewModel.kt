@@ -21,17 +21,16 @@ class HistoryViewModel(application: Application) : AndroidViewModel(application)
     private lateinit var mMenuDao : MenuDAO
     private lateinit var executorService : ExecutorService
 
+    //    shared pref
+    private val sharedPreferencesHelper =
+        SharedPreferencesHelper.getInstance(application.applicationContext)
+
 //    initialize all
     fun initDBRoom(context: Context){
         executorService = Executors.newSingleThreadExecutor()
         val db = MenuRoomDatabase.getDatabase(context)
         mMenuDao = db!!.menuDao()!!
     }
-
-//    shared pref
-    private val sharedPreferencesHelper =
-        SharedPreferencesHelper.getInstance(application.applicationContext)
-
 
     fun getAllLiveDataByCategory(filter : String, date : String): LiveData<List<MenuData>> {
         return if(filter=="All"){
@@ -41,18 +40,6 @@ class HistoryViewModel(application: Application) : AndroidViewModel(application)
         }
     }
 
-    fun getTodayDate(): Date {
-        val calendar = Calendar.getInstance()
-        return calendar.time
-    }
-    fun getFormattedDate(date : Date): String {
-        val simpleDateFormat = SimpleDateFormat("EEEE, yyyy-MM-dd", Locale.getDefault())
-        return simpleDateFormat.format(date)
-    }
-    fun getExactDateDays( days : Int ): Date {
-        val calendar = Calendar.getInstance()
-        calendar.add(Calendar.DAY_OF_MONTH, days)
-        return calendar.time
-    }
+//
 
 }

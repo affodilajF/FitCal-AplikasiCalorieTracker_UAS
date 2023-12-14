@@ -10,6 +10,8 @@ import com.example.myapplication.data.model.Admin
 import com.example.myapplication.data.model.Menu
 import com.example.myapplication.data.model.UserProfile
 import com.example.myapplication.util.SharedPreferencesHelper
+import com.example.myapplication.view.menuAdmin.HomeAdminActivity
+import com.example.myapplication.view.menuUser.HomepageActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.auth.User
@@ -21,11 +23,39 @@ class AuthViewModel(application: Application) : AndroidViewModel(application) {
         SharedPreferencesHelper.getInstance(application.applicationContext)
 
 ////    firestore
-////    private var firestore = FirebaseFirestore.getInstance()
-////    private val adminCollectionRef = firestore.collection("admins")
-//    private val adminListLiveData : MutableLiveData<List<Admin>> by lazy {
-//        MutableLiveData<List<Admin>>()
-//    }
+
+    private var firestore = FirebaseFirestore.getInstance()
+
+    private val _userRole = MutableLiveData<String?>()
+    val userRole: MutableLiveData<String?>
+        get() = _userRole
+
+    fun fetchUserRoleFromFirestore() {
+        val userId = auth.currentUser?.uid
+
+        userId?.let { uid ->
+            firestore.collection("userProfile")
+                .whereEqualTo("userIdAuth", uid)
+                .get()
+                .addOnSuccessListener { documents ->
+                    for (document in documents) {
+                        val role = document.getString("role")
+                        _userRole.value = role
+                    }
+                }
+                .addOnFailureListener {
+                }
+        }
+    }
+
+    fun navigateBasedOnRole(): Class<out Any>? {
+        val role = _userRole.value
+        return if (role == "admin") {
+            HomeAdminActivity::class.java
+        } else {
+            HomepageActivity::class.java
+        }
+    }
 
     fun registerUser(email: String, password: String, onResult: (Boolean) -> Unit) {
         auth.createUserWithEmailAndPassword(email, password)

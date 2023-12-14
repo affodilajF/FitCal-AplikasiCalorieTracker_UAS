@@ -363,8 +363,11 @@
                     />
 
                 <TextView
+                    android:textColorHint="@color/oren"
+                    android:textSize="15dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/oren"
                     android:id="@+id/calculated_cal_carbs"
-                    android:textSize="12dp"
                     android:inputType="numberDecimal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -400,8 +403,11 @@
                     />
 
                 <TextView
+                    android:textColorHint="@color/oren"
+                    android:textSize="15dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/oren"
                     android:id="@+id/calculated_cal_protein"
-                    android:textSize="12dp"
                     android:inputType="numberDecimal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -436,8 +442,11 @@
                     />
 
                 <TextView
+                    android:textColorHint="@color/oren"
+                    android:textSize="15dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/oren"
                     android:id="@+id/calculated_cal_fat"
-                    android:textSize="12dp"
                     android:inputType="numberDecimal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

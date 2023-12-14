@@ -39,80 +39,12 @@ class AddCustomMenuViewModel(application: Application) : AndroidViewModel(applic
         executorService.execute(runnable)
     }
 
-
-    fun formattedInt(param: String): Int {
-        return try {
-            val value = param.toIntOrNull() ?: 0
-            value
-        } catch (e: NumberFormatException) {
-            0
-        }
-    }
-
-    fun formattedDouble2(param: String): Double {
-        return try {
-            val value = param.toDoubleOrNull() ?: 0.0
-            String.format("%.0f", value).toDouble()
-        } catch (e: NumberFormatException) {
-            0.0
-        }
-    }
-    fun formattedDouble(param: String): Double {
-        return try {
-            val value = param.toDoubleOrNull() ?: 0.0
-            String.format("%.1f", value).toDouble()
-        } catch (e: NumberFormatException) {
-            0.0
-        }
-    }
     fun getUserId(): String {
         return sharedPreferencesHelper.getUserId() ?: ""
     }
 
 
-    fun getTodayDate(): Date {
-        val calendar = Calendar.getInstance()
-        return calendar.time
-    }
-    fun getFormattedDate(date : Date): String {
-        val simpleDateFormat = SimpleDateFormat("EEEE, yyyy-MM-dd", Locale.getDefault())
-        return simpleDateFormat.format(date)
-    }
 
-    fun getTotalCal(servings: String?, calories: String?): String {
-        val a = servings?.toDoubleOrNull() ?: 0.0
-        val b = calories?.toDoubleOrNull() ?: 0.0
-
-        return String.format("%.0f", a * b)
-    }
-    fun getCalculatedAllCalories(gram: String?, gram2: String?, gram3: String?): String {
-        val a = getCalCarbs(gram).toDouble()
-        val b = getCalProtein(gram2).toDouble()
-        val c = getCalFat(gram3).toDouble()
-
-        val totalCalories = a + b + c
-        return totalCalories.toString()
-    }
-
-
-    fun getCalCarbs(gram: String?): String {
-        val grams = gram?.toIntOrNull() ?: 0
-        val calories = grams * 4
-        return calories.toString()
-    }
-
-
-    fun getCalProtein(gram: String?): String {
-        val grams = gram?.toIntOrNull() ?: 0
-        val calories = grams * 4
-        return calories.toString()
-    }
-
-    fun getCalFat(gram: String?): String {
-        val grams = gram?.toIntOrNull() ?: 0
-        val calories = grams * 9
-        return calories.toString()
-    }
 
 
 }
