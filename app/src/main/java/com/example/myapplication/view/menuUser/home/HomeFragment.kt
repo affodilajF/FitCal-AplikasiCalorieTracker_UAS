@@ -7,17 +7,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
-import com.example.myapplication.data.model.MenuData
+import com.example.myapplication.data.model.room.MenuData
 import com.example.myapplication.databinding.FragmentHomeBinding
 import com.example.myapplication.util.CalorieCalculator
 import com.example.myapplication.util.DateUtils
-import com.example.myapplication.view.menuUser.HomepageViewModel
-import com.google.android.material.progressindicator.CircularProgressIndicator
-import java.util.concurrent.ExecutorService
-import java.util.concurrent.Executors
 
 class HomeFragment : Fragment()  {
 
@@ -106,6 +101,7 @@ class HomeFragment : Fragment()  {
 
 //                    call total
                     targetedCalByDay = (userObject.dayTargetedCalorie).toDouble().toInt()
+//                    targetedCalByDay = (200).toDouble().toInt()
 //                    call carbs
                     targetedGramCarbsByDay = (userObject.carbsGram).toDouble().toInt()
                     targetedGramProteinByDay = (userObject.proteinGram).toDouble().toInt()

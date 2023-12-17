@@ -3,7 +3,7 @@ package com.example.myapplication.view.menuUser.listMenu
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.myapplication.data.model.Menu
+import com.example.myapplication.data.model.firestore.Menu
 import com.google.firebase.firestore.FirebaseFirestore
 
 class ListMenuViewModel : ViewModel() {
@@ -32,7 +32,8 @@ class ListMenuViewModel : ViewModel() {
                         documentReference.get("fatGram").toString(),
                         documentReference.get("carbsGram").toString(),
                         documentReference.get("proteinGram").toString(),
-                ))
+                )
+                )
             }
             if(menu != null){
                 menuListLiveData.postValue(menu)

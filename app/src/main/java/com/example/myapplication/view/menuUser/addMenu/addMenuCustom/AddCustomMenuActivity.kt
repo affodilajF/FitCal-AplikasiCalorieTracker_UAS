@@ -11,7 +11,7 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.activity.viewModels
 import com.example.myapplication.R
-import com.example.myapplication.data.model.MenuData
+import com.example.myapplication.data.model.room.MenuData
 import com.example.myapplication.databinding.ActivityAddCustomMenuBinding
 import com.example.myapplication.util.CalorieCalculator
 import com.example.myapplication.util.DateUtils
@@ -82,7 +82,8 @@ class AddCustomMenuActivity : AppCompatActivity(), DatePickerDialog.OnDateSetLis
                 val h = selectedmealcategory
 
 //                cal100gr
-                val i : Int = (c*4)+(d*9)+(e*4)
+//                val i : Int = (c*4)+(d*9)+(e*4)
+                val i : Int = CalorieCalculator.getTotalCal100(c , d, e)
 
                 val menuFix = MenuData(userId = viewModel.getUserId(),
                     name = a, calAmount = b, carbsGram = c, fatGram = d, proteinGram = e,

@@ -497,32 +497,31 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:textSize="18dp"
-                    android:textStyle="bold"
-                    android:gravity="center"
+
+                    android:textSize="13dp"
                     android:textColor="@color/ungu3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="- - - - - - - - Your Goal - - - - - - - -"/>
+                    android:text="Your Goal"/>
 
                 <TextView
+
+                    android:textSize="15dp"
                     android:id="@+id/txt_dit_target"
                     android:layout_marginTop="8dp"
-                    android:gravity="center"
                     android:textColor="@color/oren"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Bulking"/>
-
 
             </LinearLayout>
 
 <!--            <LinearLayout-->
 <!--                android:background="@drawable/buttonstyle"-->
 <!--                android:padding="4dp"-->
-<!--                android:layout_weight="3"-->
+<!--                android:layout_weight="4"-->
 <!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
 <!--                android:orientation="horizontal">-->
 
 <!--                <TextView-->
@@ -538,18 +537,10 @@
 
         </LinearLayout>
 
-<!--        <TextView-->
-<!--            android:id="@+id/txt_targetcal"-->
-<!--            android:layout_marginTop="3dp"-->
-<!--            android:textStyle="bold"-->
-<!--            android:textSize="20dp"-->
-<!--            android:textColor="@color/ungu4"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="1278 cal / day"/>-->
+
 
         <LinearLayout
-            android:padding="15dp"
+            android:layout_marginBottom="15dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -569,7 +560,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="45"
-                    android:textSize="30dp"
+                    android:textSize="25dp"
+                    android:padding="4dp"
                  />
 
 
@@ -604,14 +596,15 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:text="45"
+                    android:textSize="25dp"
+                    android:padding="4dp"
                     android:id="@+id/tweight"
                     android:textColor="@color/ungu1"
                     android:background="@drawable/cardstyle3"
                     android:gravity="center"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="58"
-                    android:textSize="30dp"
                     android:textStyle="bold"/>
 
 
@@ -621,12 +614,12 @@
         </LinearLayout>
 
         <LinearLayout
+            android:background="@drawable/cardstyle3"
             android:layout_marginTop="2dp"
             android:padding="8dp"
-            android:background="@drawable/cardstyle3"
+
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_height="wrap_content">
 
             <TextView
                 android:layout_weight="1"
@@ -645,7 +638,6 @@
                 android:gravity="left"
                 android:id="@+id/txt_targetcal2"
                 android:layout_marginTop="3dp"
-                android:textStyle="bold"
                 android:textSize="10dp"
                 android:textColor="@color/ungu1"
                 android:layout_width="match_parent"

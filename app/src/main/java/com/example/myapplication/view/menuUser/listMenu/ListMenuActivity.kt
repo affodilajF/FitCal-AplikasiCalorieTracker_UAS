@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.myapplication.data.model.Menu
+import com.example.myapplication.data.model.firestore.Menu
 import com.example.myapplication.databinding.ActivityListMenuBinding
 import com.example.myapplication.view.menuUser.addMenu.addMenu.AddMenuActivity
 

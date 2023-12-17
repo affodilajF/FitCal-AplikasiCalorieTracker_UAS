@@ -157,7 +157,7 @@
         android:id="@+id/txt_title3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="* 1gr carbs = 3 cal, 1 gr rotein = 9 cal, 1gr fat = 4cal"
+        android:text="* 1gr carbs = 4 cal, 1 gr rotein = 4 cal, 1gr fat = 9 cal"
         android:textSize="10dp"
         android:textColor="@color/ungu1" />
 

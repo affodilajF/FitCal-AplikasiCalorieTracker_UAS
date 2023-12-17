@@ -1,14 +1,9 @@
 package com.example.myapplication.view.menuUser.history
 
-import android.R
-import android.content.Context
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.view.animation.Animation
-import android.view.animation.AnimationUtils
 import androidx.recyclerview.widget.RecyclerView
-import com.example.myapplication.data.model.MenuData
+import com.example.myapplication.data.model.room.MenuData
 import com.example.myapplication.databinding.ItemMenu2Binding
 
 

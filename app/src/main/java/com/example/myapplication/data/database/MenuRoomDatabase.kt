@@ -4,14 +4,19 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.example.myapplication.data.model.MenuData
+import com.example.myapplication.data.model.room.MenuAdmin
+import com.example.myapplication.data.model.room.MenuData
 
-@Database(entities = [MenuData::class],
-    version = 2, // Ubah versi ke versi yang lebih tinggi
+@Database(entities = [MenuData::class, MenuAdmin::class],
+    version = 3, // Ubah versi ke versi yang lebih tinggi
     exportSchema = false)
 abstract class MenuRoomDatabase : RoomDatabase() {
 
     abstract fun menuDao() : MenuDAO?
+//    dao menuData (milik user)
+
+    abstract fun menuAdminDao() : MenuAdminDAO?
+//    dao menu, milik admin
 
     companion object {
         @Volatile

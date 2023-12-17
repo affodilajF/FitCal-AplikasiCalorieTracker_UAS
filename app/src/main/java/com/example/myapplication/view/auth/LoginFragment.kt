@@ -11,9 +11,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
-import com.example.myapplication.data.model.Admin
 import com.example.myapplication.databinding.FragmentLoginBinding
-import com.example.myapplication.view.menuAdmin.HomeAdminActivity
 import com.example.myapplication.view.menuUser.HomepageActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -61,7 +59,7 @@ class LoginFragment : Fragment() {
             viewModel.loginUser(email, password) { result ->
                 if (result) {
                     viewModel.fetchUserRoleFromFirestore()
-            }
+                }
             }}
 
 

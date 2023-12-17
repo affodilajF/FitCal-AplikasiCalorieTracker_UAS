@@ -9,11 +9,9 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.activity.viewModels
-import androidx.lifecycle.ViewModelProvider
 import com.example.myapplication.R
-import com.example.myapplication.data.model.Menu
-import com.example.myapplication.data.model.MenuData
-import com.example.myapplication.data.repository.MenuDataRepository
+import com.example.myapplication.data.model.firestore.Menu
+import com.example.myapplication.data.model.room.MenuData
 import com.example.myapplication.databinding.ActivityAddMenuBinding
 import com.example.myapplication.util.CalorieCalculator
 import com.example.myapplication.util.DateUtils

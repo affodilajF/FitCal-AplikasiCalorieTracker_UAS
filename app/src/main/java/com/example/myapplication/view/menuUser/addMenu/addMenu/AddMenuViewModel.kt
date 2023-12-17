@@ -5,7 +5,7 @@ import android.content.Context
 import androidx.lifecycle.AndroidViewModel
 import com.example.myapplication.data.database.MenuDAO
 import com.example.myapplication.data.database.MenuRoomDatabase
-import com.example.myapplication.data.model.MenuData
+import com.example.myapplication.data.model.room.MenuData
 import com.example.myapplication.util.SharedPreferencesHelper
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors

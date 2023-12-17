@@ -7,8 +7,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
-import com.example.myapplication.data.model.MenuData
-import com.example.myapplication.data.model.UserProfile
+import com.example.myapplication.data.model.room.MenuData
 
 @Dao
 interface MenuDAO {
@@ -17,10 +16,10 @@ interface MenuDAO {
     fun insert (menu : MenuData)
 
     @Update
-    fun update(menu:MenuData)
+    fun update(menu: MenuData)
 
     @Delete
-    fun delete(menu:MenuData)
+    fun delete(menu: MenuData)
 
     @get:Query("SELECT * from menu01_table ORDER BY id DESC")
     val allMenus : LiveData<List<MenuData>>

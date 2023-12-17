@@ -3,11 +3,8 @@ package com.example.myapplication.view.menuUser.personalData
 import android.app.Application
 import android.util.Log
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.ViewModel
-import com.example.myapplication.data.model.Menu
-import com.example.myapplication.data.model.UserProfile
+import com.example.myapplication.data.model.firestore.UserProfile
 import com.example.myapplication.util.SharedPreferencesHelper
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
 class PersonalDataViewModel(application: Application) : AndroidViewModel(application) {

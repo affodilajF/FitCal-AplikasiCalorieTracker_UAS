@@ -3,7 +3,7 @@ package com.example.myapplication.view.menuUser.listMenu
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.myapplication.data.model.Menu
+import com.example.myapplication.data.model.firestore.Menu
 import com.example.myapplication.databinding.ItemMenuBinding
 
 typealias OnClickData = (Menu) -> Unit

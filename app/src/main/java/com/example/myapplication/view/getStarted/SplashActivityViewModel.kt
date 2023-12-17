@@ -12,4 +12,8 @@ class SplashActivityViewModel(application: Application) : AndroidViewModel(appli
     fun checkLoginStatus() : Boolean{
         return sharedPreferencesHelper.isLoggedIn()
     }
+
+    fun getRole():String{
+        return sharedPreferencesHelper.getUserRole().toString()
+    }
 }

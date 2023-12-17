@@ -1,27 +1,16 @@
 package com.example.myapplication.view.menuUser.addMenu.updateMenu
 
-import android.annotation.SuppressLint
-import android.app.DatePickerDialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.Toast
 import androidx.activity.viewModels
 import com.example.myapplication.R
-import com.example.myapplication.data.model.Menu
-import com.example.myapplication.data.model.MenuData
-import com.example.myapplication.databinding.ActivityAddMenuBinding
+import com.example.myapplication.data.model.room.MenuData
 import com.example.myapplication.databinding.ActivityUpdateMenuBinding
-import com.example.myapplication.view.menuUser.addMenu.addMenu.AddMenuViewModel
-import java.util.Calendar
-import java.util.Date
 import android.transition.TransitionManager
 import android.view.animation.AlphaAnimation
-import android.view.animation.Animation
 import com.example.myapplication.util.CalorieCalculator
 
 

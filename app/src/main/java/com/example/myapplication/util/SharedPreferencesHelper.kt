@@ -14,6 +14,8 @@ class SharedPreferencesHelper(private val context: Context) {
         private const val KEY_IS_LOGGED_IN = "isLoggedIn"
         private const val KEY_USERNAME = "username"
         private const val KEY_PHONE = "phone"
+        private const val KEY_ROLE = "role"
+
 
 
         private const val KEY_DAY_TARGETED_CALORIE = "1"
@@ -61,6 +63,17 @@ class SharedPreferencesHelper(private val context: Context) {
     fun getUserId(): String? {
         return sharedPreferences.getString(KEY_USER_ID, null)
     }
+
+    fun saveUserRole(userId: String) {
+        val editor = sharedPreferences.edit()
+        editor.putString(KEY_ROLE, userId)
+        editor.apply()
+    }
+
+    fun getUserRole(): String? {
+        return sharedPreferences.getString(KEY_ROLE, null)
+    }
+
 
     fun saveUserPhone(userPhone: String) {
         val editor = sharedPreferences.edit()

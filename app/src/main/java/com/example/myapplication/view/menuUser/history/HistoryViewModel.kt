@@ -6,13 +6,8 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import com.example.myapplication.data.database.MenuDAO
 import com.example.myapplication.data.database.MenuRoomDatabase
-import com.example.myapplication.data.model.MenuData
+import com.example.myapplication.data.model.room.MenuData
 import com.example.myapplication.util.SharedPreferencesHelper
-import com.google.firebase.auth.FirebaseAuth
-import java.text.SimpleDateFormat
-import java.util.Calendar
-import java.util.Date
-import java.util.Locale
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 

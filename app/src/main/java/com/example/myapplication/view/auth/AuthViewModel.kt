@@ -6,11 +6,9 @@ import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.myapplication.data.model.Admin
-import com.example.myapplication.data.model.Menu
-import com.example.myapplication.data.model.UserProfile
+
 import com.example.myapplication.util.SharedPreferencesHelper
-import com.example.myapplication.view.menuAdmin.HomeAdminActivity
+import com.example.myapplication.view.menuAdmin.HomepageAdminActivity
 import com.example.myapplication.view.menuUser.HomepageActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -51,11 +49,14 @@ class AuthViewModel(application: Application) : AndroidViewModel(application) {
     fun navigateBasedOnRole(): Class<out Any>? {
         val role = _userRole.value
         return if (role == "admin") {
-            HomeAdminActivity::class.java
+            saveUserRoleSharePrefs("admin")
+            HomepageAdminActivity::class.java
         } else {
+            saveUserRoleSharePrefs("user")
             HomepageActivity::class.java
         }
     }
+
 
     fun registerUser(email: String, password: String, onResult: (Boolean) -> Unit) {
         auth.createUserWithEmailAndPassword(email, password)
@@ -95,7 +96,9 @@ class AuthViewModel(application: Application) : AndroidViewModel(application) {
         sharedPreferencesHelper.saveUserPhone(user)
     }
 
+    fun saveUserRoleSharePrefs(user : String){
+        sharedPreferencesHelper.saveUserRole(user)
+    }
+
 
 }
-
-

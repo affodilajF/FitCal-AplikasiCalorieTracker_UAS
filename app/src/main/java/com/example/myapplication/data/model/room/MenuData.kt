@@ -1,4 +1,4 @@
-package com.example.myapplication.data.model
+package com.example.myapplication.data.model.room
 
 import androidx.annotation.NonNull
 import androidx.room.Entity
@@ -13,10 +13,8 @@ data class MenuData(
     @NonNull
     val id: Int = 0,
 
-//    stored in room
 
 //    get from firebase auth
-
     var userId: String = "",
     val name: String = "",
 

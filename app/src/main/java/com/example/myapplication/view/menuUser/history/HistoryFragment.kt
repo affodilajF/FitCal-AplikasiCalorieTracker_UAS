@@ -1,6 +1,5 @@
 package com.example.myapplication.view.menuUser.history
 
-import android.app.ActivityOptions
 import android.content.Intent
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
@@ -10,10 +9,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
-import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myapplication.R
-import com.example.myapplication.data.model.MenuData
+import com.example.myapplication.data.model.room.MenuData
 import com.example.myapplication.databinding.FragmentHistoryBinding
 import com.example.myapplication.util.DateUtils
 import com.example.myapplication.view.menuUser.addMenu.addMenuCustom.AddCustomMenuActivity
