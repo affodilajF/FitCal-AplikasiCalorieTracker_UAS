@@ -60,9 +60,10 @@ class UpdateMenuActivity : AppCompatActivity() {
 
             txtTotalCalCalculated.text = "$calories cal"
 
-            calculatedCalCarbs.text = (serving * carbs).toString()
-            calculatedCalFat.text = (serving * fat).toString()
-            calculatedCalProtein.text = (serving * protein).toString()
+
+            calculatedCalCarbs.text = CalorieCalculator.getCalCarbsOnUserServing(carbs.toString(), serving.toString())
+            calculatedCalFat.text = CalorieCalculator.getCalFatOnUserServing(fat.toString(), serving.toString())
+            calculatedCalProtein.text = CalorieCalculator.getCalProteinOnUserServing(protein.toString(), serving.toString())
 
             txtDate.text = menu.date
             txtCategory.text = menu.category
