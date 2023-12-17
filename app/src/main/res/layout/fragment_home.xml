@@ -471,8 +471,92 @@
             app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
         </LinearLayout>
 
+<!--        BAgian data goal 1-->
 
-<!--        BAGIAN Data -->
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:paddingBottom="15dp"
+        android:paddingTop="20dp"
+        android:paddingRight="25dp"
+        android:paddingLeft="25dp"
+        android:background="@drawable/cardstyle4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_marginBottom="10dp"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:textSize="13dp"
+                android:textColor="@color/ungu3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Your Goal"/>
+
+            <TextView
+
+                android:textStyle="bold"
+                android:textSize="20dp"
+                android:id="@+id/txt_dit_target"
+                android:layout_marginTop="0dp"
+                android:textColor="@color/oren"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Bulking"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:background="@drawable/buttonstyle"
+                android:layout_marginTop="2dp"
+                android:padding="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_weight="1"
+                    android:gravity="right"
+                    android:id="@+id/txt_targetcal"
+                    android:layout_marginTop="3dp"
+                    android:textStyle="bold"
+                    android:textSize="20dp"
+                    android:textColor="@color/ungu1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="1278 "/>
+
+                <TextView
+                    android:layout_weight="1.2"
+                    android:gravity="left"
+                    android:id="@+id/txt_targetcal2"
+                    android:layout_marginTop="3dp"
+                    android:textSize="10dp"
+                    android:textColor="@color/ungu1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text=" cal / day"/>
+
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+<!--        BAGIAN Data goal 2 -->
     <LinearLayout
         android:padding="20dp"
         android:layout_marginTop="10dp"
@@ -489,32 +573,32 @@
             android:orientation="horizontal"
             >
 
-            <LinearLayout
-                android:layout_marginBottom="10dp"
-                android:layout_weight="1"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
+<!--            <LinearLayout-->
+<!--                android:layout_marginBottom="10dp"-->
+<!--                android:layout_weight="1"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:orientation="vertical">-->
 
-                <TextView
+<!--                <TextView-->
 
-                    android:textSize="13dp"
-                    android:textColor="@color/ungu3"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Your Goal"/>
+<!--                    android:textSize="13dp"-->
+<!--                    android:textColor="@color/ungu3"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="Your Goal"/>-->
 
-                <TextView
+<!--                <TextView-->
 
-                    android:textSize="15dp"
-                    android:id="@+id/txt_dit_target"
-                    android:layout_marginTop="8dp"
-                    android:textColor="@color/oren"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Bulking"/>
+<!--                    android:textSize="15dp"-->
+<!--                    android:id="@+id/txt_dit_target"-->
+<!--                    android:layout_marginTop="8dp"-->
+<!--                    android:textColor="@color/oren"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="Bulking"/>-->
 
-            </LinearLayout>
+<!--            </LinearLayout>-->
 
 <!--            <LinearLayout-->
 <!--                android:background="@drawable/buttonstyle"-->
@@ -613,42 +697,8 @@
 
         </LinearLayout>
 
-        <LinearLayout
-            android:background="@drawable/cardstyle3"
-            android:layout_marginTop="2dp"
-            android:padding="8dp"
-
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:layout_weight="1"
-                android:gravity="right"
-                android:id="@+id/txt_targetcal"
-                android:layout_marginTop="3dp"
-                android:textStyle="bold"
-                android:textSize="20dp"
-                android:textColor="@color/ungu1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="1278 "/>
-
-            <TextView
-                android:layout_weight="1"
-                android:gravity="left"
-                android:id="@+id/txt_targetcal2"
-                android:layout_marginTop="3dp"
-                android:textSize="10dp"
-                android:textColor="@color/ungu1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text=" cal / day"/>
-
-        </LinearLayout>
-
-
-
     </LinearLayout>
+<!--        INIIIII     -->
 
 
         <LinearLayout

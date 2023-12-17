@@ -3,79 +3,429 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".view.menuUser.profile.ProfileFragment"
     android:orientation="vertical"
-    android:padding="60dp"
-    >
+    android:background="@color/ungu2">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
     <LinearLayout
-        android:layout_marginTop="100dp"
+        android:paddingTop="50dp"
+        android:paddingBottom="30dp"
+        android:background="@color/ungu4"
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <androidx.cardview.widget.CardView
+            android:layout_gravity="center"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+           >
 
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/piccat2" />
+
+        </androidx.cardview.widget.CardView>
+
+
+        <TextView
+            android:id="@+id/txt_usn"
+            android:layout_marginTop="20dp"
+            android:textSize="20dp"
+            android:textColor="@color/ungu2"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Affodilaj Fadil"/>
+
+        <TextView
+            android:id="@+id/txt_gmail"
+            android:textColor="@color/ungu5"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="fadhilaain.fa@gmail.com"/>
+
+    </LinearLayout>
+
+
+<!--    bawah -->
+    <LinearLayout
+        android:padding="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <LinearLayout
+        android:background="@drawable/cardstyle4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+        <LinearLayout
+            android:padding="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/txt_namee"
-            android:textColor="@color/ungu4"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Username"
-            android:textSize="15dp"/>
-        <TextView
-            android:padding="13dp"
-            android:background="@drawable/cardstyle3"
-            android:id="@+id/txt_name"
-            android:textColor="@color/ungu4"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Your food name"
-            android:textSize="20dp"/>
+            <ImageView
+
+                android:layout_width="50dp"
+                android:layout_height="28dp"
+                android:src="@drawable/baseline_self_improvement_24"
+                />
+
+            <TextView
+                android:id="@+id/txt_personaldata"
+                android:textSize="20dp"
+                android:layout_weight="4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Personal Data"/>
+
+            <ImageView
+                android:id="@+id/imagebtnview_personaldata"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/baseline_keyboard_arrow_right_24"
+                />
+        </LinearLayout>
+<!--        disini-->
+
+        <LinearLayout
 
 
-        <TextView
-            android:layout_marginTop="20dp"
-            android:id="@+id/txt_phonee"
-            android:textColor="@color/ungu4"
+            android:id="@+id/layout_personaldata"
+            android:paddingTop="10dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:background="@color/ungu6"
+            android:layout_width="match_parent"
+            android:layout_height="230dp"
+            android:orientation="vertical">
+
+<!--height weight -->
+            <LinearLayout
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+
+                <LinearLayout
+                    android:layout_marginEnd="16dp"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:textColor="@color/white"
+                        android:textSize="10dp"
+                        android:layout_marginBottom="5dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Height (cm)"/>
+
+                    <TextView
+                        android:id="@+id/height"
+                        android:textSize="15dp"
+                        android:padding="10dp"
+                        android:textColor="@color/white"
+                        android:textColorHint="@color/white"
+                        android:background="@drawable/buttonstyle5"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:hint="Cm" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+                    <TextView
+                        android:textColor="@color/white"
+                        android:textSize="10dp"
+                        android:layout_marginBottom="5dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Current Weight (kg)"/>
+
+                    <TextView
+                        android:id="@+id/cweight"
+                        android:textSize="15dp"
+                        android:padding="10dp"
+                        android:textColor="@color/white"
+                        android:textColorHint="@color/white"
+                        android:background="@drawable/buttonstyle5"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:hint="Kg" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginStart="16dp"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:textColor="@color/white"
+                        android:textSize="10dp"
+                        android:layout_marginBottom="5dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Target Weight (kg)"/>
+
+                    <TextView
+                        android:id="@+id/tweight"
+                        android:textSize="15dp"
+                        android:padding="10dp"
+                        android:textColor="@color/white"
+                        android:textColorHint="@color/white"
+                        android:background="@drawable/buttonstyle5"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:hint="Kg" />
+                </LinearLayout>
+            </LinearLayout>
+<!--            end height weight-->
+<!--            start calorie dll -->
+
+
+
+            <LinearLayout
+                android:layout_marginTop="10dp"
+                android:paddingBottom="15dp"
+                android:paddingTop="20dp"
+                android:paddingRight="25dp"
+                android:paddingLeft="25dp"
+                android:background="@drawable/cardstyle4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_marginBottom="10dp"
+                    android:layout_weight="1.5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:textSize="13dp"
+                        android:textColor="@color/ungu3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Your Goal"/>
+
+                    <TextView
+
+                        android:textStyle="bold"
+                        android:textSize="20dp"
+                        android:id="@+id/txt_dit_target"
+                        android:layout_marginTop="0dp"
+                        android:textColor="@color/oren"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Bulking"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:background="@drawable/buttonstyle"
+                        android:layout_marginTop="2dp"
+                        android:padding="8dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_weight="1"
+                            android:gravity="right"
+                            android:id="@+id/txt_targetcal"
+                            android:layout_marginTop="3dp"
+                            android:textStyle="bold"
+                            android:textSize="20dp"
+                            android:textColor="@color/ungu1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="1278 "/>
+
+                        <TextView
+                            android:layout_weight="1.2"
+                            android:gravity="left"
+                            android:id="@+id/txt_targetcal2"
+                            android:layout_marginTop="3dp"
+                            android:textSize="10dp"
+                            android:textColor="@color/ungu1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text=" cal / day"/>
+
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+<!--            end bulking and cal target -->
+<!--            start carbs dll -->
+
+            </LinearLayout>
+<!--        disini-->
+
+        <com.google.android.material.divider.MaterialDivider
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Phone Number"
-            android:textSize="15dp"/>
-        <TextView
-            android:padding="13dp"
-            android:background="@drawable/cardstyle3"
-            android:id="@+id/txt_phone"
-            android:textColor="@color/ungu4"
+            app:dividerInsetStart="16dp"
+            app:dividerInsetEnd="16dp"/>
+
+
+        <LinearLayout
+            android:padding="15dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Your food name"
-            android:textSize="20dp"/>
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="28dp"
+                android:src="@drawable/baseline_person_2_24"
+                />
+
+            <TextView
+                android:textSize="20dp"
+                android:layout_weight="4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Account"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/baseline_keyboard_arrow_right_24"
+                />
+        </LinearLayout>
+
+        <com.google.android.material.divider.MaterialDivider
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:dividerInsetStart="16dp"
+            app:dividerInsetEnd="16dp"/>
+
+
+        <LinearLayout
+            android:padding="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="28dp"
+                android:src="@drawable/baseline_notifications_active_24"
+                />
+
+            <TextView
+                android:textSize="20dp"
+                android:layout_weight="4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Notification"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/baseline_keyboard_arrow_right_24"
+                />
+        </LinearLayout>
+
+
+
+        <com.google.android.material.divider.MaterialDivider
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:dividerInsetStart="16dp"
+            app:dividerInsetEnd="16dp"/>
+
+        <LinearLayout
+            android:padding="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="28dp"
+                android:src="@drawable/baseline_settings_24"
+                />
+
+            <TextView
+                android:textSize="20dp"
+                android:layout_weight="4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Settings"/>
+
+            <ImageView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/baseline_keyboard_arrow_right_24"
+                />
+        </LinearLayout>
+
+
+
+
+
 
 
 
 
     </LinearLayout>
+    </LinearLayout>
 
 
 
 
-
-
-
-
-
-
-
-
-
-    <Button
-        android:layout_marginTop="100dp"
-        android:textColor="@color/white"
-        android:background="@drawable/cardstyle5"
-        android:id="@+id/btn_logout"
+    <LinearLayout
+        android:paddingTop="8dp"
+        android:paddingBottom="20dp"
+        android:paddingRight="60dp"
+        android:paddingLeft="60dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="logout"/>
+        android:layout_height="match_parent">
+        <Button
+            android:textColor="@color/white"
+            android:background="@drawable/buttonstyle2"
+            android:id="@+id/btn_logout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="logout"/>
+    </LinearLayout>
+
+
+    </LinearLayout>
+    </ScrollView>
+
 
 </LinearLayout>

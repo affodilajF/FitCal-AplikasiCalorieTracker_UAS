@@ -25,6 +25,7 @@ class PersonalDataViewModel(application: Application) : AndroidViewModel(applica
         val userIdAuth = sharedPreferencesHelper.getUserId()
         val userName = sharedPreferencesHelper.getUsername()
         val userPhone = sharedPreferencesHelper.getUserPhone()
+        val gemail = sharedPreferencesHelper.getUserGmail()
 
         val dayTargetedCalorie= p1DayTarget
         val dietGoal = p2DietGoal
@@ -37,10 +38,11 @@ class PersonalDataViewModel(application: Application) : AndroidViewModel(applica
         val proteGr = p8protein
         val fatGr = p9fat
 
-        val userprofile = if (userIdAuth != null && userName != null && userPhone != null) {
+        val userprofile = if (userIdAuth != null && userName != null && userPhone != null && gemail != null) {
             UserProfile(userIdAuth = userIdAuth, userName =  userName, userPhone = userPhone, dayTargetedCalorie = dayTargetedCalorie,
                 dietGoal = dietGoal, currentWeight = currentWeight, targetedWeight = targetedWeight, height = height,
-                 carbsGram = carbsGr, proteinGram = proteGr, fatGram = fatGr
+                 carbsGram = carbsGr, proteinGram = proteGr, fatGram = fatGr,
+                email = gemail
                 )
         } else {
             null

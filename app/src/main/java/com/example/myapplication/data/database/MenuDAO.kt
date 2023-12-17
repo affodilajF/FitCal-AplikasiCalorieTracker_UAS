@@ -53,6 +53,9 @@ interface MenuDAO {
     @Query("SELECT SUM(CAST(servings AS REAL) * CAST(proteinGram AS REAL)) AS totalServingTimesProtein FROM menu01_table WHERE userId = :userId AND date = :date")
     fun getTotalServingTimesProtein(userId: String, date: String): LiveData<Double>
 
+    @Query("SELECT SUM(CAST(servings AS REAL) * CAST(fatGram AS REAL)) AS totalServingTimesProtein FROM menu01_table WHERE userId = :userId AND date = :date")
+    fun getTotalServingTimesFat(userId: String, date: String): LiveData<Double>
+
 
 
 

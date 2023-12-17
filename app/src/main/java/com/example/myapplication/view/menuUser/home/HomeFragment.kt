@@ -33,6 +33,7 @@ class HomeFragment : Fragment()  {
     private var targetedCalByDay : Int = 0
     private var targetedGramCarbsByDay : Int = 0
     private var targetedGramProteinByDay : Int = 0
+    private var targetedGramFatByDay : Int = 0
 
 
     override fun onCreateView(
@@ -94,9 +95,9 @@ class HomeFragment : Fragment()  {
                     tweight.text = userObject.targetedWeight
                     txtTargetcal.text = userObject.dayTargetedCalorie
 
-                    carbsTarget.text = "25 of " + userObject.carbsGram + "gr"
-                    proteinTarget.text = "67 of " + userObject.proteinGram+ " gr"
-                    fatTarget.text = "69 of " + userObject.fatGram+ " gr"
+                    carbsTarget.text = "0 of " + userObject.carbsGram + "gr"
+                    proteinTarget.text = "0 of " + userObject.proteinGram+ " gr"
+                    fatTarget.text = "0 of " + userObject.fatGram+ " gr"
 
 
 //                    call total
@@ -105,6 +106,8 @@ class HomeFragment : Fragment()  {
 //                    call carbs
                     targetedGramCarbsByDay = (userObject.carbsGram).toDouble().toInt()
                     targetedGramProteinByDay = (userObject.proteinGram).toDouble().toInt()
+                    targetedGramFatByDay = (userObject.fatGram).toDouble().toInt()
+
 
                     getRemainingCal(targetedCalByDay)
 
@@ -135,7 +138,7 @@ class HomeFragment : Fragment()  {
 
 
 
-
+//          carbs
             val liveDataDoubleAchievedCarbsGram : LiveData<Double> = viewModel.getAmountGramAllCarbsLiveData(txtDateFilter)
             liveDataDoubleAchievedCarbsGram.observe(viewLifecycleOwner) { dobValueCarbs ->
 
@@ -168,6 +171,28 @@ class HomeFragment : Fragment()  {
                     animateProgressBarProtein(0)
                 }
             }
+
+//            fat
+            val liveDataDoubleAchievedFatGram : LiveData<Double> = viewModel.getAmountGramAllFatLiveData(txtDateFilter)
+            liveDataDoubleAchievedFatGram.observe(viewLifecycleOwner) { dobValueFat ->
+
+                if(dobValueFat != null){
+
+                    val progressIndFat = CalorieCalculator.getPercentProgressEachComponentGram(targetedGramProteinByDay, dobValueFat)
+                    binding.fatTarget.text = dobValueFat.toInt().toString() +" of " + targetedGramProteinByDay + " gr"
+                    animateProgressBarFat(progressIndFat)
+
+
+                } else {
+                    binding.fatTarget.text = "0 of " + targetedGramProteinByDay + " gr"
+                    animateProgressBarFat(0)
+                }
+            }
+
+
+
+
+
         }
 
 
@@ -212,6 +237,20 @@ class HomeFragment : Fragment()  {
             }
 
             progressAnimator1.setIntValues(binding.linearProgressProtein.progress, progressInd)
+
+            progressAnimator1.start()
+        }
+
+        private fun animateProgressBarFat(progressInd : Int){
+            progressAnimator1 = ValueAnimator.ofInt(0, 100)
+            progressAnimator1.duration = 400
+
+            progressAnimator1.addUpdateListener { animator ->
+                val animatedValue = animator.animatedValue as Int
+                binding.linearProgressFat.progress = animatedValue
+            }
+
+            progressAnimator1.setIntValues(binding.linearProgressFat.progress, progressInd)
 
             progressAnimator1.start()
         }

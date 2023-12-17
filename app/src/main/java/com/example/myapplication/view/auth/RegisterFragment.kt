@@ -58,6 +58,8 @@ class RegisterFragment : Fragment() {
                     viewModel.saveUserIdSharePrefs(viewModel.getUserId())
                     viewModel.saveUserNameSharePrefs(binding.editTextUsername.text.toString())
                     viewModel.saveUserPhoneSharePrefs(binding.editTxtPhone.text.toString())
+                    viewModel.saveUserEmailSharePrefs(binding.editTxtEmail.text.toString())
+
 //                    Toast.makeText(requireContext(), selectedDate.toString(), Toast.LENGTH_SHORT).show()
                 }
             }

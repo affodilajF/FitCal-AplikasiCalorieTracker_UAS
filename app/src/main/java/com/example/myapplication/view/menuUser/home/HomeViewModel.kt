@@ -21,14 +21,10 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
     private lateinit var mMenuDao : MenuDAO
     private lateinit var executorService : ExecutorService
 
-    private val auth: FirebaseAuth = FirebaseAuth.getInstance()
 
     private var firestore = FirebaseFirestore.getInstance()
     private val userProfileCollectionRef = firestore.collection("userProfile")
 
-    fun getUserId(): String {
-        return auth.currentUser?.uid ?: ""
-    }
 
     val userProfileListLiveData : MutableLiveData<List<UserProfile>> by lazy {
         MutableLiveData<List<UserProfile>>()
@@ -47,7 +43,7 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
 
     fun getUserDataByUserId() {
         userProfileCollectionRef
-            .whereEqualTo("userIdAuth", getUserId())
+            .whereEqualTo("userIdAuth", sharedPreferencesHelper.getUserId())
             .addSnapshotListener { snapshots, error ->
                 if (error != null) {
                     Log.d("MainActivity", "Error listening for budget changes", error)
@@ -62,6 +58,9 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
                             userIdAuth = documentReference.get("userIdAuth").toString(),
                             userName = documentReference.get("userName").toString(),
                             userPhone = documentReference.get("userPhone").toString(),
+                            email = documentReference.get("email").toString(),
+
+
                             dayTargetedCalorie = documentReference.get("dayTargetedCalorie").toString(),
                             dietGoal = documentReference.get("dietGoal").toString(),
                             currentWeight = documentReference.get("currentWeight").toString(),
@@ -77,8 +76,9 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
                     userProfileListLiveData.postValue(data)
                     satuUser = data[0]
 
-                    sharedPreferencesHelper.saveUsername(satuUser.userName)
-                    sharedPreferencesHelper.saveUserPhone(satuUser.userPhone)
+//                    sharedPreferencesHelper.saveUsername(satuUser.userName)
+//                    sharedPreferencesHelper.saveUserPhone(satuUser.userPhone)
+//                    sharedPreferencesHelper.saveUserGmail(satuUser.email)
                 }
             }
     }
@@ -99,6 +99,10 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
 
     fun getAmountGramAllProteinLiveData(date : String): LiveData<Double> {
         return mMenuDao.getTotalServingTimesProtein(sharedPreferencesHelper.getUserId().toString(), date )
+    }
+
+    fun getAmountGramAllFatLiveData(date : String): LiveData<Double> {
+        return mMenuDao.getTotalServingTimesFat(sharedPreferencesHelper.getUserId().toString(), date )
     }
 
 

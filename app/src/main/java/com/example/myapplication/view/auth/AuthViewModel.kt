@@ -76,6 +76,7 @@ class AuthViewModel(application: Application) : AndroidViewModel(application) {
                 if (task.isSuccessful) {
                     onResult(true)
                     sharedPreferencesHelper.setLoggedIn(true)
+                    sharedPreferencesHelper.saveUserId(getUserId())
                 } else {
                     onResult(false)
                 }
@@ -96,8 +97,12 @@ class AuthViewModel(application: Application) : AndroidViewModel(application) {
         sharedPreferencesHelper.saveUserPhone(user)
     }
 
-    fun saveUserRoleSharePrefs(user : String){
+    private fun saveUserRoleSharePrefs(user : String){
         sharedPreferencesHelper.saveUserRole(user)
+    }
+
+    fun saveUserEmailSharePrefs(user : String){
+        sharedPreferencesHelper.saveUserGmail(user)
     }
 
 
