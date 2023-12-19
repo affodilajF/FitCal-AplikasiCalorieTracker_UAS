@@ -18,14 +18,12 @@ import com.example.myapplication.view.menuUser.HomepageActivity
 import java.util.Date
 
 class PersonalDataActivity : AppCompatActivity() {
-
     private var temporaryCarbs = ""
     private var temporaryProtein= ""
     private var temporaryFat = ""
 
     private lateinit var binding : ActivityPersonalDataBinding
     private lateinit var viewModel: PersonalDataViewModel
-
 
     private lateinit var dietgoalcategoryarray : Array<String>
     private var selecteddietgoalcategory = ""
@@ -51,12 +49,9 @@ class PersonalDataActivity : AppCompatActivity() {
             inputCarbs.addTextChangedListener(object : TextWatcher {
                 override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
                 }
-
                 override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                     temporaryCarbs = s.toString()
                     txtTotalCalCalculated.text = CalorieCalculator.getCalculatedAllCalories(temporaryCarbs, temporaryProtein, temporaryFat)
-
-
                 }
                 override fun afterTextChanged(s: Editable?) {
                 }
@@ -69,8 +64,6 @@ class PersonalDataActivity : AppCompatActivity() {
                 override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                     temporaryProtein = s.toString()
                     txtTotalCalCalculated.text = CalorieCalculator.getCalculatedAllCalories(temporaryCarbs, temporaryProtein, temporaryFat)
-
-
                 }
                 override fun afterTextChanged(s: Editable?) {
                 }

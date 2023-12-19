@@ -77,10 +77,8 @@ class HomeFragment : Fragment()  {
             }
         }
         getAllMenus()
-//        observeAllMenuCategories()
         return view
     }
-
 
         private fun observeData(){
             with(binding){
@@ -102,12 +100,10 @@ class HomeFragment : Fragment()  {
 
 //                    call total
                     targetedCalByDay = (userObject.dayTargetedCalorie).toDouble().toInt()
-//                    targetedCalByDay = (200).toDouble().toInt()
 //                    call carbs
                     targetedGramCarbsByDay = (userObject.carbsGram).toDouble().toInt()
                     targetedGramProteinByDay = (userObject.proteinGram).toDouble().toInt()
                     targetedGramFatByDay = (userObject.fatGram).toDouble().toInt()
-
 
                     getRemainingCal(targetedCalByDay)
 
@@ -143,12 +139,9 @@ class HomeFragment : Fragment()  {
             liveDataDoubleAchievedCarbsGram.observe(viewLifecycleOwner) { dobValueCarbs ->
 
                 if(dobValueCarbs != null){
-
                     val progressIndCarbs = CalorieCalculator.getPercentProgressEachComponentGram(targetedGramCarbsByDay, dobValueCarbs)
                     binding.carbsTarget.text = dobValueCarbs.toInt().toString() +" of " + targetedGramCarbsByDay + " gr"
                     animateProgressBarCarbs(progressIndCarbs)
-
-
                 } else {
                     binding.carbsTarget.text = "0 of " + targetedGramCarbsByDay + " gr"
                     animateProgressBarCarbs(0)
@@ -160,12 +153,9 @@ class HomeFragment : Fragment()  {
             liveDataDoubleAchievedProteinGram.observe(viewLifecycleOwner) { dobValueProtein ->
 
                 if(dobValueProtein != null){
-
                     val progressIndProtein = CalorieCalculator.getPercentProgressEachComponentGram(targetedGramProteinByDay, dobValueProtein)
                     binding.proteinTarget.text = dobValueProtein.toInt().toString() +" of " + targetedGramProteinByDay + " gr"
                     animateProgressBarProtein(progressIndProtein)
-
-
                 } else {
                     binding.proteinTarget.text = "0 of " + targetedGramProteinByDay + " gr"
                     animateProgressBarProtein(0)
@@ -177,12 +167,9 @@ class HomeFragment : Fragment()  {
             liveDataDoubleAchievedFatGram.observe(viewLifecycleOwner) { dobValueFat ->
 
                 if(dobValueFat != null){
-
                     val progressIndFat = CalorieCalculator.getPercentProgressEachComponentGram(targetedGramProteinByDay, dobValueFat)
                     binding.fatTarget.text = dobValueFat.toInt().toString() +" of " + targetedGramProteinByDay + " gr"
                     animateProgressBarFat(progressIndFat)
-
-
                 } else {
                     binding.fatTarget.text = "0 of " + targetedGramProteinByDay + " gr"
                     animateProgressBarFat(0)
@@ -199,17 +186,14 @@ class HomeFragment : Fragment()  {
         private fun animateProgressBar(progressInd : Int){
                 progressAnimator = ValueAnimator.ofInt(0, 100)
                 progressAnimator.duration = 400
-
                 progressAnimator.addUpdateListener { animator ->
                     val animatedValue = animator.animatedValue as Int
                     binding.progressCircularIndicator.progress = animatedValue
                     binding.progressCircularIndicator2.progress = animatedValue
 
                 }
-
                 progressAnimator.setIntValues(binding.progressCircularIndicator.progress, progressInd)
                 progressAnimator.setIntValues(binding.progressCircularIndicator2.progress, progressInd)
-
                 progressAnimator.start()
         }
 
@@ -221,9 +205,7 @@ class HomeFragment : Fragment()  {
                 val animatedValue = animator.animatedValue as Int
                 binding.linearProgressCarbs.progress = animatedValue
             }
-
                     progressAnimator1.setIntValues(binding.linearProgressCarbs.progress, progressInd)
-
             progressAnimator1.start()
         }
 
@@ -235,9 +217,7 @@ class HomeFragment : Fragment()  {
                 val animatedValue = animator.animatedValue as Int
                 binding.linearProgressProtein.progress = animatedValue
             }
-
             progressAnimator1.setIntValues(binding.linearProgressProtein.progress, progressInd)
-
             progressAnimator1.start()
         }
 
@@ -251,18 +231,11 @@ class HomeFragment : Fragment()  {
             }
 
             progressAnimator1.setIntValues(binding.linearProgressFat.progress, progressInd)
-
             progressAnimator1.start()
         }
 
 
-
-
-
-
-
         private fun getAllMenus(){
-
                 allMenusLiveData = viewModel.getAllLiveDataByCategory("Breakfast", txtDateFilter)
                 allMenusLiveData?.observe(viewLifecycleOwner, Observer { menus ->
                     menus?.let {

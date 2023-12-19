@@ -11,8 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myapplication.databinding.FragmentHomepageAdminBinding
 import com.example.myapplication.view.menuAdmin.adminAddMenu.AdminAddMenuActivity
 import com.example.myapplication.view.menuAdmin.adminUpdateMenu.AdminUpdateMenuActivity
-import com.example.myapplication.view.menuUser.addMenu.addMenu.AddMenuActivity
-import com.example.myapplication.view.menuUser.listMenu.ListMenuActivity
+import com.example.myapplication.view.menuAdmin.adminUpdateMenu.AdminUpdateMenuDialogFragment
 import com.example.myapplication.view.menuUser.listMenu.MenuAdapter
 
 class HomeAdminFragment : Fragment() {
@@ -30,20 +29,25 @@ class HomeAdminFragment : Fragment() {
         binding = FragmentHomepageAdminBinding.inflate(inflater, container, false)
         val view = binding.root
 
-
-
 //        rec view
         observeMenus()
         viewModel.getAllMenus()
 
+//        adapterMenuItem = MenuAdapter { menu ->
+//            val intent = Intent(requireContext(), AdminUpdateMenuActivity::class.java).apply {
+//                putExtra("menu object", menu)
+//            }
+//            startActivity(intent)
+//        }
 
         adapterMenuItem = MenuAdapter { menu ->
-            val intent = Intent(requireContext(), AdminUpdateMenuActivity::class.java).apply {
-                putExtra("menu object", menu)
-            }
-//            nanti ganti ke see menu oleh admin
-            startActivity(intent)
+            val dialogFragment = AdminUpdateMenuDialogFragment()
+            val args = Bundle()
+            args.putSerializable("menu object", menu)
+            dialogFragment.arguments = args
+            dialogFragment.show(requireActivity().supportFragmentManager, "AdminUpdateMenuDialogFragment")
         }
+
 
         binding.rvItemMenu.apply {
             adapter = adapterMenuItem
@@ -58,14 +62,6 @@ class HomeAdminFragment : Fragment() {
         }
 
         return view
-
-
-    }
-
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-
     }
 
     private fun observeMenus(){

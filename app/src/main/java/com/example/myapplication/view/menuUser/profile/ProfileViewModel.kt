@@ -24,7 +24,6 @@ class ProfileViewModel(application: Application) : AndroidViewModel(application)
     }
 
 //    private val auth: FirebaseAuth = FirebaseAuth.getInstance()
-
     private var firestore = FirebaseFirestore.getInstance()
     private val userProfileCollectionRef = firestore.collection("userProfile")
 

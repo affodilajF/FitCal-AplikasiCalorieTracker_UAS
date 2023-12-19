@@ -17,9 +17,6 @@ class HomepageActivity : AppCompatActivity() {
     private lateinit var binding : ActivityHomepageBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
-//        viewModelActivity = ViewModelProvider(this).get(HomepageViewModel::class.java)
-//        viewModelActivity.getUserDataByUserId()
-
         super.onCreate(savedInstanceState)
         binding = ActivityHomepageBinding.inflate(layoutInflater)
         setContentView(binding.root)

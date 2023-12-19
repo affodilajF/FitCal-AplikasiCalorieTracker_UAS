@@ -106,19 +106,15 @@ class HistoryFragment : Fragment() {
             }
 
             btnSearch.setOnClickListener{
-//                startActivity(Intent(requireContext(), ListMenuActivity::class.java))
                 val intent = Intent(requireContext(), ListMenuActivity::class.java)
                 startActivity(intent)
                 activity?.overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             }
             btnCustomAdd.setOnClickListener{
-//                startActivity(Intent(requireContext(), AddCustomMenuActivity::class.java))
                 val intent = Intent(requireContext(), AddCustomMenuActivity::class.java)
                 startActivity(intent)
                 activity?.overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
 
-//                val options = ActivityOptions.makeSceneTransitionAnimation(requireActivity())
-//                requireContext().startActivity(intent, options.toBundle())
             }
         }
 
@@ -126,21 +122,13 @@ class HistoryFragment : Fragment() {
         return view
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-    }
-
 
     private fun getAllMenus(filter : String){
-
         allMenusLiveData = viewModel.getAllLiveDataByCategory(filter, txtDateFilter)
-
         allMenusLiveData?.observe(viewLifecycleOwner, Observer { menus ->
             menus?.let {
                 adapterMenuItem.updateData(menus)
             }
         })
     }
-
-
 }

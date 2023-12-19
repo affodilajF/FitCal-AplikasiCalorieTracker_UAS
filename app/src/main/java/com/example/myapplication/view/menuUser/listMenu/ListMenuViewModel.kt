@@ -8,7 +8,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 
 class ListMenuViewModel : ViewModel() {
 
-    //    create properties to be used to acesses firebase
+    //    create properties to be used to accesses firebase
     private var firestore = FirebaseFirestore.getInstance()
     val menuListLiveData : MutableLiveData<List<Menu>> by lazy {
         MutableLiveData<List<Menu>>()

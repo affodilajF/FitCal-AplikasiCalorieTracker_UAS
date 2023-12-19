@@ -22,7 +22,7 @@ class SplashActivity : AppCompatActivity() {
         setContentView(R.layout.activity_splash)
 
 
-        viewModel = ViewModelProvider(this).get(SplashActivityViewModel::class.java)
+        viewModel = ViewModelProvider(this)[SplashActivityViewModel::class.java]
 
         window.setFlags(
             WindowManager.LayoutParams.FLAG_FULLSCREEN,

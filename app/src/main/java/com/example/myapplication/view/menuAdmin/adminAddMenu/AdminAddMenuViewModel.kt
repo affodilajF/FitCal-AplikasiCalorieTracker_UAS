@@ -27,7 +27,6 @@ class AdminAddMenuViewModel : ViewModel() {
     private var firestore = FirebaseFirestore.getInstance()
     private val menuCollectionRef = firestore.collection("menus")
 
-
 //    room db
     private lateinit var mMenuAdminDao : MenuAdminDAO
     private lateinit var executorService : ExecutorService
@@ -125,8 +124,6 @@ class AdminAddMenuViewModel : ViewModel() {
             mMenuAdminDao.delete(menu)
         }
     }
-
-
 
 
     }

@@ -15,7 +15,6 @@ class HomeAdminViewModel : ViewModel() {
     }
     private val menuCollectionRef = firestore.collection("menus")
 
-
     fun getAllMenus() {
         menuCollectionRef.addSnapshotListener { snapshots, error ->
             if(error != null){

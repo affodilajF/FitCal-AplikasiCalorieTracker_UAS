@@ -45,11 +45,31 @@ class ProfileFragment : Fragment() {
                     imagebtnviewPersonaldata.setImageResource(R.drawable.baseline_keyboard_arrow_right_24)
                 } else {
                     TransitionManager.beginDelayedTransition(layoutPersonaldata)
+
                     layoutPersonaldata.visibility = View.VISIBLE
                     imagebtnviewPersonaldata.setImageResource(R.drawable.baseline_close_24_2)
 
                 }
             }
+
+            txtAccount.setOnClickListener {
+                if (layoutAccount.visibility == View.VISIBLE) {
+                    val fadeOut = AlphaAnimation(1f, 0f)
+                    fadeOut.duration = 1
+                    layoutAccount.startAnimation(fadeOut)
+
+                    layoutAccount.visibility = View.GONE
+                    imgbtnviewAccount.setImageResource(R.drawable.baseline_keyboard_arrow_right_24)
+                } else {
+                    TransitionManager.beginDelayedTransition(layoutAccount)
+                    layoutAccount.visibility = View.VISIBLE
+                    imgbtnviewAccount.setImageResource(R.drawable.baseline_close_24_2)
+
+                }
+            }
+
+
+
         }
 
 
@@ -72,10 +92,14 @@ class ProfileFragment : Fragment() {
                 txtGmail.text = userObject.email
                 txtDitTarget.text = userObject.dietGoal
 
-                height.text = userObject.height
-                cweight.text = userObject.currentWeight
-                tweight.text = userObject.targetedWeight
+                height.text = userObject.height + " cm"
+                cweight.text = userObject.currentWeight + " kg"
+                tweight.text = userObject.targetedWeight + " kg"
                 txtTargetcal.text = userObject.dayTargetedCalorie
+
+
+                txtAccountGmail.text = userObject.email
+                txtAccountPhoneNumber.text = userObject.userPhone
 
 
 

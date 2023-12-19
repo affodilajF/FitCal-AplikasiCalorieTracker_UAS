@@ -13,11 +13,9 @@ class HomepageAdminActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        setContentView(R.layout.activity_homepage_admin)
 
         binding = ActivityAdminHomepageBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
 
         with(binding){
             val navControllerAdmin = findNavController(R.id.nav_host_fragment_admin)

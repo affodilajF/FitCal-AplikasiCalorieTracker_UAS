@@ -89,7 +89,6 @@ class UpdateMenuActivity : AppCompatActivity() {
             }
 
 
-
             btnSeeMoreData1serving.setOnClickListener {
                 if (layoutData1serving.visibility == View.VISIBLE) {
                     val fadeOut = AlphaAnimation(1f, 0f)

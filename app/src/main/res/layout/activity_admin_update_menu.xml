@@ -24,13 +24,13 @@
             android:layout_height="wrap_content"
             android:src="@drawable/baseline2_close_24"/>
 
-        <ImageView
-            android:layout_marginRight="20dp"
-            android:layout_gravity="right"
-            android:id="@+id/btn_done"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/baseline_download_done_24"/>
+<!--        <ImageView-->
+<!--            android:layout_marginRight="20dp"-->
+<!--            android:layout_gravity="right"-->
+<!--            android:id="@+id/btn_done"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:src="@drawable/baseline_download_done_24"/>-->
 
 
         <LinearLayout
@@ -50,6 +50,7 @@
         </LinearLayout>
 
     </androidx.appcompat.widget.Toolbar>
+
     <LinearLayout
         android:background="@color/ungu5"
         android:layout_width="match_parent"
@@ -180,9 +181,10 @@
 
 
 
+
                 <LinearLayout
 
-                    android:padding="5dp"
+
                     android:layout_weight="1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -191,14 +193,11 @@
                     <TextView
                         android:textSize="12dp"
                         android:inputType="numberDecimal"
+                        android:padding="10dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Fat gr" />
-
                 </LinearLayout>
-
-
-
             </LinearLayout>
 
 

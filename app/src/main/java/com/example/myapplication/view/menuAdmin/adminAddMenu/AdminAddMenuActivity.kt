@@ -18,18 +18,10 @@ import com.example.myapplication.util.Network
 class AdminAddMenuActivity : AppCompatActivity() {
 
     private lateinit var binding : ActivityAdminAddMenuBinding
-
     private lateinit var viewModel: AdminAddMenuViewModel
-
-    private var temporaryCarbs = "0.0"
-    private var temporaryProtein= "0.0"
-    private var temporaryFat = "0.0"
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-
 
         binding = ActivityAdminAddMenuBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -65,72 +57,14 @@ class AdminAddMenuActivity : AppCompatActivity() {
 //            }
 //        }}
 
-
-
-
-
-
-
-
-
-
-
-
+        setupTextWatchers()
 
         with(binding){
-            inputCarbs.addTextChangedListener(object : TextWatcher {
-                override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-                }
 
-                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                    calculatedCalCarbs.text = CalorieCalculator.getCalCarbs(s.toString()).toString() + " cal"
-                    temporaryCarbs = s.toString()
+            btnBack.setOnClickListener {
+                finish()
+            }
 
-                    calculatedAllCal1serving.text = CalorieCalculator.getCalculatedAllCalories(temporaryCarbs, temporaryProtein, temporaryFat) + " calories in 100 gr"
-
-                }
-                override fun afterTextChanged(s: Editable?) {
-                }
-            })
-
-            inputProtein.addTextChangedListener(object : TextWatcher {
-                override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-                }
-
-                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                    calculatedCalProtein.text = CalorieCalculator.getCalProtein(s.toString()).toString()  + " cal"
-                    temporaryProtein = s.toString()
-                    calculatedAllCal1serving.text = CalorieCalculator.getCalculatedAllCalories(temporaryCarbs, temporaryProtein, temporaryFat) + " calories in 100 gr"
-
-
-                }
-                override fun afterTextChanged(s: Editable?) {
-                }
-            })
-
-            inputFat.addTextChangedListener(object : TextWatcher {
-                override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-                }
-
-                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                    calculatedCalFat.text = CalorieCalculator.getCalFat(s.toString()).toString()  + " cal"
-                    temporaryFat = s.toString()
-                    calculatedAllCal1serving.text = CalorieCalculator.getCalculatedAllCalories(temporaryCarbs, temporaryProtein, temporaryFat) + " calories in 100 gr"
-                }
-                override fun afterTextChanged(s: Editable?) {
-                }
-            })
-
-
-
-
-
-
-
-
-        }
-
-        with(binding){
             btnDone.setOnClickListener {
                 viewModel.initializeDBRoom(this@AdminAddMenuActivity)
 
@@ -150,13 +84,45 @@ class AdminAddMenuActivity : AppCompatActivity() {
             }
 
         }
-
-
-
-
-
-
-
-
     }
+
+
+    private fun setupTextWatchers() {
+        val textWatchers = arrayOf(
+            binding.inputCarbs to binding.calculatedCalCarbs,
+            binding.inputProtein to binding.calculatedCalProtein,
+            binding.inputFat to binding.calculatedCalFat
+        )
+
+        textWatchers.forEach { (input, calculatedCal) ->
+            input.addTextChangedListener(object : TextWatcher {
+                override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                    val result = when (calculatedCal) {
+                        binding.calculatedCalCarbs -> CalorieCalculator.getCalCarbs(s.toString())
+                        binding.calculatedCalProtein -> CalorieCalculator.getCalProtein(s.toString())
+                        binding.calculatedCalFat -> CalorieCalculator.getCalFat(s.toString())
+                        else -> 0
+                    }
+                    calculatedCal.text = "$result cal"
+                    updateCalculatedAllCalories()
+                }
+
+                override fun afterTextChanged(s: Editable?) {}
+            })
+        }
+    }
+
+    private fun updateCalculatedAllCalories() {
+        val carbs = binding.inputCarbs.text.toString()
+        val protein = binding.inputProtein.text.toString()
+        val fat = binding.inputFat.text.toString()
+
+        val result = CalorieCalculator.getCalculatedAllCalories(carbs, protein, fat)
+        binding.calculatedAllCal1serving.text = "$result calories in 100 gr"
+    }
+
+
+
 }

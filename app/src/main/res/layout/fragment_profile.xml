@@ -58,6 +58,7 @@
             android:layout_height="wrap_content"
             android:text="fadhilaain.fa@gmail.com"/>
 
+
     </LinearLayout>
 
 
@@ -104,7 +105,7 @@
 
         <LinearLayout
 
-
+            android:visibility="gone"
             android:id="@+id/layout_personaldata"
             android:paddingTop="10dp"
             android:paddingLeft="20dp"
@@ -133,9 +134,10 @@
                         android:textColor="@color/white"
                         android:textSize="10dp"
                         android:layout_marginBottom="5dp"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
+                        android:gravity="center"
                         android:layout_height="wrap_content"
-                        android:text="Height (cm)"/>
+                        android:text="Height"/>
 
                     <TextView
                         android:id="@+id/height"
@@ -162,9 +164,10 @@
                         android:textColor="@color/white"
                         android:textSize="10dp"
                         android:layout_marginBottom="5dp"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
+                        android:gravity="center"
                         android:layout_height="wrap_content"
-                        android:text="Current Weight (kg)"/>
+                        android:text="Current Weight"/>
 
                     <TextView
                         android:id="@+id/cweight"
@@ -189,9 +192,10 @@
                         android:textColor="@color/white"
                         android:textSize="10dp"
                         android:layout_marginBottom="5dp"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
+                        android:gravity="center"
                         android:layout_height="wrap_content"
-                        android:text="Target Weight (kg)"/>
+                        android:text="Target Weight"/>
 
                     <TextView
                         android:id="@+id/tweight"
@@ -211,7 +215,7 @@
 
 
             <LinearLayout
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="15dp"
                 android:paddingBottom="15dp"
                 android:paddingTop="20dp"
                 android:paddingRight="25dp"
@@ -312,6 +316,7 @@
                 />
 
             <TextView
+                android:id="@+id/txt_account"
                 android:textSize="20dp"
                 android:layout_weight="4"
                 android:layout_width="wrap_content"
@@ -319,11 +324,71 @@
                 android:text="Account"/>
 
             <ImageView
+                android:id="@+id/imgbtnview_account"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/baseline_keyboard_arrow_right_24"
                 />
         </LinearLayout>
+
+        <LinearLayout
+            android:visibility="gone"
+            android:id="@+id/layout_account"
+            android:paddingTop="20dp"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp"
+            android:background="@color/ungu6"
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:textSize="12dp"
+                android:layout_marginBottom="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Email"
+                android:textColor="@color/ungu2"/>
+
+            <TextView
+                android:id="@+id/txt_account_gmail"
+                android:padding="13dp"
+                android:background="@drawable/buttonstyle5"
+                android:textSize="15dp"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="fadhilaain.fa@gmail.com"
+                />
+
+            <TextView
+                android:layout_marginTop="5dp"
+                android:textSize="12dp"
+                android:layout_marginBottom="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Phone Number"
+                android:textColor="@color/ungu2"/>
+
+            <TextView
+                android:id="@+id/txt_account_phone_number"
+                android:padding="13dp"
+                android:background="@drawable/buttonstyle5"
+                android:textSize="15dp"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="0899879936620"
+                />
+
+
+
+        </LinearLayout>
+
+
+
 
         <com.google.android.material.divider.MaterialDivider
             android:layout_width="match_parent"

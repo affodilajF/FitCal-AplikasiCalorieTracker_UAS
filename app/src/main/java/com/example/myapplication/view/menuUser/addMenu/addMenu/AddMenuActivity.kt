@@ -72,7 +72,6 @@ class AddMenuActivity : AppCompatActivity(),  DatePickerDialog.OnDateSetListener
             val protein = menu.proteinGram
             val fat = menu.fatGram
 
-
             txtName.text = menu.name
 
             txtCalCarbs.text = CalorieCalculator.getCalCarbs(carbs).toString() + " cal"

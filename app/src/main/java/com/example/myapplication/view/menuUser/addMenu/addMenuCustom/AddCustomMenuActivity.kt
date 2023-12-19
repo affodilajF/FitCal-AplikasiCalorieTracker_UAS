@@ -28,11 +28,6 @@ class AddCustomMenuActivity : AppCompatActivity(), DatePickerDialog.OnDateSetLis
     private var selectedmealcategory = ""
     private lateinit var selectedDate : Date
 
-    private var temporaryCarbs = "0.0"
-    private var temporaryProtein= "0.0"
-    private var temporaryFat = "0.0"
-
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,8 +36,8 @@ class AddCustomMenuActivity : AppCompatActivity(), DatePickerDialog.OnDateSetLis
         setContentView(binding.root)
 
         selectedDate = DateUtils.getTodayDate()
-
         viewModel.initializeDBRoom(this)
+        setupTextWatchers()
 
         mealcategoryarray = resources.getStringArray(R.array.mealcategory)
         val adapterMealCategory = ArrayAdapter(this@AddCustomMenuActivity, android.R.layout.simple_spinner_item, mealcategoryarray)
@@ -53,36 +48,24 @@ class AddCustomMenuActivity : AppCompatActivity(), DatePickerDialog.OnDateSetLis
 
         with(binding){
             btnDone.setOnClickListener {
-
-
 //                userid
 //                foodname
                 val a : String = txtName.text.toString()
-                Toast.makeText(this@AddCustomMenuActivity, a, Toast.LENGTH_SHORT).show()
-
 //               calAmount
                 val b : Int = Formatter.formattedInt(txtTotalCalCalculated.text.toString())
-
 //                carbsGram
                 val c : Int =inputCarbs.text.toString().toIntOrNull() ?: 0
-
 //                fatGram
                 val d: Int = inputFat.text.toString().toIntOrNull() ?: 0
-
 //                proteinGram
                 val e : Int = inputProtein.text.toString().toIntOrNull() ?: 0
-
 //                servings
                 val f : Double = Formatter.formattedDouble(editTextServingsNumber.text.toString())
-
 //                date
                 val g : String = DateUtils.getFormattedDate(selectedDate)
-
 //                category
                 val h = selectedmealcategory
-
 //                cal100gr
-//                val i : Int = (c*4)+(d*9)+(e*4)
                 val i : Int = CalorieCalculator.getTotalCal100(c , d, e)
 
                 val menuFix = MenuData(userId = viewModel.getUserId(),
@@ -92,8 +75,6 @@ class AddCustomMenuActivity : AppCompatActivity(), DatePickerDialog.OnDateSetLis
                 finish()
             }
         }
-
-
 
 
         with(binding){
@@ -117,64 +98,6 @@ class AddCustomMenuActivity : AppCompatActivity(), DatePickerDialog.OnDateSetLis
                 datePicker.show(supportFragmentManager, "datePicker")
 
             }
-
-//            math kalori
-            inputCarbs.addTextChangedListener(object : TextWatcher {
-                override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-                }
-
-                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                    calculatedCalCarbs.text = CalorieCalculator.getCalCarbs(s.toString()).toString() + " cal"
-                    temporaryCarbs = s.toString()
-
-                    calculatedAllCal1serving.text = CalorieCalculator.getCalculatedAllCalories(temporaryCarbs, temporaryProtein, temporaryFat) + " calories in 1 serving"
-
-                }
-                override fun afterTextChanged(s: Editable?) {
-                }
-            })
-
-            inputProtein.addTextChangedListener(object : TextWatcher {
-                override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-                }
-
-                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                    calculatedCalProtein.text = CalorieCalculator.getCalProtein(s.toString()).toString()  + " cal"
-                    temporaryProtein = s.toString()
-                    calculatedAllCal1serving.text = CalorieCalculator.getCalculatedAllCalories(temporaryCarbs, temporaryProtein, temporaryFat) + " calories in 1 serving"
-
-
-                }
-                override fun afterTextChanged(s: Editable?) {
-                }
-            })
-
-            inputFat.addTextChangedListener(object : TextWatcher {
-                override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-                }
-
-                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                    calculatedCalFat.text = CalorieCalculator.getCalFat(s.toString()).toString()  + " cal"
-                    temporaryFat = s.toString()
-                    calculatedAllCal1serving.text = CalorieCalculator.getCalculatedAllCalories(temporaryCarbs, temporaryProtein, temporaryFat) + " calories in 1 serving"
-                }
-                override fun afterTextChanged(s: Editable?) {
-                }
-            })
-
-
-            editTextServingsNumber.addTextChangedListener(object : TextWatcher {
-                override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-
-                }
-
-                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                    txtTotalCalCalculated.text = CalorieCalculator.getTotalCal(editTextServingsNumber.text.toString(), CalorieCalculator.getCalculatedAllCalories(temporaryCarbs, temporaryProtein, temporaryFat))
-                }
-                override fun afterTextChanged(s: Editable?) {
-
-                }
-            })
         }
 
 
@@ -189,7 +112,54 @@ class AddCustomMenuActivity : AppCompatActivity(), DatePickerDialog.OnDateSetLis
         binding.txtDatePlaceholder.text = DateUtils.getFormattedDate(selectedDate)
     }
 
+    private fun setupTextWatchers() {
+        val textWatchers = arrayOf(
+            binding.inputCarbs to binding.calculatedCalCarbs,
+            binding.inputProtein to binding.calculatedCalProtein,
+            binding.inputFat to binding.calculatedCalFat
+        )
 
+        textWatchers.forEach { (input, calculatedCal) ->
+            input.addTextChangedListener(object : TextWatcher {
+                override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                    val result = when (calculatedCal) {
+                        binding.calculatedCalCarbs -> CalorieCalculator.getCalCarbs(s.toString())
+                        binding.calculatedCalProtein -> CalorieCalculator.getCalProtein(s.toString())
+                        binding.calculatedCalFat -> CalorieCalculator.getCalFat(s.toString())
+                        else -> 0
+                    }
+                    calculatedCal.text = "$result cal"
+                    updateCalculatedAllCalories()
+                }
+                override fun afterTextChanged(s: Editable?) {}
+            })
+        }
+        binding.editTextServingsNumber.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                val result = CalorieCalculator.getTotalCal(
+                    s.toString(),
+                    CalorieCalculator.getCalculatedAllCalories(
+                        binding.inputCarbs.text.toString(),
+                        binding.inputProtein.text.toString(),
+                        binding.inputFat.text.toString()
+                    )
+                )
+                binding.txtTotalCalCalculated.text = result
+            }
+            override fun afterTextChanged(s: Editable?) {}
+        })
+    }
+
+    private fun updateCalculatedAllCalories() {
+        val carbs = binding.inputCarbs.text.toString()
+        val protein = binding.inputProtein.text.toString()
+        val fat = binding.inputFat.text.toString()
+
+        val result = CalorieCalculator.getCalculatedAllCalories(carbs, protein, fat)
+        binding.calculatedAllCal1serving.text = "$result calories in 100 gr"
+    }
 
 
 }
