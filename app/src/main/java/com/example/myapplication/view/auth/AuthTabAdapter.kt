@@ -7,7 +7,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 
 class AuthTabAdapter(fm: FragmentManager, lifecycle: Lifecycle) : FragmentStateAdapter(fm, lifecycle) {
 
-    val page = arrayOf(RegisterFragment(), LoginFragment())
+    private val page = arrayOf(RegisterFragment(), LoginFragment())
 
     override fun getItemCount(): Int {
         return page.size

@@ -6,7 +6,6 @@ object CalorieCalculator {
         val c = (targetedCal - achievedCal)
         return c.toString()
     }
-
     fun getCalCarbs(gram: String?): Int {
         return gram?.toIntOrNull()?.times(4) ?: 0
     }
@@ -17,7 +16,6 @@ object CalorieCalculator {
     fun getCalFat(gram: String?): Int {
         return gram?.toIntOrNull()?.times(9) ?: 0
     }
-
 
     //    ------------- Add Custom Menu
     fun getCalCarbsOnUserServing(gram: String, servings: String): String {
@@ -44,8 +42,6 @@ object CalorieCalculator {
 
         return String.format("%.0f", a * b)
     }
-
-
 
     fun getCalculatedAllCalories(gram: String?, gram2: String, gram3: String): String {
         val a = getCalCarbs(gram).toDouble()
@@ -81,11 +77,6 @@ object CalorieCalculator {
         val totalCalories = (carbsInt * 4) + (proteinInt * 4) + (fatInt * 9)
         return totalCalories.toString()
     }
-
-
-
-
-
 
     // home ----
     fun getPercentProgress(dayTargetedCal : Int, achievedCal: Int) : Int {

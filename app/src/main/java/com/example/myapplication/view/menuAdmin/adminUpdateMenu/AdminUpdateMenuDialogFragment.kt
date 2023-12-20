@@ -26,7 +26,7 @@ class AdminUpdateMenuDialogFragment : DialogFragment() {
             .create()
 
         viewModel = ViewModelProvider(this)[AdminUpdateViewModel::class.java]
-        viewModel.initializeDBRoom(requireContext())
+//        viewModel.initializeDBRoom(requireContext())
 
 
         setUpTextWatchers()

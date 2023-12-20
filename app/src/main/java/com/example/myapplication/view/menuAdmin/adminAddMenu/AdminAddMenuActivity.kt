@@ -1,18 +1,15 @@
 package com.example.myapplication.view.menuAdmin.adminAddMenu
 
-import android.content.Context
-import android.net.ConnectivityManager
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.text.Editable
 import android.text.TextWatcher
+import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModelProvider
-import com.example.myapplication.data.model.room.MenuAdmin
+import com.example.myapplication.data.model.firestore.Menu
 import com.example.myapplication.databinding.ActivityAdminAddMenuBinding
 import com.example.myapplication.util.CalorieCalculator
-import com.example.myapplication.util.Network
 
 
 class AdminAddMenuActivity : AppCompatActivity() {
@@ -28,34 +25,11 @@ class AdminAddMenuActivity : AppCompatActivity() {
 
         viewModel = ViewModelProvider(this)[AdminAddMenuViewModel::class.java]
         viewModel.initializeDBRoom(this)
-//        viewModel.getData()
-//        viewModel.syncToFirestore(this)
-
-//        val connectivityLiveData = Network.startCheckingInternetConnectivity(this)
-////
-//        connectivityLiveData.observe(this) { isConnected ->
-//            if(isConnected){
-////                masukkin ke firestore
-////                viewModel.syncToFirestore(this)
-////                viewModel.syncToFirestore(){
-////                    result->
-////                    if(result){
-////                        viewModel.deleteAllUnsyncedDataFromRoom()
-////
-////                    }
-////                }
-//
-//            }else{
-//
-//            }
-//        }
 
 
-//        viewModel.loginUser(email, password) { result ->
-//            if (result) {
-//                viewModel.fetchUserRoleFromFirestore()
-//            }
-//        }}
+//        val lifecycleOwner: LifecycleOwner = this
+//        val lifecycle: Lifecycle = lifecycleOwner.lifecycle
+
 
         setupTextWatchers()
 
@@ -78,7 +52,7 @@ class AdminAddMenuActivity : AppCompatActivity() {
                 val e : String = inputProtein.text.toString().takeIf { it.isNotBlank() } ?: "0"
 
                 val totalcal100 = CalorieCalculator.getTotalCal100(c.toIntOrNull() ?: 0 , d.toIntOrNull() ?: 0 , e.toIntOrNull() ?: 0)
-                val menuToadd = MenuAdmin(name=name, calAmount = totalcal100.toString(), carbsGram = c, fatGram = d, proteinGram = e)
+                val menuToadd = Menu(name=name, calAmount = totalcal100.toString(), carbsGram = c, fatGram = d, proteinGram = e)
                 viewModel.addMenu(menuToadd, this@AdminAddMenuActivity)
                 finish()
             }

@@ -1,32 +1,41 @@
-package com.example.myapplication.view.menuAdmin.adminUpdateMenu
+package com.example.myapplication.view.menuAdmin.LocalAdminUpdateMenu
 
-import androidx.appcompat.app.AppCompatActivity
+import android.app.AlertDialog
+import android.app.Dialog
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.view.LayoutInflater
+import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.ViewModelProvider
-import com.example.myapplication.data.model.firestore.Menu
-import com.example.myapplication.databinding.ActivityAdminUpdateMenuBinding
+import com.example.myapplication.data.model.room.MenuAdmin
+import com.example.myapplication.databinding.DialogfragmentAdminupdatemenuBinding
 import com.example.myapplication.util.CalorieCalculator
 
-class AdminUpdateMenuActivity : AppCompatActivity() {
-
-    private lateinit var binding : ActivityAdminUpdateMenuBinding
-    private lateinit var viewModel: AdminUpdateViewModel
 
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        binding = ActivityAdminUpdateMenuBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+//MENU ADMIN YAAP
 
-        viewModel = ViewModelProvider(this)[AdminUpdateViewModel::class.java]
-        viewModel.initializeDBRoom(this)
+class AdminUpdateMenuLocalDialogFragment : DialogFragment() {
+
+    private lateinit var binding : DialogfragmentAdminupdatemenuBinding
+    private lateinit var viewModel: AdminUpdateLocalViewModel
+
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+
+        binding = DialogfragmentAdminupdatemenuBinding.inflate(LayoutInflater.from(requireContext()))
+        val dialog = AlertDialog.Builder(requireContext())
+            .setView(binding.root)
+            .create()
+
+        viewModel = ViewModelProvider(this)[AdminUpdateLocalViewModel::class.java]
+        viewModel.initializeDBRoom(requireContext())
+
 
         setUpTextWatchers()
-
+        val menu = arguments?.getSerializable("menu object") as MenuAdmin
         with(binding) {
-            val menu = intent.getSerializableExtra("menu object") as Menu
+
             val nama = menu.name
             val cal100 = menu.calAmount
             val carbs = menu.carbsGram
@@ -52,15 +61,12 @@ class AdminUpdateMenuActivity : AppCompatActivity() {
 
 
             btnDel.setOnClickListener {
-                viewModel.deleteMenu(menu)
-                finish()
-            }
-            btnBack.setOnClickListener {
-                finish()
+                viewModel.delete(menu)
+                dismiss()
             }
 
             btnUpdate.setOnClickListener {
-                val a = Menu(
+                val a = MenuAdmin(
                     id = menu.id,
                     name = txtName.text.toString(),
                     fatGram = inputFat.text.toString(),
@@ -72,15 +78,15 @@ class AdminUpdateMenuActivity : AppCompatActivity() {
                         inputFat.text.toString()
                     )
                 )
-                viewModel.updateMenu(a)
+                viewModel.update(a)
+                dismiss()
 
-                finish()
+
+
             }
         }
-
-
-
-        }
+        return dialog
+    }
 
 
     private fun setUpTextWatchers() {
@@ -122,4 +128,5 @@ class AdminUpdateMenuActivity : AppCompatActivity() {
             calculatedAllCal1serving.text = "$result calories in 100 gr"
         }
     }
+
 }

@@ -4,7 +4,6 @@ import androidx.annotation.NonNull
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import java.io.Serializable
-import java.util.Date
 
 @Entity(tableName = "menu01_table")
 data class MenuData(
@@ -12,7 +11,6 @@ data class MenuData(
     @PrimaryKey(autoGenerate = true)
     @NonNull
     val id: Int = 0,
-
 
 //    get from firebase auth
     var userId: String = "",

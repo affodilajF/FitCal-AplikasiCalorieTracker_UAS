@@ -5,9 +5,8 @@ import com.google.firebase.firestore.Exclude
 data class UserProfile(
 
 //    stored in firebase
-//    invoked when user regist n login
-//    collectionname = userProfile
-
+//    filled when user registering
+//    collection = userProfile
     @set:Exclude @get:Exclude @Exclude var id: String = "",
 
     val userIdAuth : String = "",
@@ -21,12 +20,9 @@ data class UserProfile(
     val targetedWeight : String = "",
     val height : String = "",
 
-
-//    targetnya, nilainya diisi pas awal regist
+//    target, nilainya diisi pas awal register
     val fatGram: String = "",
     val carbsGram: String = "",
     val proteinGram: String = "",
-
-
 
     )

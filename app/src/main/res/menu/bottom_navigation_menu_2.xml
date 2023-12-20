@@ -8,6 +8,12 @@
         />
 
     <item
+        android:title="Home Local"
+        android:id="@+id/localMenuFragment"
+        android:icon="@drawable/baseline_home_24"
+        />
+
+    <item
         android:title="Profile"
         android:id="@+id/profileAdminFragment2"
         android:icon="@drawable/iconamoon_profile"

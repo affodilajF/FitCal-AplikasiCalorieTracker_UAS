@@ -7,11 +7,9 @@ import android.os.Handler
 import android.os.Looper
 import android.view.WindowManager
 import androidx.lifecycle.ViewModelProvider
-import com.example.myapplication.MainActivity
 import com.example.myapplication.R
 import com.example.myapplication.view.menuAdmin.HomepageAdminActivity
 import com.example.myapplication.view.menuUser.HomepageActivity
-import com.example.myapplication.view.menuUser.HomepageViewModel
 
 class SplashActivity : AppCompatActivity() {
 
@@ -30,15 +28,11 @@ class SplashActivity : AppCompatActivity() {
         )
 
         if(viewModel.checkLoginStatus()){
-//            intent1 = Intent(this, HomepageActivity::class.java)
-
             if(viewModel.getRole() == "admin"){
                 intent1 = Intent(this, HomepageAdminActivity::class.java)
             } else if (viewModel.getRole() == "user"){
                 intent1 = Intent(this, HomepageActivity::class.java)
             }
-
-
         } else {
             intent1 = Intent(this, WellcomingActivity::class.java)
         }

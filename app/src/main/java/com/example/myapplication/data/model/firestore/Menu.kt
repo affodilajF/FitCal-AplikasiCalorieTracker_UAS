@@ -11,12 +11,10 @@ data class Menu(
 
     val name: String = "",
 
-    val calAmount: String = "0.0",
+    val calAmount: String = "0",
     val fatGram: String = "",
     val carbsGram: String = "",
     val proteinGram: String = "",
-
-
 
 ) : Serializable
 

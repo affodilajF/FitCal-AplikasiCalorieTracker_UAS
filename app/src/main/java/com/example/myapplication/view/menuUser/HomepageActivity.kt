@@ -12,7 +12,6 @@ import com.example.myapplication.databinding.ActivityHomepageBinding
 
 
 class HomepageActivity : AppCompatActivity() {
-//    private lateinit var viewModelActivity: HomepageViewModel
 
     private lateinit var binding : ActivityHomepageBinding
 

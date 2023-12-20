@@ -7,10 +7,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import com.example.myapplication.databinding.FragmentRegisterBinding
-import com.example.myapplication.view.menuUser.personalData.PersonalDataActivity
+import com.example.myapplication.view.menuUser.personalDataRegister.PersonalDataActivity
 
 class RegisterFragment : Fragment() {
     private lateinit var binding: FragmentRegisterBinding
@@ -52,29 +51,23 @@ class RegisterFragment : Fragment() {
 
             viewModel.registerUser(email, password) { result ->
                 if (result) {
-//                    (activity as AuthActivity).viewPager2.setCurrentItem(1, true)
-
+//                    USER ID DISIMPEN DISINI TIAP KALI REGISTER
                     startActivity(Intent(requireContext(), PersonalDataActivity::class.java))
                     viewModel.saveUserIdSharePrefs(viewModel.getUserId())
                     viewModel.saveUserNameSharePrefs(binding.editTextUsername.text.toString())
                     viewModel.saveUserPhoneSharePrefs(binding.editTxtPhone.text.toString())
                     viewModel.saveUserEmailSharePrefs(binding.editTxtEmail.text.toString())
 
-//                    Toast.makeText(requireContext(), selectedDate.toString(), Toast.LENGTH_SHORT).show()
                 }
             }
 
         }
-
         return view
 
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-//        viewModel = ViewModelProvider(this).get(RegisterViewModel::class.java)
-
-
     }
 
 }

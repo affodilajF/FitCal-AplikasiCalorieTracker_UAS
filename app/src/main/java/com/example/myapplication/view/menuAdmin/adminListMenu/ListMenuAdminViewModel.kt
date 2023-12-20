@@ -1,12 +1,20 @@
-package com.example.myapplication.view.menuAdmin.home
+package com.example.myapplication.view.menuAdmin.adminListMenu
 
+import android.content.Context
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.example.myapplication.data.database.MenuAdminDAO
+import com.example.myapplication.data.database.MenuRoomDatabase
 import com.example.myapplication.data.model.firestore.Menu
 import com.google.firebase.firestore.FirebaseFirestore
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import java.util.concurrent.ExecutorService
+import java.util.concurrent.Executors
 
-class HomeAdminViewModel : ViewModel() {
+class ListMenuAdminViewModel : ViewModel() {
 
     //    create properties to be used to acesses firebase
     private var firestore = FirebaseFirestore.getInstance()
@@ -39,4 +47,5 @@ class HomeAdminViewModel : ViewModel() {
             }
         }
     }
+
 }

@@ -1,4 +1,4 @@
-package com.example.myapplication.view.menuAdmin.home
+package com.example.myapplication.view.menuAdmin.adminListMenu
 
 import android.content.Intent
 import androidx.lifecycle.ViewModelProvider
@@ -10,21 +10,22 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myapplication.databinding.FragmentHomepageAdminBinding
 import com.example.myapplication.view.menuAdmin.adminAddMenu.AdminAddMenuActivity
-import com.example.myapplication.view.menuAdmin.adminUpdateMenu.AdminUpdateMenuActivity
 import com.example.myapplication.view.menuAdmin.adminUpdateMenu.AdminUpdateMenuDialogFragment
 import com.example.myapplication.view.menuUser.listMenu.MenuAdapter
 
-class HomeAdminFragment : Fragment() {
+class ListMenuAdminFragment : Fragment() {
 
     private lateinit var binding : FragmentHomepageAdminBinding
-    private lateinit var viewModel: HomeAdminViewModel
+    private lateinit var viewModel: ListMenuAdminViewModel
     private lateinit var adapterMenuItem : MenuAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        viewModel = ViewModelProvider(this).get(HomeAdminViewModel::class.java)
+        viewModel = ViewModelProvider(this)[ListMenuAdminViewModel::class.java]
+//        viewModel.initializeDBRoom(requireContext())
+
 
         binding = FragmentHomepageAdminBinding.inflate(inflater, container, false)
         val view = binding.root
@@ -32,13 +33,6 @@ class HomeAdminFragment : Fragment() {
 //        rec view
         observeMenus()
         viewModel.getAllMenus()
-
-//        adapterMenuItem = MenuAdapter { menu ->
-//            val intent = Intent(requireContext(), AdminUpdateMenuActivity::class.java).apply {
-//                putExtra("menu object", menu)
-//            }
-//            startActivity(intent)
-//        }
 
         adapterMenuItem = MenuAdapter { menu ->
             val dialogFragment = AdminUpdateMenuDialogFragment()

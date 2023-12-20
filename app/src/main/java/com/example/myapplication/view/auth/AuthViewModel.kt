@@ -23,7 +23,6 @@ class AuthViewModel(application: Application) : AndroidViewModel(application) {
 ////    firestore
 
     private var firestore = FirebaseFirestore.getInstance()
-
     private val _userRole = MutableLiveData<String?>()
     val userRole: MutableLiveData<String?>
         get() = _userRole
@@ -75,8 +74,9 @@ class AuthViewModel(application: Application) : AndroidViewModel(application) {
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     onResult(true)
+//                    USER ID DISIMPEN DISINI YAAK TIAP KALI LOGIN
                     sharedPreferencesHelper.setLoggedIn(true)
-                    sharedPreferencesHelper.saveUserId(getUserId())
+                    sharedPreferencesHelper.saveUserId(auth.currentUser.toString())
                 } else {
                     onResult(false)
                 }

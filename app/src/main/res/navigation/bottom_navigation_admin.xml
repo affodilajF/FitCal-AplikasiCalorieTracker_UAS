@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/homeAdminFragment"
-        android:name="com.example.myapplication.view.menuAdmin.home.HomeAdminFragment"
+        android:name="com.example.myapplication.view.menuAdmin.adminListMenu.ListMenuAdminFragment"
         android:label="fragment_homepage_admin"
         tools:layout="@layout/fragment_homepage_admin" />
     <fragment
@@ -15,4 +15,9 @@
         android:name="com.example.myapplication.view.menuAdmin.profile.ProfileAdminFragment"
         android:label="fragment_profile_admin"
         tools:layout="@layout/fragment_profile_admin" />
+    <fragment
+        android:id="@+id/localMenuFragment"
+        android:name="com.example.myapplication.view.menuAdmin.LocalAdminListMenu.LocalMenuFragment"
+        android:label="fragment_local_menu"
+        tools:layout="@layout/fragment_local_menu" />
 </navigation>

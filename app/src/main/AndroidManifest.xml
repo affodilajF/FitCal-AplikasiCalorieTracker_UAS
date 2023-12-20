@@ -40,7 +40,7 @@
             android:name=".view.menuUser.listMenu.ListMenuActivity"
             android:exported="false" />
         <activity
-            android:name=".view.menuUser.personalData.PersonalDataActivity"
+            android:name=".view.menuUser.personalDataRegister.PersonalDataActivity"
             android:exported="false" />
         <activity
             android:name=".view.auth.AuthActivity"

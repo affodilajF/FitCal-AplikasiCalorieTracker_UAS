@@ -1,4 +1,4 @@
-package com.example.myapplication.view.menuUser.personalData
+package com.example.myapplication.view.menuUser.personalDataRegister
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -8,14 +8,11 @@ import android.text.TextWatcher
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.example.myapplication.R
 import com.example.myapplication.databinding.ActivityPersonalDataBinding
 import com.example.myapplication.util.CalorieCalculator
 import com.example.myapplication.view.menuUser.HomepageActivity
-
-import java.util.Date
 
 class PersonalDataActivity : AppCompatActivity() {
     private var temporaryCarbs = ""

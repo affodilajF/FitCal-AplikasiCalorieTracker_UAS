@@ -106,7 +106,6 @@ class HomeFragment : Fragment()  {
                     targetedGramFatByDay = (userObject.fatGram).toDouble().toInt()
 
                     getRemainingCal(targetedCalByDay)
-
                 })
             }
         }

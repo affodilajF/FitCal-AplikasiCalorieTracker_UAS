@@ -16,17 +16,6 @@ class AdminUpdateViewModel : ViewModel() {
     private var firestore = FirebaseFirestore.getInstance()
     private val menuCollectionRef = firestore.collection("menus")
 
-
-    //    room db
-    private lateinit var mMenuAdminDao : MenuAdminDAO
-    private lateinit var executorService : ExecutorService
-
-    fun initializeDBRoom(context: Context){
-        executorService = Executors.newSingleThreadExecutor()
-        val db = MenuRoomDatabase.getDatabase(context)
-        mMenuAdminDao = db!!.menuAdminDao()!!
-    }
-
     fun deleteMenu(menu: Menu){
         menuCollectionRef.document(menu.id).delete()
             .addOnFailureListener {

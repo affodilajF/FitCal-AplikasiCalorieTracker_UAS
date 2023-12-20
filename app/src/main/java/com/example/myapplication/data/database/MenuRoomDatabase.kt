@@ -8,15 +8,15 @@ import com.example.myapplication.data.model.room.MenuAdmin
 import com.example.myapplication.data.model.room.MenuData
 
 @Database(entities = [MenuData::class, MenuAdmin::class],
-    version = 3, // Ubah versi ke versi yang lebih tinggi
+    version = 3,
     exportSchema = false)
 abstract class MenuRoomDatabase : RoomDatabase() {
 
     abstract fun menuDao() : MenuDAO?
-//    dao menuData (milik user)
+//    dao MenuData, milik user
 
     abstract fun menuAdminDao() : MenuAdminDAO?
-//    dao menu, milik admin
+//    dao MenuAdmin, milik admin
 
     companion object {
         @Volatile
@@ -29,7 +29,7 @@ abstract class MenuRoomDatabase : RoomDatabase() {
                         context.applicationContext,
                         MenuRoomDatabase::class.java, "menu_db"
                     )
-                        .fallbackToDestructiveMigration() // Tambahkan fallbackToDestructiveMigration jika perlu
+                        .fallbackToDestructiveMigration()
                         .build()
                 }
             }
