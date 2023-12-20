@@ -2,19 +2,16 @@ package com.example.myapplication.view.auth
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.util.Patterns
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Observer
 import com.example.myapplication.databinding.FragmentLoginBinding
+import com.example.myapplication.view.menuAdmin.HomepageAdminActivity
 import com.example.myapplication.view.menuUser.HomepageActivity
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FirebaseFirestore
 
 class LoginFragment : Fragment() {
     private lateinit var binding: FragmentLoginBinding
@@ -54,28 +51,30 @@ class LoginFragment : Fragment() {
                 return@setOnClickListener
             }
 
-            navigateRole()
-
-            viewModel.loginUser(email, password) { result ->
+            viewModel.loginUser(email, password) { result, msg ->
                 if (result) {
-                    viewModel.fetchUserRoleFromFirestore()
+                    viewModel.fetchUserRoleFromFirestore(){role->
+                        if(role== "admin"){
+                            val toMainActivity = Intent(requireContext(), HomepageAdminActivity::class.java)
+                            startActivity(toMainActivity)
+                        } else {
+                            val toMainActivity = Intent(requireContext(), HomepageActivity::class.java)
+                            startActivity(toMainActivity)
+                        }
+                    }
+                } else {
+                    Toast.makeText(requireContext(), msg, Toast.LENGTH_SHORT).show()
                 }
-            }}
+            }
+
+        }
 
 
         return view
     }
 
 
-    private fun navigateRole(){
-        viewModel.userRole.observe(viewLifecycleOwner, Observer { role ->
-            val destinationActivity = viewModel.navigateBasedOnRole()
-            destinationActivity?.let {
-                val intent = Intent(requireContext(), it)
-                startActivity(intent)
-            }
-        })
-    }
+//
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)

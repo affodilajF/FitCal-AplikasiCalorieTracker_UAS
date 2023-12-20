@@ -13,6 +13,7 @@ data class UserProfile(
     val userName : String = "",
     val userPhone : String = "",
     val email : String = "",
+    val role : String = "user",
 
     val dayTargetedCalorie: String ="",
     val dietGoal : String = "",

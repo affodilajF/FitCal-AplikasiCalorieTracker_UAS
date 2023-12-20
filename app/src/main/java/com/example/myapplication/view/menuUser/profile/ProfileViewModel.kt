@@ -1,19 +1,12 @@
 package com.example.myapplication.view.menuUser.profile
 
 import android.app.Application
-import android.content.Context
 import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import com.example.myapplication.data.database.MenuDAO
-import com.example.myapplication.data.database.MenuRoomDatabase
 import com.example.myapplication.data.model.firestore.UserProfile
 import com.example.myapplication.util.SharedPreferencesHelper
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-import java.util.concurrent.ExecutorService
-import java.util.concurrent.Executors
 
 class ProfileViewModel(application: Application) : AndroidViewModel(application) {
 

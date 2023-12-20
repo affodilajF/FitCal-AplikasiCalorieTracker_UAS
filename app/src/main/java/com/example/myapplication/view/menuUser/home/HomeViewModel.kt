@@ -6,25 +6,22 @@ import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.myapplication.data.database.MenuDAO
+import com.example.myapplication.data.database.MenuDataDAO
 import com.example.myapplication.data.database.MenuRoomDatabase
 import com.example.myapplication.data.model.room.MenuData
 import com.example.myapplication.data.model.firestore.UserProfile
 import com.example.myapplication.util.SharedPreferencesHelper
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
 class HomeViewModel(application: Application) : AndroidViewModel(application) {
 
-    private lateinit var mMenuDao : MenuDAO
+    private lateinit var mMenuDataDao : MenuDataDAO
     private lateinit var executorService : ExecutorService
-
 
     private var firestore = FirebaseFirestore.getInstance()
     private val userProfileCollectionRef = firestore.collection("userProfile")
-
 
     val userProfileListLiveData : MutableLiveData<List<UserProfile>> by lazy {
         MutableLiveData<List<UserProfile>>()
@@ -38,7 +35,7 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
     fun initDBRoom(context: Context){
         executorService = Executors.newSingleThreadExecutor()
         val db = MenuRoomDatabase.getDatabase(context)
-        mMenuDao = db!!.menuDao()!!
+        mMenuDataDao = db!!.menuDao()!!
     }
 
     fun getUserDataByUserId() {
@@ -76,33 +73,30 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
                     userProfileListLiveData.postValue(data)
                     satuUser = data[0]
 
-//                    sharedPreferencesHelper.saveUsername(satuUser.userName)
-//                    sharedPreferencesHelper.saveUserPhone(satuUser.userPhone)
-//                    sharedPreferencesHelper.saveUserGmail(satuUser.email)
                 }
             }
     }
 
 
     fun getAllLiveDataByCategory(filter : String, date : String): LiveData<List<MenuData>> {
-        return mMenuDao.allMenusByCategory(sharedPreferencesHelper.getUserId().toString(), filter, date)
+        return mMenuDataDao.allMenusByCategory(sharedPreferencesHelper.getUserId().toString(), filter, date)
     }
 
 
     fun getAmountCalAllLiveData(date : String): LiveData<Int> {
-        return mMenuDao.getTotalAmountCal(sharedPreferencesHelper.getUserId().toString(), date )
+        return mMenuDataDao.getTotalAmountCal(sharedPreferencesHelper.getUserId().toString(), date )
     }
 
     fun getAmountGramAllCarbsLiveData(date : String): LiveData<Double> {
-        return mMenuDao.getTotalServingTimesCarbs(sharedPreferencesHelper.getUserId().toString(), date )
+        return mMenuDataDao.getTotalServingTimesCarbs(sharedPreferencesHelper.getUserId().toString(), date )
     }
 
     fun getAmountGramAllProteinLiveData(date : String): LiveData<Double> {
-        return mMenuDao.getTotalServingTimesProtein(sharedPreferencesHelper.getUserId().toString(), date )
+        return mMenuDataDao.getTotalServingTimesProtein(sharedPreferencesHelper.getUserId().toString(), date )
     }
 
     fun getAmountGramAllFatLiveData(date : String): LiveData<Double> {
-        return mMenuDao.getTotalServingTimesFat(sharedPreferencesHelper.getUserId().toString(), date )
+        return mMenuDataDao.getTotalServingTimesFat(sharedPreferencesHelper.getUserId().toString(), date )
     }
 
 

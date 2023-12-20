@@ -8,11 +8,11 @@ import com.example.myapplication.data.model.room.MenuAdmin
 import com.example.myapplication.data.model.room.MenuData
 
 @Database(entities = [MenuData::class, MenuAdmin::class],
-    version = 3,
+    version = 4,
     exportSchema = false)
 abstract class MenuRoomDatabase : RoomDatabase() {
 
-    abstract fun menuDao() : MenuDAO?
+    abstract fun menuDao() : MenuDataDAO?
 //    dao MenuData, milik user
 
     abstract fun menuAdminDao() : MenuAdminDAO?

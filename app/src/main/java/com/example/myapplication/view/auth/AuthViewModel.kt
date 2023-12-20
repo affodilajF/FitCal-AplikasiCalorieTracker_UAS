@@ -1,11 +1,7 @@
 package com.example.myapplication.view.auth
 
 import android.app.Application
-import android.content.Context
-import android.util.Log
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 
 import com.example.myapplication.util.SharedPreferencesHelper
 import com.example.myapplication.view.menuAdmin.HomepageAdminActivity
@@ -20,16 +16,10 @@ class AuthViewModel(application: Application) : AndroidViewModel(application) {
     private val sharedPreferencesHelper =
         SharedPreferencesHelper.getInstance(application.applicationContext)
 
-////    firestore
-
     private var firestore = FirebaseFirestore.getInstance()
-    private val _userRole = MutableLiveData<String?>()
-    val userRole: MutableLiveData<String?>
-        get() = _userRole
 
-    fun fetchUserRoleFromFirestore() {
+    fun fetchUserRoleFromFirestore(onResult: (String) -> Unit) {
         val userId = auth.currentUser?.uid
-
         userId?.let { uid ->
             firestore.collection("userProfile")
                 .whereEqualTo("userIdAuth", uid)
@@ -37,22 +27,14 @@ class AuthViewModel(application: Application) : AndroidViewModel(application) {
                 .addOnSuccessListener { documents ->
                     for (document in documents) {
                         val role = document.getString("role")
-                        _userRole.value = role
+                        if (role != null) {
+                            onResult(role)
+                            saveUserRoleSharePrefs(role)
+                        }
                     }
                 }
                 .addOnFailureListener {
                 }
-        }
-    }
-
-    fun navigateBasedOnRole(): Class<out Any>? {
-        val role = _userRole.value
-        return if (role == "admin") {
-            saveUserRoleSharePrefs("admin")
-            HomepageAdminActivity::class.java
-        } else {
-            saveUserRoleSharePrefs("user")
-            HomepageActivity::class.java
         }
     }
 
@@ -69,18 +51,22 @@ class AuthViewModel(application: Application) : AndroidViewModel(application) {
             }
     }
 
-    fun loginUser(email: String, password: String, onResult: (Boolean) -> Unit) {
-        auth.signInWithEmailAndPassword(email, password)
-            .addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    onResult(true)
-//                    USER ID DISIMPEN DISINI YAAK TIAP KALI LOGIN
-                    sharedPreferencesHelper.setLoggedIn(true)
-                    sharedPreferencesHelper.saveUserId(auth.currentUser.toString())
-                } else {
-                    onResult(false)
+
+    fun loginUser(email: String, password: String, onResult: (Boolean, String) -> Unit) {
+        try {
+            auth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        onResult(true, "Login Successes")
+                        sharedPreferencesHelper.setLoggedIn(true)
+                        sharedPreferencesHelper.saveUserId(getUserId())
+                    } else {
+                        onResult(false, "Login Failed: ${task.exception?.message ?: "Unknown error"}")
+                    }
                 }
-            }
+        } catch (e: Exception) {
+            onResult(false, "Login Failed: ${e.message ?: "Unknown error"}")
+        }
     }
 
 

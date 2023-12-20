@@ -10,7 +10,7 @@ import androidx.room.Update
 import com.example.myapplication.data.model.room.MenuData
 
 @Dao
-interface MenuDAO {
+interface MenuDataDAO {
     //    DAO FOR MenuData DATA CLASS
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun insert (menu : MenuData)
