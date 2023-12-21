@@ -39,6 +39,7 @@ class UpdateMenuActivity : AppCompatActivity() {
             val protein = menu.proteinGram
             val fat = menu.fatGram
             val serving = menu.servings
+            val url = menu.urlPhoto
 
 
             txtName.text = name
@@ -75,7 +76,7 @@ class UpdateMenuActivity : AppCompatActivity() {
                 val servBaru = editTextServingsNumber.text.toString()
                 val servBaru2 = servBaru.toDoubleOrNull() ?: 0.0
 
-                val menuFix = MenuData(id = menu.id, userId = menu.userId, name=menu.name, fatGram = menu.fatGram, carbsGram = menu.carbsGram
+                val menuFix = MenuData(id = menu.id, userId = menu.userId, urlPhoto = url, name=menu.name, fatGram = menu.fatGram, carbsGram = menu.carbsGram
                 , proteinGram = menu.proteinGram, date = menu.date, category = menu.category,
                     calAmount = newTotalCal2, servings = servBaru2, calAmount100 = menu.calAmount100)
                 viewModel.update(menuFix)

@@ -4,6 +4,8 @@ package com.example.myapplication.view.menuAdmin.LocalAdminListMenu
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.BitmapTransitionOptions
 import com.example.myapplication.data.model.room.MenuAdmin
 import com.example.myapplication.databinding.ItemMenuBinding
 
@@ -27,6 +29,12 @@ class MenuAdminAdapter(
                 txtProteinAmount.text = menu.proteinGram + " gr"
                 txtFatAmount.text = menu.fatGram + " gr"
                 txtTotalcal.text = menu.calAmount + " cal"
+
+                Glide.with(itemView.context).asBitmap().load(menu.urlPhoto)
+                    .transition(BitmapTransitionOptions.withCrossFade())
+                    .centerCrop()
+                    .into(imgFood)
+
 
                 itemView.setOnClickListener{
                     onClickData(menu)

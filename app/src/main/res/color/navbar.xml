@@ -1,0 +1,6 @@
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Ketika item dipilih -->
+    <item android:state_checked="true" android:color="@color/ungu6" />
+    <!-- Default state -->
+    <item android:color="#D8D5EE" />
+</selector>

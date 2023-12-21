@@ -19,6 +19,8 @@ data class MenuData(
 //    ini cal amount dari berapa serving yang diinputkan user
     val calAmount: Int = 0,
 
+    var urlPhoto : String = "https://i.pinimg.com/736x/a9/0c/a2/a90ca2296a70e51dede826b88c354065.jpg",
+
 //    ini fat crab protein per 100gr (sesuai dengan inputan awal / database firebase)
     val calAmount100 : Int = 0,
     val fatGram: Int = 0,

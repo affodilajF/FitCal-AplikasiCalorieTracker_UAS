@@ -38,6 +38,12 @@ class AdminUpdateMenuDialogFragment : DialogFragment() {
             val carbs = menu.carbsGram
             val protein = menu.proteinGram
             val fat = menu.fatGram
+            val urlPhoto = menu.urlPhoto
+
+
+
+            val editableUrl = Editable.Factory.getInstance().newEditable(urlPhoto)
+            txtUrl.text = editableUrl
 
             val editableName = Editable.Factory.getInstance().newEditable(nama)
             txtName.text = editableName
@@ -63,7 +69,8 @@ class AdminUpdateMenuDialogFragment : DialogFragment() {
             }
 
             btnUpdate.setOnClickListener {
-                val a = Menu(
+
+                var a = Menu(
                     id = menu.id,
                     name = txtName.text.toString(),
                     fatGram = inputFat.text.toString(),
@@ -75,6 +82,13 @@ class AdminUpdateMenuDialogFragment : DialogFragment() {
                         inputFat.text.toString()
                     )
                 )
+
+
+                val url = txtUrl.text.toString()
+
+                if(url!=""){
+                    a.urlPhoto = url
+                }
                 viewModel.updateMenu(a)
                 dismiss()
 

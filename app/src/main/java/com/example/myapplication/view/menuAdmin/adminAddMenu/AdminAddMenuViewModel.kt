@@ -42,7 +42,7 @@ class AdminAddMenuViewModel(application: Application): AndroidViewModel(applicat
                 }
 
         } else {
-            val a = MenuAdmin(calAmount = menu.calAmount, name = menu.name, fatGram = menu.fatGram, proteinGram = menu.proteinGram, carbsGram = menu.carbsGram)
+            val a = MenuAdmin(calAmount = menu.calAmount, urlPhoto = menu.urlPhoto, name = menu.name, fatGram = menu.fatGram, proteinGram = menu.proteinGram, carbsGram = menu.carbsGram)
             val runnable = Runnable { mMenuAdminDao.insert(a) }
             executorService.execute(runnable)
         }

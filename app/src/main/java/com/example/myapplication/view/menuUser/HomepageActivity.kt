@@ -1,9 +1,12 @@
 package com.example.myapplication.view.menuUser
 
 import android.app.DatePickerDialog
+import android.app.NotificationManager
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.DatePicker
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
@@ -19,6 +22,33 @@ class HomepageActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityHomepageBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+
+//        val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         with(binding){
             val navController = findNavController(R.id.nav_host_fragment)

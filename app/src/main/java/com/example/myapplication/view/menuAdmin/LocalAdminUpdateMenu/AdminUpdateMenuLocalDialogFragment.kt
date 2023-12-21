@@ -41,6 +41,10 @@ class AdminUpdateMenuLocalDialogFragment : DialogFragment() {
             val carbs = menu.carbsGram
             val protein = menu.proteinGram
             val fat = menu.fatGram
+            val urlPhoto = menu.urlPhoto
+
+            val editableUrl = Editable.Factory.getInstance().newEditable(urlPhoto)
+            txtUrl.text = editableUrl
 
             val editableName = Editable.Factory.getInstance().newEditable(nama)
             txtName.text = editableName

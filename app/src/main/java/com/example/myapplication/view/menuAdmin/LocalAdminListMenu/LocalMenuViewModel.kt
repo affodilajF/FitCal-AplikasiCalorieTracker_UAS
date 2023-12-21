@@ -50,7 +50,8 @@ class LocalMenuViewModel : ViewModel() {
                                 calAmount = menuAdmin.calAmount,
                                 fatGram = menuAdmin.fatGram,
                                 carbsGram = menuAdmin.carbsGram,
-                                proteinGram = menuAdmin.proteinGram
+                                proteinGram = menuAdmin.proteinGram,
+                                urlPhoto = menuAdmin.urlPhoto
                             )
                         }
 

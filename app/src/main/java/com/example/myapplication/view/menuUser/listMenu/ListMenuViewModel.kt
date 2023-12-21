@@ -32,6 +32,7 @@ class ListMenuViewModel : ViewModel() {
                         documentReference.get("fatGram").toString(),
                         documentReference.get("carbsGram").toString(),
                         documentReference.get("proteinGram").toString(),
+                        documentReference.get("urlPhoto").toString()
                 )
                 )
             }

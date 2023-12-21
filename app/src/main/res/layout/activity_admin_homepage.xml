@@ -28,6 +28,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:menu="@menu/bottom_navigation_menu_2"
         android:background="@color/white"
+        app:itemIconTint="@color/navbar"
+        app:itemTextColor="@color/navbar"
         />
 
 

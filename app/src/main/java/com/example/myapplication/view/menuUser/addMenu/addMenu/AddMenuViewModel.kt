@@ -23,22 +23,15 @@ class AddMenuViewModel(application: Application) : AndroidViewModel(application)
         SharedPreferencesHelper.getInstance(application.applicationContext)
 
     fun initializeDBRoom(context: Context){
-//        executorService = Executors.newSingleThreadExecutor()
+        executorService = Executors.newSingleThreadExecutor()
         val db = MenuRoomDatabase.getDatabase(context)
         mMenuDataDao = db!!.menuDao()!!
     }
-//    fun insertMenu(menu : MenuData){
-//        menu.userId = sharedPreferencesHelper.getUserId().toString()
-//
-//        val runnable = Runnable { mMenuDataDao.insert(menu) }
-//        executorService.execute(runnable)
-//    }
-
-    fun insertMenu(menu: MenuData) {
+    fun insertMenu(menu : MenuData){
         menu.userId = sharedPreferencesHelper.getUserId().toString()
-        viewModelScope.launch(Dispatchers.IO) {
-            mMenuDataDao.insert(menu)
-        }
+
+        val runnable = Runnable { mMenuDataDao.insert(menu) }
+        executorService.execute(runnable)
     }
 
     fun getUserId(): String {

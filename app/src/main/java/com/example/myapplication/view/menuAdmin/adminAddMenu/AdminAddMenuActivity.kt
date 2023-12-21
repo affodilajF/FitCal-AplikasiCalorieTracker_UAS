@@ -44,6 +44,7 @@ class AdminAddMenuActivity : AppCompatActivity() {
 
                 val name = txtName.text.toString()
 
+
                 // carbsGram
                 val c : String =inputCarbs.text.toString().takeIf { it.isNotBlank() } ?: "0"
 //                fatGram
@@ -52,8 +53,16 @@ class AdminAddMenuActivity : AppCompatActivity() {
                 val e : String = inputProtein.text.toString().takeIf { it.isNotBlank() } ?: "0"
 
                 val totalcal100 = CalorieCalculator.getTotalCal100(c.toIntOrNull() ?: 0 , d.toIntOrNull() ?: 0 , e.toIntOrNull() ?: 0)
-                val menuToadd = Menu(name=name, calAmount = totalcal100.toString(), carbsGram = c, fatGram = d, proteinGram = e)
-                viewModel.addMenu(menuToadd, this@AdminAddMenuActivity)
+
+                var url = txtUrl.text.toString()
+
+                var menuToAdd = Menu(name=name, calAmount = totalcal100.toString(), carbsGram = c, fatGram = d, proteinGram = e)
+                if(url!=""){
+                    menuToAdd.urlPhoto = url
+                }
+
+
+                viewModel.addMenu(menuToAdd, this@AdminAddMenuActivity)
                 finish()
             }
 

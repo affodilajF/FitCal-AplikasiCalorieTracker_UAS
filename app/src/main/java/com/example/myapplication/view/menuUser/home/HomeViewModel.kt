@@ -91,6 +91,8 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
         return mMenuDataDao.getTotalServingTimesCarbs(sharedPreferencesHelper.getUserId().toString(), date )
     }
 
+
+
     fun getAmountGramAllProteinLiveData(date : String): LiveData<Double> {
         return mMenuDataDao.getTotalServingTimesProtein(sharedPreferencesHelper.getUserId().toString(), date )
     }

@@ -3,6 +3,8 @@ package com.example.myapplication.view.menuUser.history
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.BitmapTransitionOptions
 import com.example.myapplication.data.model.room.MenuData
 import com.example.myapplication.databinding.ItemMenu2Binding
 
@@ -16,8 +18,6 @@ class MenuDataAdapter(
 
     private var listdata : List<MenuData> = ArrayList()
 
-//    private val context: Context? = null
-
     inner class ItemNoteViewHolder(private var binding: ItemMenu2Binding) : RecyclerView.ViewHolder(binding.root){
 
         fun bind(menu: MenuData) {
@@ -28,6 +28,13 @@ class MenuDataAdapter(
                 txtDate.text = menu.date
                 txtTotalcal.text = menu.calAmount.toString()
                 idServing.text = menu.servings.toString() + " servings"
+
+                Glide.with(itemView.context).asBitmap().load(menu.urlPhoto)
+                    .transition(BitmapTransitionOptions.withCrossFade())
+                    .override(300, 300)
+                    .centerCrop()
+                    .into(imgFood)
+
                 itemView.setOnClickListener{
                     onClickData(menu)
                 }
@@ -53,8 +60,6 @@ class MenuDataAdapter(
         listdata= newNotesList
         notifyDataSetChanged()
     }
-
-
 
 
 }

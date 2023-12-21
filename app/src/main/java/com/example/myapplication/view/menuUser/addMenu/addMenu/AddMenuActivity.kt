@@ -15,6 +15,7 @@ import com.example.myapplication.data.model.room.MenuData
 import com.example.myapplication.databinding.ActivityAddMenuBinding
 import com.example.myapplication.util.CalorieCalculator
 import com.example.myapplication.util.DateUtils
+import com.example.myapplication.util.Formatter
 import java.util.Calendar
 import java.util.Date
 
@@ -71,6 +72,7 @@ class AddMenuActivity : AppCompatActivity(),  DatePickerDialog.OnDateSetListener
             val carbs = menu.carbsGram
             val protein = menu.proteinGram
             val fat = menu.fatGram
+            val url = menu.urlPhoto
 
             txtName.text = menu.name
 
@@ -83,9 +85,14 @@ class AddMenuActivity : AppCompatActivity(),  DatePickerDialog.OnDateSetListener
             txtGrProtein.text = protein + " gr"
             txtCalOneserving.text = calories + " cal"
 
+            val serving : Double = Formatter.formattedDouble(editTextServingsNumber.text.toString())
+
             btnDone.setOnClickListener {
-                val menuFix = MenuData( userId = viewModel.getUserId() , name = name, calAmount = txtTotalCalCalculated.text.toString().toInt(),  fatGram =  fat.toInt(), carbsGram = carbs.toInt(), proteinGram = protein.toInt(), servings = editTextServingsNumber.text.toString().toDouble(),
-                    date = DateUtils.getFormattedDate(selectedDate), category = selectedmealcategory, calAmount100 = calories.toInt() )
+                val menuFix = MenuData( userId = viewModel.getUserId() , name = name, calAmount = txtTotalCalCalculated.text.toString().toDouble().toInt(),  fatGram =  fat.toInt(), carbsGram = carbs.toInt(), proteinGram = protein.toInt(),
+                    servings = serving,
+                    date = DateUtils.getFormattedDate(selectedDate), category = selectedmealcategory, calAmount100 = calories.toInt(),
+                    urlPhoto = url)
+
                 viewModel.insertMenu(menuFix)
                 finish()
             }

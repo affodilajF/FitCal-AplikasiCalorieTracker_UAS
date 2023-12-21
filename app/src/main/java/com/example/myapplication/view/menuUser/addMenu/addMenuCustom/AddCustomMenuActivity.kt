@@ -68,9 +68,17 @@ class AddCustomMenuActivity : AppCompatActivity(), DatePickerDialog.OnDateSetLis
 //                cal100gr
                 val i : Int = CalorieCalculator.getTotalCal100(c , d, e)
 
+                val k = txtUrl.text.toString()
+
                 val menuFix = MenuData(userId = viewModel.getUserId(),
                     name = a, calAmount = b, carbsGram = c, fatGram = d, proteinGram = e,
                     servings = f, date = g, category = h, calAmount100 = i)
+
+                if(k != ""){
+                    menuFix.urlPhoto = k
+                }
+
+
                 viewModel.insertRoom(menuFix)
                 finish()
             }

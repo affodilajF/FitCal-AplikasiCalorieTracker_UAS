@@ -1,25 +1,32 @@
 package com.example.myapplication.view.menuUser.home
 
 import android.animation.ValueAnimator
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.app.PendingIntent
+import android.content.Context
+import android.content.Intent
+import android.graphics.BitmapFactory
+import android.os.Build
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
+import androidx.core.app.NotificationCompat
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
+import com.example.myapplication.R
 import com.example.myapplication.data.model.room.MenuData
 import com.example.myapplication.databinding.FragmentHomeBinding
 import com.example.myapplication.util.CalorieCalculator
 import com.example.myapplication.util.DateUtils
+import com.example.myapplication.view.menuUser.NotifReceiver
 
 class HomeFragment : Fragment()  {
-
-    private var allMenusLiveData : LiveData<List<MenuData>>? = null
-    private var allMenusLiveData1 : LiveData<List<MenuData>>? = null
-    private var allMenusLiveData2 : LiveData<List<MenuData>>? = null
-    private var allMenusLiveData3 : LiveData<List<MenuData>>? = null
 
     private lateinit var viewModel: HomeViewModel
     private lateinit var binding : FragmentHomeBinding
@@ -36,10 +43,41 @@ class HomeFragment : Fragment()  {
     private var targetedGramFatByDay : Int = 0
 
 
+
+
+
+    private val channelId = "TEST_NOTIF"
+
+    private val notifId = 90
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+//        notiff
+//        val notificationManager = requireActivity().getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+//
+//
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         binding = FragmentHomeBinding.inflate(inflater, container, false)
         val view = binding.root
@@ -64,6 +102,9 @@ class HomeFragment : Fragment()  {
                 txtDateFilter = DateUtils.getFormattedDate(a)
                 getAllMenus()
                 getRemainingCal(targetedCalByDay)
+
+
+
             }
             imageButtonNext.setOnClickListener{
                 dateTrigger += 1
@@ -78,7 +119,68 @@ class HomeFragment : Fragment()  {
         }
         getAllMenus()
         return view
+
+
+
     }
+
+    fun getNotif(msg : String){
+        val notificationManager = requireActivity().getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+
+        val flag = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+            PendingIntent.FLAG_MUTABLE
+        } else {
+            0
+        }
+        val intent = Intent(requireContext(), NotifReceiver::class.java)
+            .putExtra("MSG", "Baca Selengkapnya")
+        val pendingIntent = PendingIntent.getBroadcast(
+            requireContext(),
+            0,
+            intent,
+            PendingIntent.FLAG_IMMUTABLE // Ganti dengan FLAG_MUTABLE jika diperlukan
+        )
+
+        val builder = NotificationCompat.Builder(requireContext(), channelId)
+            .setSmallIcon(R.drawable.baseline2_close_24)
+            .setContentTitle("Your daily target has been achieved!")
+            .setContentText("Your body has consumed $msg calories")
+            .setAutoCancel(true)
+            .addAction(0, "See More", pendingIntent)
+            .setPriority(NotificationCompat.PRIORITY_HIGH)
+
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+            val notifChannel = NotificationChannel(channelId,
+                "Notifku", NotificationManager.IMPORTANCE_DEFAULT)
+
+            with(notificationManager){
+                createNotificationChannel(notifChannel)
+                notify(notifId, builder.build())
+            }
+
+        } else {
+            notificationManager.notify(notifId, builder.build())
+        }
+
+
+    }
+
+
+
+    private fun setMenuCountText(category: String, textView: TextView) {
+            viewModel.getAllLiveDataByCategory(category, txtDateFilter)?.observe(viewLifecycleOwner, Observer { menus ->
+                menus?.let {
+                    textView.text = menus.size.toString()
+                }
+            })
+        }
+
+        private fun getAllMenus() {
+            setMenuCountText("Breakfast", binding.txtCountBreakfast)
+            setMenuCountText("Snack", binding.txtCountSnack)
+            setMenuCountText("Lunch", binding.txtCountLunch)
+            setMenuCountText("Dinner", binding.txtCountDinner)
+        }
 
         private fun observeData(){
             with(binding){
@@ -117,6 +219,12 @@ class HomeFragment : Fragment()  {
                 if(intValue != null){
                     val remainingcal  = CalorieCalculator.getRemainingCal(dayTargetedCal, intValue)
                     val progressIndAllCal = CalorieCalculator.getPercentProgress(dayTargetedCal, intValue)
+
+
+                    if (progressIndAllCal >= 100) {
+                        getNotif(dayTargetedCal.toString())
+                    }
+
 
                     if(remainingcal <= 0.toString()){
                         binding.textRemainingCal.text = "0"
@@ -174,11 +282,6 @@ class HomeFragment : Fragment()  {
                     animateProgressBarFat(0)
                 }
             }
-
-
-
-
-
         }
 
 
@@ -234,51 +337,8 @@ class HomeFragment : Fragment()  {
         }
 
 
-        private fun getAllMenus(){
-                allMenusLiveData = viewModel.getAllLiveDataByCategory("Breakfast", txtDateFilter)
-                allMenusLiveData?.observe(viewLifecycleOwner, Observer { menus ->
-                    menus?.let {
-                        with(binding){
-                            txtCountBreakfast.text = (menus.size).toString()
-                        }
-                    }
-                })
-
-                allMenusLiveData1 = viewModel.getAllLiveDataByCategory("Snack", txtDateFilter)
-                allMenusLiveData1?.observe(viewLifecycleOwner, Observer { menus ->
-                    menus?.let {
-                        with(binding){
-                            txtCountSnack.text = (menus.size).toString()
-                        }
-                    }
-                })
-
-                allMenusLiveData2 = viewModel.getAllLiveDataByCategory("Lunch", txtDateFilter)
-                allMenusLiveData2?.observe(viewLifecycleOwner, Observer { menus ->
-                    menus?.let {
-                        with(binding){
-                            txtCountLunch.text = (menus.size).toString()
-                        }
-                    }
-                })
-
-                allMenusLiveData3 = viewModel.getAllLiveDataByCategory("Dinner", txtDateFilter)
-                allMenusLiveData3?.observe(viewLifecycleOwner, Observer { menus ->
-                    menus?.let {
-                        with(binding){
-                            txtCountDinner.text = (menus.size).toString()
-                        }
-                    }
-                })
-
-        }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
     }
-
-
-
-
-
 }

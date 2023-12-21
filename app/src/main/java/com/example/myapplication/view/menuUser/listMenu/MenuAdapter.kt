@@ -3,6 +3,8 @@ package com.example.myapplication.view.menuUser.listMenu
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.BitmapTransitionOptions
 import com.example.myapplication.data.model.firestore.Menu
 import com.example.myapplication.databinding.ItemMenuBinding
 
@@ -26,6 +28,11 @@ class MenuAdapter(
                 txtProteinAmount.text = menu.proteinGram + " gr"
                 txtFatAmount.text = menu.fatGram + " gr"
                 txtTotalcal.text = menu.calAmount + " cal"
+
+                Glide.with(itemView.context).asBitmap().load(menu.urlPhoto)
+                    .transition(BitmapTransitionOptions.withCrossFade())
+                    .centerCrop()
+                    .into(imgFood)
 
                 itemView.setOnClickListener{
                     onClickData(menu)
