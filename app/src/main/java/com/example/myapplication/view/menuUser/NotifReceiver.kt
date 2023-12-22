@@ -10,7 +10,6 @@ import android.widget.Toast
 class NotifReceiver : BroadcastReceiver() {
 
     override fun onReceive(context: Context, intent: Intent) {
-        // This method is called when the BroadcastReceiver is receiving an Intent broadcast.
 
         val msg = intent?.getStringExtra("MSG")
         if(msg !=null){

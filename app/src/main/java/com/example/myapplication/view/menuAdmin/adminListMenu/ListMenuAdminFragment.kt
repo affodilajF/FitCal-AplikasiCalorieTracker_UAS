@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myapplication.databinding.FragmentHomepageAdminBinding
 import com.example.myapplication.view.menuAdmin.adminAddMenu.AdminAddMenuActivity
@@ -32,7 +33,7 @@ class ListMenuAdminFragment : Fragment() {
 
 //        rec view
         observeMenus()
-        viewModel.getAllMenus()
+        viewModel.getAllMenus("default")
 
         adapterMenuItem = MenuAdapter { menu ->
             val dialogFragment = AdminUpdateMenuDialogFragment()
@@ -41,6 +42,9 @@ class ListMenuAdminFragment : Fragment() {
             dialogFragment.arguments = args
             dialogFragment.show(requireActivity().supportFragmentManager, "AdminUpdateMenuDialogFragment")
         }
+
+
+
 
 
         binding.rvItemMenu.apply {
@@ -55,8 +59,28 @@ class ListMenuAdminFragment : Fragment() {
             activity?.overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         }
 
+        //        filter button
+        with(binding){
+            searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+                override fun onQueryTextSubmit(query: String): Boolean {
+                    return true
+                }
+
+                override fun onQueryTextChange(newText: String): Boolean {
+                    viewModel.getAllMenus(newText)
+
+                    return true
+                }
+            })
+        }
+
         return view
     }
+
+
+
+    //        filter button
+
 
     private fun observeMenus(){
         viewModel.menuListLiveData.observe(viewLifecycleOwner){

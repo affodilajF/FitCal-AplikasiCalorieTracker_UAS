@@ -23,30 +23,67 @@ class ListMenuAdminViewModel : ViewModel() {
     }
     private val menuCollectionRef = firestore.collection("menus")
 
-    fun getAllMenus() {
-        menuCollectionRef.addSnapshotListener { snapshots, error ->
-            if(error != null){
-                Log.d("MainActivity", "Error listening for budget changes", error)
-                return@addSnapshotListener
-            }
-            val menu = arrayListOf<Menu>()
-            snapshots?.forEach{
-                    documentReference ->
-                menu.add(
-                    Menu(documentReference.id,
-                        documentReference.get("name").toString(),
-                        documentReference.get("calAmount").toString(),
-                        documentReference.get("fatGram").toString(),
-                        documentReference.get("carbsGram").toString(),
-                        documentReference.get("proteinGram").toString(),
-                        documentReference.get("urlPhoto").toString()
+
+    fun getAllMenus( filter : String) {
+
+        menuCollectionRef
+            .let { if (filter == "default") it else it.whereGreaterThanOrEqualTo( "name", filter).whereLessThanOrEqualTo("name", filter + "\uf8ff") }
+            .addSnapshotListener { snapshots, error ->
+                if(error != null){
+                    Log.d("HomeeActivity", "Error listening for notes changes", error)
+                    return@addSnapshotListener
+                }
+
+                val menu = arrayListOf<Menu>()
+                snapshots?.forEach{
+                        documentReference ->
+                    menu.add(
+                        Menu(documentReference.id,
+                            documentReference.get("name").toString(),
+                            documentReference.get("calAmount").toString(),
+                            documentReference.get("fatGram").toString(),
+                            documentReference.get("carbsGram").toString(),
+                            documentReference.get("proteinGram").toString(),
+                            documentReference.get("urlPhoto").toString()
+                        )
                     )
-                )
+                }
+                if(menu != null){
+                    menuListLiveData.postValue(menu)
+                }
+
+
             }
-            if(menu != null){
-                menuListLiveData.postValue(menu)
-            }
-        }
+
     }
+
+
+
+//    fun getAllMenus() {
+//        menuCollectionRef.addSnapshotListener { snapshots, error ->
+//            if(error != null){
+//                Log.d("MainActivity", "Error listening for budget changes", error)
+//                return@addSnapshotListener
+//            }
+//            val menu = arrayListOf<Menu>()
+//            snapshots?.forEach{
+//                    documentReference ->
+//                menu.add(
+//                    Menu(documentReference.id,
+//                        documentReference.get("name").toString(),
+//                        documentReference.get("calAmount").toString(),
+//                        documentReference.get("fatGram").toString(),
+//                        documentReference.get("carbsGram").toString(),
+//                        documentReference.get("proteinGram").toString(),
+//                        documentReference.get("urlPhoto").toString()
+//                    )
+//                )
+//            }
+//            if(menu != null){
+//                menuListLiveData.postValue(menu)
+//            }
+//        }
+//    }
+
 
 }

@@ -55,6 +55,7 @@ class MenuAdapter(
         holder.bind(listdata[position])
     }
 
+
     fun updateData(newNotesList: List<Menu>) {
         listdata= newNotesList
         notifyDataSetChanged()

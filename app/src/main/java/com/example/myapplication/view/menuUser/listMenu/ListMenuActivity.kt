@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myapplication.data.model.firestore.Menu
 import com.example.myapplication.databinding.ActivityListMenuBinding
@@ -23,7 +24,7 @@ class ListMenuActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         observeMenus()
-        viewModel.getAllMenus()
+        viewModel.getAllMenus("default")
 
         adapterMenuItem = MenuAdapter {
                 menu: Menu ->
@@ -32,6 +33,25 @@ class ListMenuActivity : AppCompatActivity() {
             }
             startActivity(intent)
         }
+
+
+
+        //        filter button
+        with(binding){
+            searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+                override fun onQueryTextSubmit(query: String): Boolean {
+                    return true
+                }
+
+                override fun onQueryTextChange(newText: String): Boolean {
+                    viewModel.getAllMenus(newText)
+
+                    return true
+                }
+            })
+        }
+
+
 
         with(binding){
             btnBack.setOnClickListener{

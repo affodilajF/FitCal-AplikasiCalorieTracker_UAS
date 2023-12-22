@@ -71,6 +71,7 @@ class AdminUpdateMenuLocalDialogFragment : DialogFragment() {
 
             btnUpdate.setOnClickListener {
                 val a = MenuAdmin(
+                    urlPhoto = txtUrl.text.toString(),
                     id = menu.id,
                     name = txtName.text.toString(),
                     fatGram = inputFat.text.toString(),
@@ -84,8 +85,6 @@ class AdminUpdateMenuLocalDialogFragment : DialogFragment() {
                 )
                 viewModel.update(a)
                 dismiss()
-
-
 
             }
         }

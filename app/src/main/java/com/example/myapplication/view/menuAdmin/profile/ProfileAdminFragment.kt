@@ -28,7 +28,10 @@ class ProfileAdminFragment : Fragment() {
 
         binding.btnLogout.setOnClickListener {
             viewModel.logout()
-            startActivity(Intent(requireContext(), AuthActivity::class.java))
+            val intent = Intent(requireActivity(),AuthActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            requireActivity().startActivity(intent)
+            requireActivity().finish()
         }
 
         return view

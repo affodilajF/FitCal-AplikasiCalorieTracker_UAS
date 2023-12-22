@@ -24,6 +24,7 @@ import com.example.myapplication.data.model.room.MenuData
 import com.example.myapplication.databinding.FragmentHomeBinding
 import com.example.myapplication.util.CalorieCalculator
 import com.example.myapplication.util.DateUtils
+import com.example.myapplication.view.menuUser.HomepageActivity
 import com.example.myapplication.view.menuUser.NotifReceiver
 
 class HomeFragment : Fragment()  {
@@ -44,39 +45,13 @@ class HomeFragment : Fragment()  {
 
 
 
-
-
-    private val channelId = "TEST_NOTIF"
-
+    private val channelId = "NOTIF"
     private val notifId = 90
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-//        notiff
-//        val notificationManager = requireActivity().getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-//
-//
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
         binding = FragmentHomeBinding.inflate(inflater, container, false)
@@ -124,7 +99,7 @@ class HomeFragment : Fragment()  {
 
     }
 
-    fun getNotif(msg : String){
+    private fun getNotif(msg : String){
         val notificationManager = requireActivity().getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
         val flag = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
@@ -132,21 +107,19 @@ class HomeFragment : Fragment()  {
         } else {
             0
         }
-        val intent = Intent(requireContext(), NotifReceiver::class.java)
+
+
+        val intent = Intent(requireContext(), HomepageActivity::class.java)
             .putExtra("MSG", "Baca Selengkapnya")
-        val pendingIntent = PendingIntent.getBroadcast(
-            requireContext(),
-            0,
-            intent,
-            PendingIntent.FLAG_IMMUTABLE // Ganti dengan FLAG_MUTABLE jika diperlukan
-        )
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP)
+        val openApppendingIntent = PendingIntent.getActivity(context, 0, intent, flag)
 
         val builder = NotificationCompat.Builder(requireContext(), channelId)
-            .setSmallIcon(R.drawable.baseline2_close_24)
-            .setContentTitle("Your daily target has been achieved!")
-            .setContentText("Your body has consumed $msg calories")
+            .setSmallIcon(R.drawable.baseline_circle_notifications_24)
+            .setContentTitle("Your daily target almost achieved!")
+            .setContentText("There are $msg cal calories left")
             .setAutoCancel(true)
-            .addAction(0, "See More", pendingIntent)
+            .addAction(0, "See More", openApppendingIntent)
             .setPriority(NotificationCompat.PRIORITY_HIGH)
 
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
@@ -161,8 +134,6 @@ class HomeFragment : Fragment()  {
         } else {
             notificationManager.notify(notifId, builder.build())
         }
-
-
     }
 
 
@@ -220,9 +191,8 @@ class HomeFragment : Fragment()  {
                     val remainingcal  = CalorieCalculator.getRemainingCal(dayTargetedCal, intValue)
                     val progressIndAllCal = CalorieCalculator.getPercentProgress(dayTargetedCal, intValue)
 
-
-                    if (progressIndAllCal >= 100) {
-                        getNotif(dayTargetedCal.toString())
+                    if (progressIndAllCal in 80..99) {
+                        getNotif(remainingcal)
                     }
 
 
@@ -335,7 +305,6 @@ class HomeFragment : Fragment()  {
             progressAnimator1.setIntValues(binding.linearProgressFat.progress, progressInd)
             progressAnimator1.start()
         }
-
 
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

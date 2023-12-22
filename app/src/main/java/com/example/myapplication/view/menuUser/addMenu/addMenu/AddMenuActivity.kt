@@ -85,7 +85,7 @@ class AddMenuActivity : AppCompatActivity(),  DatePickerDialog.OnDateSetListener
             txtGrProtein.text = protein + " gr"
             txtCalOneserving.text = calories + " cal"
 
-            val serving : Double = Formatter.formattedDouble(editTextServingsNumber.text.toString())
+            var serving : Double = 0.0
 
             btnDone.setOnClickListener {
                 val menuFix = MenuData( userId = viewModel.getUserId() , name = name, calAmount = txtTotalCalCalculated.text.toString().toDouble().toInt(),  fatGram =  fat.toInt(), carbsGram = carbs.toInt(), proteinGram = protein.toInt(),
@@ -103,6 +103,7 @@ class AddMenuActivity : AppCompatActivity(),  DatePickerDialog.OnDateSetListener
 
                 override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                     txtTotalCalCalculated.text = CalorieCalculator.getTotalCal(calories, s.toString())
+                    serving = s.toString().toDouble()
 
                     calculatedCalCarbs.text = CalorieCalculator.getCalCarbsOnUserServing(carbs, s.toString())
                     calculatedCalFat.text = CalorieCalculator.getCalFatOnUserServing(carbs, s.toString())

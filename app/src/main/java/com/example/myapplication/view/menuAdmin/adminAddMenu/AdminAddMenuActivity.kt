@@ -57,6 +57,7 @@ class AdminAddMenuActivity : AppCompatActivity() {
                 var url = txtUrl.text.toString()
 
                 var menuToAdd = Menu(name=name, calAmount = totalcal100.toString(), carbsGram = c, fatGram = d, proteinGram = e)
+
                 if(url!=""){
                     menuToAdd.urlPhoto = url
                 }

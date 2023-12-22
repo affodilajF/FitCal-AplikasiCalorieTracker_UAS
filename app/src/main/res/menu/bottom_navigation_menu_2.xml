@@ -2,13 +2,13 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:title="Home"
+        android:title="Firestore"
         android:id="@+id/homeAdminFragment"
         android:icon="@drawable/baseline_home_24"
         />
 
     <item
-        android:title="Home Local"
+        android:title="Local"
         android:id="@+id/localMenuFragment"
         android:icon="@drawable/baseline_home_24"
         />

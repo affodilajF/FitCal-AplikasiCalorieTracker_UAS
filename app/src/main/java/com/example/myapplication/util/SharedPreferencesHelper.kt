@@ -37,6 +37,19 @@ class SharedPreferencesHelper(private val context: Context) {
         editor.apply()
     }
 
+    fun clear() {
+        val editor = sharedPreferences.edit()
+        editor.clear()
+        editor.apply()
+    }
+
+
+
+
+
+
+
+
     fun isLoggedIn(): Boolean {
         return sharedPreferences.getBoolean(KEY_IS_LOGGED_IN, false)
     }
@@ -92,10 +105,5 @@ class SharedPreferencesHelper(private val context: Context) {
     }
 
 
-    fun clear() {
-        val editor = sharedPreferences.edit()
-        editor.clear()
-        editor.apply()
-    }
 
 }

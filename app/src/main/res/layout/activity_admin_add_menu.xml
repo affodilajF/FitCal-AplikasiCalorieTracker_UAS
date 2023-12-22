@@ -45,7 +45,7 @@
                 android:textColor="@color/white"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Add Food"/>
+                android:text="Add Menu"/>
 
         </LinearLayout>
 
